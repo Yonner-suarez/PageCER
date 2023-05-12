@@ -9,3 +9,17 @@
 .parrafos {
   color: black;
 }
+.tituloVW {
+  color: black;
+}
+h3 {
+  font-size: xx-large !important;
+}
+@media screen and (max-width: 450px) {
+  .parrafos {
+    display: none;
+  }
+  p {
+    display: none;
+  }
+}
