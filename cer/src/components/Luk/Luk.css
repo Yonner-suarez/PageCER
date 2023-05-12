@@ -34,7 +34,7 @@
 @media screen and (max-width: 450px) {
   .contenedorLuk {
     background-image: url("https://www.impocolcab.com.co/wp-content/uploads/2021/04/20c28560-4295-48ff-b306-9dbf4637acc1.jpg");
-    background-position-y: 130px;
+    background-position-y: 50px;
     background-position-x: 20%;
     height: 200px;
   }
