@@ -9,3 +9,8 @@
   height: 500px;
   width: 100%;
 }
+@media screen and (max-width: 450px) {
+  .contenedorLuk {
+    height: 50px;
+  }
+}
