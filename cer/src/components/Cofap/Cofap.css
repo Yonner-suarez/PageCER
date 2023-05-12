@@ -1,50 +1,52 @@
-.contenedorValeo {
+.contenedorCofap {
   background-color: beige;
-  background-image: url("../../assets/ValeoOriginal.jpg");
+  background-image: url("../../assets/Cofap.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  background-position-y: 35px;
+
+  background-position-y: 0px;
   margin: 0 auto;
   height: 500px;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   margin-top: 2%;
 }
-.parrafosValeo {
-  background-color: rgba(0, 0, 0, 0.518);
+.parrafosCofap {
+  background-color: rgba(0, 0, 0, 0.77);
   color: white;
   width: 35%;
   height: auto;
   margin-left: 2%;
   border-radius: 10px;
 }
-.tittleValeo {
+.tittleCofap {
   background-color: rgba(0, 0, 0, 0.518);
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  color: greenyellow;
+  color: rgb(255, 157, 0);
   font-size: 70px;
   margin-left: 2%;
   padding: 10px;
   border-radius: 10px;
 }
 @media screen and (max-width: 450px) {
-  .contenedorValeo {
+  .contenedorCofap {
+    background-image: url("../../assets/Cofap450png.png");
     background-position-y: 50px;
-    background-position-x: 20%;
+    background-position-x: 50%;
     background-size: cover;
     width: 100%;
-    height: 200px;
+    height: 300px;
   }
-  .parrafosValeo {
+  .parrafosCofap {
     display: flex;
     font-size: xx-small;
     width: 50%;
   }
-  .tittleValeo {
+  .tittleCofap {
     font-size: medium;
   }
 }

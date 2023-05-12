@@ -1,18 +1,18 @@
-import "./Valeo.css";
+import "./Cofap.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
 
-const Valeo = () => {
+const Cofap = () => {
   useEffect(() => {
     AOS.init({ duration: 2000 });
   }, []);
   return (
-    <div className="contenedorValeo">
-      <h2 className="tittleValeo" data-aos="fade-left">
-        VaLEo
+    <div className="contenedorCofap">
+      <h2 className="tittleCofap" data-aos="fade-left">
+        CoFaP
       </h2>
-      <p className="parrafosValeo" data-aos="zoom-out-left">
+      <p className="parrafosCofap" data-aos="zoom-out-left">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima,
         nesciunt quibusdam iure nisi sunt animi alias recusandae minus obcaecati
         nihil enim, laborum dolores a totam doloremque saepe! Libero, porro
@@ -22,4 +22,4 @@ const Valeo = () => {
   );
 };
 
-export default Valeo;
+export default Cofap;

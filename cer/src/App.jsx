@@ -4,7 +4,10 @@ import Carrousel from "./components/Corrusel/carrusel";
 import NavBari from "./components/navBar/NavBar";
 import Luk from "./components/Luk/Luk";
 import Valeo from "./components/valeo/Valeo";
+import CarruselMarcas from "./components/CarruselMarcas/CarruselMarcas";
+import Cofap from "./components/Cofap/Cofap";
 import InfoNosotros from "./components/InfoNosotros/infoNosotros";
+import Propuesta from "./components/Propuesta/Propuesta";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
@@ -18,10 +21,9 @@ function App() {
       <InfoNosotros />
       <Luk />
       <Valeo />
-      <InfoNosotros />
-      <InfoNosotros />
-      <InfoNosotros />
-      <InfoNosotros />
+      <Cofap />
+      <CarruselMarcas />
+      <Propuesta />
     </div>
   );
 }
