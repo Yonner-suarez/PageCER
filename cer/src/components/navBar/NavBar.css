@@ -1,0 +1,157 @@
+.container {
+  border-radius: 10px;
+  justify-content: center;
+}
+.logocer {
+  width: 15%;
+  height: auto;
+  margin: 0 auto;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logocer:hover {
+  filter: drop-shadow(0 0 2em #646cff);
+}
+@keyframes logocer-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.contenedorLogos {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.logovw {
+  width: 60%;
+  height: auto;
+  margin: 0 auto;
+
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logovw:hover {
+  filter: drop-shadow(0 0 2em #646cff);
+}
+@keyframes logovw-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.logofiat {
+  width: 80%;
+  height: auto;
+  margin: 0 auto;
+
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logofiat:hover {
+  filter: drop-shadow(0 0 2em #646cff);
+}
+@keyframes logofiat-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.logoPeugeot {
+  width: 80%;
+  height: auto;
+  margin: 0 auto;
+
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logoPeugeot:hover {
+  filter: drop-shadow(0 0 2em #646cff);
+}
+@keyframes logoPeugeot-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.logoCitroen {
+  width: 100%;
+  height: auto;
+  margin-left: 8px;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logoCitroen:hover {
+  filter: drop-shadow(0 0 2em #646cff);
+}
+@keyframes logoCitroen-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.logomb {
+  width: 50%;
+  height: auto;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logomb:hover {
+  filter: drop-shadow(0 0 2em #646cff);
+}
+@keyframes logomb-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.logorenault {
+  width: 140%;
+  margin-left: -20px;
+  height: auto;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logorenault:hover {
+  filter: drop-shadow(0 0 2em #646cff);
+}
+@keyframes logorenault-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.carrito {
+  width: 40px;
+
+  height: auto;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.carrito:hover {
+  filter: drop-shadow(0 0 2em #646cff);
+}
+@keyframes carrito-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

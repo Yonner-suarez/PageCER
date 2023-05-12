@@ -1,0 +1,11 @@
+.contenedorCarusel {
+  margin-top: 2%;
+  border-radius: 10%;
+}
+.d-block {
+  border-radius: 10px;
+  opacity: 1;
+}
+.parrafos {
+  color: black;
+}
