@@ -1,5 +1,5 @@
 .contenedorPropuesta {
-  background-image: url("../../assets/1683931644484.jpg");
+  background-image: url("../../assets/horizontal.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position-y: -30px;
@@ -57,6 +57,8 @@ p {
 }
 @media screen and (max-width: 450px) {
   .contenedorPropuesta {
+    background-image: url("../../assets/vertical.jpg");
+    background-position-x: -600px;
     width: 100%;
     height: auto;
     flex-direction: column;
