@@ -1,6 +1,6 @@
-.contenedorLuk {
+.contenedorValeo {
   background-color: beige;
-  background-image: url("../../assets/LukOriginal.jpg");
+  background-image: url("../../assets/ValeoOriginal.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -14,7 +14,7 @@
   align-items: flex-start;
   margin-top: 2%;
 }
-.parrafosLuk {
+.parrafosValeo {
   background-color: rgba(0, 0, 0, 0.518);
   color: white;
   width: 35%;
@@ -22,28 +22,27 @@
   margin-left: 2%;
   border-radius: 10px;
 }
-.tittleLuk {
+.tittleValeo {
   background-color: rgba(0, 0, 0, 0.518);
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  color: yellow;
+  color: greenyellow;
   font-size: 70px;
   margin-left: 2%;
   padding: 10px;
   border-radius: 10px;
 }
 @media screen and (max-width: 450px) {
-  .contenedorLuk {
-    background-image: url("../../assets/Luk450.jpg");
+  .contenedorValeo {
     background-position-y: 50px;
     background-position-x: 20%;
     height: 200px;
   }
-  .parrafosLuk {
+  .parrafosValeo {
     display: flex;
     font-size: xx-small;
     width: 50%;
   }
-  .tittleLuk {
+  .tittleValeo {
     font-size: medium;
   }
 }

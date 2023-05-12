@@ -3,6 +3,7 @@ import titulo from "./assets/titulo.svg";
 import Carrousel from "./components/Corrusel/carrusel";
 import NavBari from "./components/navBar/NavBar";
 import Luk from "./components/Luk/Luk";
+import Valeo from "./components/valeo/Valeo";
 import InfoNosotros from "./components/InfoNosotros/infoNosotros";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -16,6 +17,7 @@ function App() {
       <Carrousel />
       <InfoNosotros />
       <Luk />
+      <Valeo />
       <InfoNosotros />
       <InfoNosotros />
       <InfoNosotros />
