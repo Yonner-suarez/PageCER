@@ -13,7 +13,7 @@ import Navbar from "react-bootstrap/Navbar";
 
 const NavBari = () => {
   return (
-    <div>
+    <div className="contenedorDelNav">
       <Navbar bg="light" expand="lg" className="container">
         <Container>
           <a href="https://youtube.com">
@@ -47,7 +47,8 @@ const NavBari = () => {
                   <img src={renault} alt="renault" className="logorenault" />
                 </a>
               </div>
-
+            </Nav>
+            <div className="contenedorPro">
               <Nav.Link href="#home" className="products">
                 Products
               </Nav.Link>
@@ -57,7 +58,7 @@ const NavBari = () => {
               <a href="https://youtube.com">
                 <img src={carrito} alt="carrito" className="carrito" />
               </a>
-            </Nav>
+            </div>
           </Navbar.Collapse>
         </Container>
       </Navbar>

@@ -1,0 +1,67 @@
+.infoLuk {
+  background-color: rgba(7, 23, 251, 0);
+  height: 500px;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 0 auto;
+  margin-top: 5%;
+  border-radius: 10px;
+}
+.parrafosNosotros {
+  font-size: 20px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: rgba(0, 0, 0, 0.526);
+  width: 100%;
+  height: auto;
+  margin-left: 2%;
+  border-radius: 10px;
+  text-align: left;
+}
+.tittleNosotros {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: rgba(13, 0, 255, 0.667);
+  font-size: 200%;
+  margin-left: 2%;
+  padding: 10px;
+  border-radius: 10px;
+  letter-spacing: 2px;
+  margin-bottom: -10px;
+}
+.imagenCartel {
+  width: 40%;
+  height: auto;
+  margin-left: 50%;
+  opacity: 0.5;
+}
+
+.hr {
+  border: 5px solid rgb(55, 0, 255);
+  background-color: blue;
+  height: 30%;
+  margin-left: 0%;
+  width: 5%;
+}
+
+@media screen and (max-width: 450px) {
+  .infoLuk {
+    height: 300px;
+    width: 90%;
+    flex-direction: column;
+  }
+  .parrafosNosotros {
+    font-size: xx-small;
+    margin-left: 0;
+    display: flex;
+    width: 80%;
+    height: auto;
+  }
+  .tittleNosotros {
+    font-size: small;
+  }
+  .hr {
+    height: 0.5%;
+  }
+}

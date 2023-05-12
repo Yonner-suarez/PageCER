@@ -1,11 +1,24 @@
 .container {
   border-radius: 10px;
+  display: flex;
   justify-content: center;
+  align-items: center;
 }
+.contenedorPro {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 50%;
+}
+
 .logocer {
   width: 15%;
   height: auto;
   margin: 0 auto;
+  margin-left: -30%;
+  margin-right: 50%;
   will-change: filter;
   transition: filter 300ms;
 }
@@ -25,6 +38,7 @@
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  width: 100%;
 }
 .logovw {
   width: 60%;
@@ -153,5 +167,11 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+@media screen and (max-width: 450px) {
+  .contenedorPro {
+    flex-direction: column;
+    width: 100%;
   }
 }

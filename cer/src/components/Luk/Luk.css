@@ -8,6 +8,28 @@
   margin: 0 auto;
   height: 500px;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 2%;
+}
+.parrafosLuk {
+  background-color: rgba(0, 0, 0, 0.518);
+  color: white;
+  width: 35%;
+  height: auto;
+  margin-left: 2%;
+  border-radius: 10px;
+}
+.tittleLuk {
+  background-color: rgba(0, 0, 0, 0.518);
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: yellow;
+  font-size: 70px;
+  margin-left: 2%;
+  padding: 10px;
+  border-radius: 10px;
 }
 @media screen and (max-width: 450px) {
   .contenedorLuk {
@@ -15,5 +37,13 @@
     background-position-y: 130px;
     background-position-x: 20%;
     height: 200px;
+  }
+  .parrafosLuk {
+    display: flex;
+    font-size: xx-small;
+    width: 50%;
+  }
+  .tittleLuk {
+    font-size: medium;
   }
 }
