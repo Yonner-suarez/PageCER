@@ -11,10 +11,20 @@ import continental from "../../assets/continental.svg";
 import ina from "../../assets/ina.svg";
 import mahle from "../../assets/mahle.svg";
 import sabo from "../../assets/sabo.svg";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 const CarruselMarcas = () => {
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  }, []);
   return (
-    <Carousel variant="dark" className="CarruselMarcas">
+    <Carousel
+      variant="dark"
+      className="CarruselMarcas"
+      data-aos="zoom-out-left"
+    >
       <Carousel.Item>
         <img className="d-block w-100" src={corven} alt="Corven" />
       </Carousel.Item>

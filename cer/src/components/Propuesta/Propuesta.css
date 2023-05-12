@@ -1,9 +1,79 @@
 .contenedorPropuesta {
+  background-image: url("../../assets/1683931644484.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: -30px;
   width: 100%;
-  height: 200px;
-  background-color: rgba(0, 0, 0, 0.482);
+  height: 300px;
+  margin-top: 5%;
+
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
+}
+.discount {
+  width: 50px;
+  height: auto;
+}
+.envios {
+  background-color: rgba(239, 235, 235, 0.48);
+  border: 3px solid black;
+  margin: 1%;
+  border-radius: 10px;
+}
+.pagos {
+  background-color: rgba(239, 235, 235, 0.48);
+  border: 2px solid black;
+  margin: 1%;
+  border-radius: 10px;
+}
+.repuestos {
+  background-color: rgba(239, 235, 235, 0.48);
+  border: 2px solid black;
+  margin: 1%;
+  border-radius: 10px;
+}
+.ofertas {
+  background-color: rgba(239, 235, 235, 0.48);
+  border: 2px solid black;
+  margin: 1%;
+  border-radius: 10px;
+}
+.tittle {
+  color: azure;
+}
+.icono {
+  width: 50px;
+  height: auto;
+}
+.iconoBots {
+  width: 40px;
+  height: auto;
+}
+p {
+  color: black;
+  text-align: center;
+}
+@media screen and (max-width: 450px) {
+  .contenedorPropuesta {
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+  }
+  .envios {
+    width: 70%;
+  }
+  .repuestos {
+    width: 70%;
+  }
+  .ofertas {
+    width: 70%;
+  }
+  .pagos {
+    width: 70%;
+  }
+  p {
+    display: flex;
+  }
 }
