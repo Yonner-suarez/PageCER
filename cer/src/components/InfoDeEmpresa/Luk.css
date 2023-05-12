@@ -1,0 +1,11 @@
+.contenedorLuk {
+  background-color: beige;
+  background-image: url("https://4.bp.blogspot.com/--n5UIrzj2fw/W_aZaDPMQCI/AAAAAAAAE2Y/z723Xs1p71op3_joNVKOKjOGS_-ycKoSACLcBGAs/s1600/1.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position-y: 35px;
+  margin: 0 auto;
+  height: 500px;
+  width: 100%;
+}
