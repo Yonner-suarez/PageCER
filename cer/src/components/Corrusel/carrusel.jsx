@@ -12,7 +12,7 @@ const Carrousel = () => {
     AOS.init({ duration: 2000 });
   }, []);
   return (
-    <div className="contenedorCarusel">
+    <div className="contenedorCarusel" data-aos="zoom-in">
       <br />
       <div data-aos="zoom-in">
         <Carousel className="carusel">

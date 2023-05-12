@@ -16,6 +16,13 @@ function App() {
       <Carrousel />
       <Luk />
       <InfoLuk />
+      <InfoLuk />
+      <InfoLuk />
+      <InfoLuk />
+      <InfoLuk />
+      <InfoLuk />
+      <InfoLuk />
+      <InfoLuk />
     </div>
   );
 }
