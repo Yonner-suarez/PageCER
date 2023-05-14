@@ -9,6 +9,7 @@ import Cofap from "./components/Cofap/Cofap";
 import InfoNosotros from "./components/InfoNosotros/infoNosotros";
 import Propuesta from "./components/Propuesta/Propuesta";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Contacto from "./components/Contacto/Contacto";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
       <Cofap />
       <CarruselMarcas />
       <Propuesta />
+      <Contacto />
     </div>
   );
 }

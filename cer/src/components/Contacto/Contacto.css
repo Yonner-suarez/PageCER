@@ -1,0 +1,103 @@
+.contenedorRedes {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: auto;
+}
+.todoElContenedor {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5%;
+  width: 100%;
+  height: auto;
+}
+
+.contenedorUnaRed {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 50%;
+  height: auto;
+  margin: 0 auto;
+}
+.contenedorUnaRed:hover {
+  background-color: rgba(0, 0, 0, 0.438);
+  transition: 1s;
+}
+
+.nombreRed {
+  font-size: medium;
+  margin-top: 7px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+.contenedorInformacion {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 80%;
+  height: auto;
+}
+.informacionNosotros {
+  width: 50%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 1%;
+}
+
+.logo {
+  width: 50%;
+  height: auto;
+}
+.parrafos {
+  text-align: left;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: medium;
+  color: black;
+}
+.subtitulo {
+  text-transform: uppercase;
+  height: 50%;
+  color: rgba(0, 0, 255, 0.657);
+}
+.saltos {
+  color: black;
+  border: 2px solid black;
+  width: 5%;
+  height: 5%;
+}
+@media screen and (max-width: 450px) {
+  .todoElContenedor {
+    width: 100%;
+    margin-top: 0%;
+    flex-direction: column;
+    height: auto;
+  }
+  .contenedorRedes {
+    width: 90%;
+  }
+  .contenedorInformacion {
+    width: 100%;
+    margin: 0 auto;
+    flex-direction: column;
+  }
+  .informacionNosotros {
+    width: 95%;
+  }
+  .logo {
+    width: 90%;
+  }
+  .parrafos {
+    display: flex;
+    font-size: medium;
+    width: 90%;
+  }
+}
