@@ -20,45 +20,43 @@ const CarruselMarcas = () => {
     AOS.init({ duration: 2000 });
   }, []);
   return (
-    <Carousel
-      variant="dark"
-      className="CarruselMarcas"
-      data-aos="zoom-out-left"
-    >
-      <Carousel.Item>
-        <img className="d-block w-100" src={corven} alt="Corven" />
-      </Carousel.Item>
-      <Carousel.Item>
-        <img className="d-block w-100" src={magneti} alt="Magneti Marelli" />
-      </Carousel.Item>
-      <Carousel.Item>
-        <img className="d-block w-100" src={gates} alt="Gates" />
-      </Carousel.Item>
-      <Carousel.Item>
-        <img className="d-block w-100" src={moog} alt="Moog" />
-      </Carousel.Item>
-      <Carousel.Item>
-        <img className="d-block w-100" src={febi} alt="Febi" />
-      </Carousel.Item>
-      <Carousel.Item>
-        <img className="d-block w-100" src={Borsehung} alt="Borsehung" />
-      </Carousel.Item>
-      <Carousel.Item>
-        <img className="d-block w-100" src={bosh} alt="Bosh" />
-      </Carousel.Item>
-      <Carousel.Item>
-        <img className="d-block w-100" src={continental} alt="Continental" />
-      </Carousel.Item>
-      <Carousel.Item>
-        <img className="d-block w-100" src={sabo} alt="Sabo" />
-      </Carousel.Item>
-      <Carousel.Item>
-        <img className="d-block w-100" src={ina} alt="Ina" />
-      </Carousel.Item>
-      <Carousel.Item>
-        <img className="d-block w-100" src={mahle} alt="Mahle" />
-      </Carousel.Item>
-    </Carousel>
+    <div className="CarruselMarcas">
+      <Carousel variant="dark" data-aos="zoom-out-left">
+        <Carousel.Item>
+          <img className="d-block w-100" src={corven} alt="Corven" />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img className="d-block w-100" src={magneti} alt="Magneti Marelli" />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img className="d-block w-100" src={gates} alt="Gates" />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img className="d-block w-100" src={moog} alt="Moog" />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img className="d-block w-100" src={febi} alt="Febi" />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img className="d-block w-100" src={Borsehung} alt="Borsehung" />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img className="d-block w-100" src={bosh} alt="Bosh" />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img className="d-block w-100" src={continental} alt="Continental" />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img className="d-block w-100" src={sabo} alt="Sabo" />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img className="d-block w-100" src={ina} alt="Ina" />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img className="d-block w-100" src={mahle} alt="Mahle" />
+        </Carousel.Item>
+      </Carousel>
+    </div>
   );
 };
 export default CarruselMarcas;

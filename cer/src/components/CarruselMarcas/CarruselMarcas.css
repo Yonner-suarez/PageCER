@@ -8,3 +8,13 @@
   width: 80%;
   height: auto;
 }
+@media screen and (max-width: 450px) {
+  .CarruselMarcas {
+    width: 80%;
+    height: auto;
+  }
+  .d-block {
+    width: 90%;
+    height: auto;
+  }
+}

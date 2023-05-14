@@ -76,7 +76,8 @@
 }
 @media screen and (max-width: 450px) {
   .todoElContenedor {
-    width: 100%;
+    width: 90%;
+    margin: 0 auto;
     margin-top: 0%;
     flex-direction: column;
     height: auto;
