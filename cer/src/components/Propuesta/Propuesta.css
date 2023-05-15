@@ -68,11 +68,15 @@
   width: 40px;
   height: auto;
 }
-p {
+.parrafos {
   color: black;
   text-align: center;
 }
 @media screen and (max-width: 450px) {
+  .todoElContenedor {
+    width: 100%;
+    height: 800px;
+  }
   .contenedorPropuesta {
     background-image: url("../../assets/vertical.jpg");
     background-position-x: -600px;
@@ -92,7 +96,10 @@ p {
   .pagos {
     width: 70%;
   }
-  p {
+  .parrafos {
+    display: flex;
+  }
+  .nombreRed {
     display: flex;
   }
 }
