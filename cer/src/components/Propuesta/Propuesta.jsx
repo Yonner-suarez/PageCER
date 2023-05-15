@@ -11,8 +11,8 @@ const Propuesta = () => {
     AOS.init({ duration: 2000 });
   }, []);
   return (
-    <div className="contenedorPropuesta" data-aos="fade-right">
-      <div data-aos="fade-left" className="envios">
+    <div className="contenedorPropuesta">
+      <div data-aos="flip-left" className="envios">
         <h4 className="tittle">Envios</h4>
         <SendPlusFill className="iconoBots" />
         <p>
@@ -21,7 +21,7 @@ const Propuesta = () => {
           eum vel ab aperiam vitae quo eos minus voluptas, et at.
         </p>
       </div>
-      <div data-aos="fade-left" className="ofertas">
+      <div data-aos="flip-left" className="ofertas">
         <h4 className="tittle">Ofertas</h4>
         <img src={discount} alt="Discount" className="discount" />
         <p>
@@ -30,7 +30,7 @@ const Propuesta = () => {
           eum vel ab aperiam vitae quo eos minus voluptas, et at.
         </p>
       </div>
-      <div data-aos="fade-left" className="repuestos">
+      <div data-aos="flip-left" className="repuestos">
         <h4 className="tittle">Repuestos Originales</h4>
         <img src={motor} alt="Motor" className="icono" />
         <p>
@@ -39,7 +39,7 @@ const Propuesta = () => {
           eum vel ab aperiam vitae quo eos minus voluptas, et at.
         </p>
       </div>
-      <div data-aos="fade-left" className="pagos">
+      <div data-aos="flip-left" className="pagos">
         <h4 className="tittle">Pagos Seguros</h4>
         <ShieldFillCheck className="iconoBots" />
         <p>

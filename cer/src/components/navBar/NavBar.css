@@ -69,14 +69,7 @@
 .logofiat:hover {
   filter: drop-shadow(0 0 2em #646cff);
 }
-@keyframes logofiat-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+
 .logoPeugeot {
   width: 80%;
   height: auto;
@@ -88,14 +81,7 @@
 .logoPeugeot:hover {
   filter: drop-shadow(0 0 2em #646cff);
 }
-@keyframes logoPeugeot-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+
 .logoCitroen {
   width: 100%;
   height: auto;
@@ -106,14 +92,7 @@
 .logoCitroen:hover {
   filter: drop-shadow(0 0 2em #646cff);
 }
-@keyframes logoCitroen-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+
 .logomb {
   width: 40%;
   height: auto;
@@ -124,14 +103,7 @@
 .logomb:hover {
   filter: drop-shadow(0 0 2em #646cff);
 }
-@keyframes logomb-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+
 .logorenault {
   width: 140%;
   margin-left: -20px;
@@ -141,14 +113,6 @@
 }
 .logorenault:hover {
   filter: drop-shadow(0 0 2em #646cff);
-}
-@keyframes logorenault-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 .carrito {
@@ -161,14 +125,7 @@
 .carrito:hover {
   filter: drop-shadow(0 0 2em #646cff);
 }
-@keyframes carrito-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+
 @media screen and (max-width: 450px) {
   .contenedorPro {
     flex-direction: column;
