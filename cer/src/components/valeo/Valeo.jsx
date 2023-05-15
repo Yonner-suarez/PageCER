@@ -9,10 +9,10 @@ const Valeo = () => {
   }, []);
   return (
     <div className="contenedorValeo">
-      <h2 className="tittleValeo" data-aos="fade-left">
+      <h2 className="tittleValeo" data-aos="fade-up">
         VaLEo
       </h2>
-      <p className="parrafosValeo" data-aos="zoom-out-left">
+      <p className="parrafosValeo" data-aos="zoom-out-right">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima,
         nesciunt quibusdam iure nisi sunt animi alias recusandae minus obcaecati
         nihil enim, laborum dolores a totam doloremque saepe! Libero, porro

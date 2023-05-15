@@ -11,7 +11,7 @@ const Propuesta = () => {
     AOS.init({ duration: 2000 });
   }, []);
   return (
-    <div className="contenedorPropuesta" data-aos="fade-left">
+    <div className="contenedorPropuesta" data-aos="fade-right">
       <div data-aos="fade-left" className="envios">
         <h4 className="tittle">Envios</h4>
         <SendPlusFill className="iconoBots" />

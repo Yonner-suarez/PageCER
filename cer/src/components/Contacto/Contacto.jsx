@@ -11,7 +11,7 @@ const Contacto = () => {
   }, []);
   return (
     <div className="todoElContenedor">
-      <div className="contenedorRedes" data-aos="zoom-out-left">
+      <div className="contenedorRedes" data-aos="fade-right">
         <div className="contenedorUnaRed">
           <p className="nombreRed">Facebook</p>
           <Facebook />
@@ -25,7 +25,7 @@ const Contacto = () => {
           <Twitter />
         </div>
       </div>
-      <div className="contenedorInformacion" data-aos="fade-down-left">
+      <div className="contenedorInformacion" data-aos="fade-right">
         <div className="informacionNosotros">
           <img src={logo} alt="Logo" className="logo" />
           <p className="parrafos">

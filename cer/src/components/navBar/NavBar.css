@@ -1,3 +1,8 @@
+.contenedorDelNav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
 .container {
   border-radius: 10px;
   display: flex;
@@ -17,28 +22,22 @@
   width: 15%;
   height: auto;
   margin: 0 auto;
-  margin-left: -30%;
-  margin-right: 50%;
+  margin-left: 0%;
+  margin-right: 30%;
   will-change: filter;
   transition: filter 300ms;
 }
 .logocer:hover {
   filter: drop-shadow(0 0 2em #646cff);
 }
-@keyframes logocer-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+
 .contenedorLogos {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
   width: 100%;
+  height: auto;
 }
 .logovw {
   width: 60%;
@@ -116,10 +115,11 @@
   }
 }
 .logomb {
-  width: 50%;
+  width: 40%;
   height: auto;
   will-change: filter;
   transition: filter 300ms;
+  margin-left: 25px;
 }
 .logomb:hover {
   filter: drop-shadow(0 0 2em #646cff);

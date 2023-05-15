@@ -1,11 +1,10 @@
 .contenedorCofap {
-  background-color: beige;
   background-image: url("../../assets/Cofap.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
 
-  background-position-y: 0px;
+  background-color: white;
   margin: 0 auto;
   height: 500px;
   width: 100%;

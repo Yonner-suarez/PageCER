@@ -21,7 +21,7 @@ const CarruselMarcas = () => {
   }, []);
   return (
     <div className="CarruselMarcas">
-      <Carousel variant="dark" data-aos="zoom-out-left">
+      <Carousel variant="dark" data-aos="zoom-out-left" className="carrusel">
         <Carousel.Item>
           <img className="d-block w-100" src={corven} alt="Corven" />
         </Carousel.Item>
