@@ -19,7 +19,7 @@
 }
 
 .logocer {
-  width: 15%;
+  width: 20%;
   height: auto;
   margin: 0 auto;
   margin-left: 0%;
@@ -128,6 +128,8 @@
 
 @media screen and (max-width: 450px) {
   .contenedorDelNav {
+    background-color: red;
+    width: 100%;
     position: sticky;
     top: 0;
     z-index: 10;
@@ -135,5 +137,9 @@
   .contenedorPro {
     flex-direction: column;
     width: 100%;
+  }
+  .logocer {
+    width: 30%;
+    margin-left: -101px;
   }
 }
