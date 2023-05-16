@@ -11,19 +11,33 @@
 }
 .WhatsApp {
   color: rgb(153, 255, 0);
-  width: 3%;
-  height: auto;
+  width: 100px;
+  height: 50px;
+  margin-right: 2%;
+}
+.link {
+  display: flex;
+  width: 50px;
+  height: 50px;
   margin-right: 2%;
 }
 .parrafosWHS {
-  margin: 0 auto;
   color: white;
-  margin-right: 20px;
   background-color: rgba(0, 0, 0, 0.692);
   padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-right: 2%;
 }
 @media screen and (max-width: 450px) {
   .WhatsApp {
-    width: 10%;
+    width: 100%;
+  }
+  .link {
+    width: 60px;
+    height: 50px;
+    margin-right: 2%;
   }
 }
