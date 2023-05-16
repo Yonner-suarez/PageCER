@@ -1,0 +1,8 @@
+.contenedorRepuestos {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  margin-top: 2%;
+  background-color: beige;
+  width: 80%;
+}
