@@ -1,0 +1,29 @@
+.contenedorWhatsApp {
+  background-color: transparent;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  position: sticky;
+  bottom: 1%;
+}
+.WhatsApp {
+  color: rgb(153, 255, 0);
+  width: 3%;
+  height: auto;
+  margin-right: 2%;
+}
+.parrafosWHS {
+  margin: 0 auto;
+  color: white;
+  margin-right: 20px;
+  background-color: rgba(0, 0, 0, 0.692);
+  padding: 10px;
+}
+@media screen and (max-width: 450px) {
+  .WhatsApp {
+    width: 10%;
+  }
+}
