@@ -8,10 +8,13 @@ import CarruselMarcas from "../CarruselMarcas/CarruselMarcas";
 import Cofap from "../Cofap/Cofap";
 import InfoNosotros from "../InfoNosotros/infoNosotros";
 import Propuesta from "../Propuesta/Propuesta";
+import RenderLogo from "../RenderLogo/RenderLogo";
+import WhatsAppInfo from "../WhatsApp/WhatsApp";
 
 const Home = () => {
   return (
     <div>
+      <RenderLogo />
       <NavBari />
       <Carrousel />
       <InfoNosotros />
@@ -23,6 +26,7 @@ const Home = () => {
       <Contacto />
       <hr />
       <Footer />
+      <WhatsAppInfo />
     </div>
   );
 };

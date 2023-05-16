@@ -94,11 +94,11 @@
 }
 
 .logomb {
-  width: 40%;
+  width: 50%;
   height: auto;
   will-change: filter;
   transition: filter 300ms;
-  margin-left: 25px;
+  margin-left: 0px;
 }
 .logomb:hover {
   filter: drop-shadow(0 0 2em #646cff);

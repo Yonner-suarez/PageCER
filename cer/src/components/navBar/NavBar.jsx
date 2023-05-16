@@ -16,7 +16,7 @@ const NavBari = () => {
     <div className="contenedorDelNav">
       <Navbar bg="light" expand="lg" className="container">
         <Container>
-          <a href="https://youtube.com">
+          <a href="/">
             <img src={Logocer} alt="Logo" className="logocer" />
           </a>
 
@@ -24,38 +24,38 @@ const NavBari = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <div className="contenedorLogos">
-                <a href="https://youtube.com">
+                <a href="/repuestosVw">
                   <img src={vw} alt="vw" className="logovw" />
                 </a>
                 <br />
-                <a href="https://youtube.com">
+                <a href="/repuestosFiat">
                   <img src={fiat} alt="fiat" className="logofiat" />
                 </a>
                 <br />
-                <a href="https://youtube.com">
+                <a href="/repuestosPeugeot">
                   <img src={peugeot} alt="peugeot" className="logoPeugeot" />
                 </a>
                 <br />
-                <a href="https://youtube.com">
+                <a href="/repuestosCitroen">
                   <img src={citroen} alt="citroen" className="logoCitroen" />
                 </a>
                 <br />
-                <a href="https://youtube.com">
+                <a href="/repuestosMb">
                   <img src={mb} alt="mb" className="logomb" />
                 </a>
-                <a href="https://youtube.com">
+                <a href="/repuestosRenault">
                   <img src={renault} alt="renault" className="logorenault" />
                 </a>
               </div>
             </Nav>
             <div className="contenedorPro">
-              <Nav.Link href="#home" className="products">
-                Products
+              <Nav.Link href="/Productos" className="products">
+                Productos
               </Nav.Link>
-              <Nav.Link href="#link" className="about">
-                About
+              <Nav.Link href="/nosotros" className="about">
+                Nosotros
               </Nav.Link>
-              <a href="https://youtube.com">
+              <a href="/compras">
                 <img src={carrito} alt="carrito" className="carrito" />
               </a>
             </div>
