@@ -128,7 +128,6 @@
 
 @media screen and (max-width: 450px) {
   .contenedorDelNav {
-    background-color: red;
     width: 100%;
     position: sticky;
     top: 0;
