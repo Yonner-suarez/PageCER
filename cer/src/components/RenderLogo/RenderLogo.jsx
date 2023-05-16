@@ -1,12 +1,13 @@
 import "./RenderLOgo.css";
 import titulo from "../../assets/logoOficial.jpg";
+import { Link } from "react-router-dom";
 
 const RenderLogo = () => {
   return (
     <div className="contenedorLogo">
-      <a href="" className="link">
-        <img src={titulo} alt="" className="logo" />
-      </a>
+      <Link to="/home">
+        <img src={titulo} alt="Logo" className="logo" />
+      </Link>
     </div>
   );
 };
