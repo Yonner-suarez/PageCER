@@ -1,0 +1,22 @@
+.logo {
+  width: 40%;
+  padding: 1.5em;
+  height: auto;
+}
+.contenedorLogo {
+  width: 30%;
+  margin: 0 auto;
+}
+.link {
+  width: 100%;
+  height: auto;
+}
+@media screen and (max-width: 450px) {
+  .contenedorLogo {
+    width: 70%;
+    height: auto;
+  }
+  .logo {
+    width: 100%;
+  }
+}

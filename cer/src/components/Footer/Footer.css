@@ -1,6 +1,19 @@
 .footer {
+  background-color: transparent;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  margin: 0 auto;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+.cohete {
+  color: rgba(255, 0, 0, 0.952);
+}
+@media screen and (max-width: 450px) {
+  .footer {
+    background-color: transparent;
+    font-size: medium;
+    flex-direction: column;
+  }
 }

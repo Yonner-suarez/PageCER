@@ -127,6 +127,11 @@
 }
 
 @media screen and (max-width: 450px) {
+  .contenedorDelNav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
   .contenedorPro {
     flex-direction: column;
     width: 100%;

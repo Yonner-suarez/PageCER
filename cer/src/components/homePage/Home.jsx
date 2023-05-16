@@ -16,7 +16,6 @@ const Home = () => {
       <Carrousel />
       <InfoNosotros />
       <Luk />
-
       <Valeo />
       <Cofap />
       <CarruselMarcas />

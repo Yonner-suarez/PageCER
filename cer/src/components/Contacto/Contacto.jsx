@@ -35,7 +35,7 @@ const Contacto = () => {
             quidem dolorem!
           </p>
         </div>
-        <div className="informacionNosotros">
+        <div className="informacionNosotros" data-aos="flip-down">
           <hr />
           <h4 className="subtitulo">info</h4>
           <hr className="saltos" />
@@ -46,7 +46,7 @@ const Contacto = () => {
             quidem dolorem!
           </p>
         </div>
-        <div className="informacionNosotros">
+        <div className="informacionNosotros" data-aos="flip-down">
           <hr />
           <h4 className="subtitulo">Novedades</h4>
           <hr className="saltos" />

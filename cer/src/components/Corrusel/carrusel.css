@@ -7,6 +7,23 @@
   border-radius: 10px;
   opacity: 1;
 }
+.oraciones {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 100%;
+  height: auto;
+  text-align: center;
+  opacity: 0;
+}
+.imagen:hover .oraciones {
+  width: 40%;
+  height: auto;
+  background-color: rgba(0, 0, 0, 0.338);
+  opacity: 1;
+}
 .parrafos {
   color: black;
 }
@@ -15,13 +32,6 @@
 }
 
 @media screen and (max-width: 450px) {
-  .parrafos {
-    display: none;
-  }
-  p {
-    display: none;
-  }
-
   .tituloVW {
     font-size: small;
     color: white;
@@ -31,5 +41,9 @@
   }
   .tittleFiat {
     font-size: small;
+  }
+  .parrafos {
+    font-size: medium;
+    color: white;
   }
 }
