@@ -13,7 +13,7 @@
 }
 @media screen and (max-width: 450px) {
   .contenedorLogo {
-    width: 70%;
+    width: 40%;
     height: auto;
   }
   .logo {
