@@ -19,7 +19,6 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-
         <Route path="/repuestosVw" element={<RepuestosVw />} />
         <Route path="/repuestosFiat" element={<RepuestosFiat />} />
         <Route path="/repuestosPeugeot" element={<RepuestosPeugeot />} />

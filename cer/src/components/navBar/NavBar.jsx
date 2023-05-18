@@ -5,59 +5,69 @@ import fiat from "../../assets/fiat.svg";
 import peugeot from "../../assets/peugeot.svg";
 import carrito from "../../assets/carrito.svg";
 import citroen from "../../assets/citroen.svg";
+import skoda from "../../assets/skoda.svg";
 import renault from "../../assets/renault.svg";
 import mb from "../../assets/mb.svg";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { Link } from "react-router-dom";
 
 const NavBari = () => {
+  const onClick = (event) => {
+    console.log(event.target.alt);
+  };
+
   return (
     <div className="contenedorDelNav">
       <Navbar bg="light" expand="lg" className="container">
         <Container>
-          <a href="/">
+          <Link to="/">
             <img src={Logocer} alt="Logo" className="logocer" />
-          </a>
+          </Link>
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <div className="contenedorLogos">
-                <a href="/repuestosVw">
-                  <img src={vw} alt="vw" className="logovw" />
-                </a>
+                <Link to="/repuestosVw" onClick={onClick}>
+                  <img src={vw} alt="volkswagen" className="logovw" />
+                </Link>
                 <br />
-                <a href="/repuestosFiat">
+                <Link to="/repuestosSk" onClick={onClick}>
+                  <img src={skoda} alt="skoda" className="logoSk" />
+                </Link>
+                <br />
+                <Link to="/repuestosFiat" onClick={onClick}>
                   <img src={fiat} alt="fiat" className="logofiat" />
-                </a>
+                </Link>
                 <br />
-                <a href="/repuestosPeugeot">
+                <Link to="/repuestosPeugeot" onClick={onClick}>
                   <img src={peugeot} alt="peugeot" className="logoPeugeot" />
-                </a>
+                </Link>
                 <br />
-                <a href="/repuestosCitroen">
+                <Link to="/repuestosCitroen" onClick={onClick}>
                   <img src={citroen} alt="citroen" className="logoCitroen" />
-                </a>
+                </Link>
                 <br />
-                <a href="/repuestosMb">
+                <Link to="/repuestosMb" onClick={onClick}>
                   <img src={mb} alt="mb" className="logomb" />
-                </a>
-                <a href="/repuestosRenault">
+                </Link>
+                <Link to="/repuestosRenault" onClick={onClick}>
                   <img src={renault} alt="renault" className="logorenault" />
-                </a>
+                </Link>
               </div>
             </Nav>
             <div className="contenedorPro">
-              <Nav.Link href="/Productos" className="products">
+              <Link to="/Productos" className="products">
                 Productos
-              </Nav.Link>
-              <Nav.Link href="/nosotros" className="about">
+              </Link>
+              <Link to="/nosotros" className="about">
                 Nosotros
-              </Nav.Link>
-              <a href="/compras">
+              </Link>
+              <Link to="/compras">
                 <img src={carrito} alt="carrito" className="carrito" />
-              </a>
+              </Link>
             </div>
           </Navbar.Collapse>
         </Container>
