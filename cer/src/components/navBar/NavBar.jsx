@@ -23,83 +23,81 @@ const NavBari = () => {
   };
 
   return (
-    <div className="contenedorDelNav">
-      <Navbar bg="light" expand="lg" className="container">
-        <Container>
-          <Link to="/">
-            <img src={Logocer} alt="Logo" className="logocer" />
-          </Link>
+    <Navbar bg="light" expand="lg" className="container" sticky="top">
+      <Container>
+        <Link to="/">
+          <img src={Logocer} alt="Logo" className="logocer" />
+        </Link>
 
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <div className="contenedorLogos">
-                <Link to="/repuestosVw" onClick={onClick}>
-                  <img src={vw} alt="volkswagen" className="logovw" />
-                </Link>
-                <br />
-                <Link to="/repuestosSk" onClick={onClick}>
-                  <img src={skoda} alt="skoda" className="logoSk" />
-                </Link>
-                <br />
-                <Link to="/repuestosFiat" onClick={onClick}>
-                  <img src={fiat} alt="fiat" className="logofiat" />
-                </Link>
-                <br />
-                <Link to="/repuestosPeugeot" onClick={onClick}>
-                  <img src={peugeot} alt="peugeot" className="logoPeugeot" />
-                </Link>
-                <br />
-                <Link to="/repuestosCitroen" onClick={onClick}>
-                  <img src={citroen} alt="citroen" className="logoCitroen" />
-                </Link>
-                <br />
-                <Link to="/repuestosMb" onClick={onClick}>
-                  <img src={mb} alt="mb" className="logomb" />
-                </Link>
-                <Link to="/repuestosRenault" onClick={onClick}>
-                  <img src={renault} alt="renault" className="logorenault" />
-                </Link>
-              </div>
-            </Nav>
-            <div className="contenedorPro">
-              <Link
-                to="/Productos"
-                className="products"
-                style={{
-                  textDecoration: "none",
-                  color: "black",
-                  fontFamily: "Franklin Gothic Medium",
-                }}
-              >
-                Productos
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <div className="contenedorLogos">
+              <Link to="/repuestosVw" onClick={onClick}>
+                <img src={vw} alt="volkswagen" className="logovw" />
               </Link>
-              <Link
-                to="/nosotros"
-                className="about"
-                style={{
-                  textDecoration: "none",
-                  color: "black",
-                  fontFamily: "Franklin Gothic Medium",
-                }}
-              >
-                Nosotros
+              <br />
+              <Link to="/repuestosSk" onClick={onClick}>
+                <img src={skoda} alt="skoda" className="logoSk" />
               </Link>
-              <Link
-                to="/compras"
-                style={{
-                  textDecoration: "none",
-                  color: "black",
-                  fontFamily: "Franklin Gothic Medium",
-                }}
-              >
-                <img src={carrito} alt="carrito" className="carrito" />
+              <br />
+              <Link to="/repuestosFiat" onClick={onClick}>
+                <img src={fiat} alt="fiat" className="logofiat" />
+              </Link>
+              <br />
+              <Link to="/repuestosPeugeot" onClick={onClick}>
+                <img src={peugeot} alt="peugeot" className="logoPeugeot" />
+              </Link>
+              <br />
+              <Link to="/repuestosCitroen" onClick={onClick}>
+                <img src={citroen} alt="citroen" className="logoCitroen" />
+              </Link>
+              <br />
+              <Link to="/repuestosMb" onClick={onClick}>
+                <img src={mb} alt="mb" className="logomb" />
+              </Link>
+              <Link to="/repuestosRenault" onClick={onClick}>
+                <img src={renault} alt="renault" className="logorenault" />
               </Link>
             </div>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-    </div>
+          </Nav>
+          <div className="contenedorPro">
+            <Link
+              to="/Productos"
+              className="products"
+              style={{
+                textDecoration: "none",
+                color: "black",
+                fontFamily: "Franklin Gothic Medium",
+              }}
+            >
+              Productos
+            </Link>
+            <Link
+              to="/nosotros"
+              className="about"
+              style={{
+                textDecoration: "none",
+                color: "black",
+                fontFamily: "Franklin Gothic Medium",
+              }}
+            >
+              Nosotros
+            </Link>
+            <Link
+              to="/compras"
+              style={{
+                textDecoration: "none",
+                color: "black",
+                fontFamily: "Franklin Gothic Medium",
+              }}
+            >
+              <img src={carrito} alt="carrito" className="carrito" />
+            </Link>
+          </div>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 };
 export default NavBari;
