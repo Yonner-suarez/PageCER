@@ -1,6 +1,7 @@
 import "./Contacto.css";
 import { Twitter, Facebook, Instagram } from "react-bootstrap-icons";
 import logo from "../../assets/Logo.svg";
+import { Link } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
@@ -13,16 +14,33 @@ const Contacto = () => {
     <div className="todoElContenedor">
       <div className="contenedorRedes" data-aos="fade-right">
         <div className="contenedorUnaRed">
-          <p className="nombreRed">Facebook</p>
-          <Facebook />
+          <Link
+            to="https://www.facebook.com/profile.php?id=100092678504932"
+            className="linkContacto"
+          >
+            <p className="nombreRed">Facebook</p>
+            <Facebook />
+          </Link>
         </div>
         <div className="contenedorUnaRed">
-          <p className="nombreRed">Instagram</p>
-          <Instagram />
+          <Link
+            to="https://www.instagram.com/europeaderepuestos_tunja/"
+            className="linkContacto"
+          >
+            <p className="nombreRed" style={{ color: "red" }}>
+              Instagram
+            </p>
+            <Instagram style={{ color: "red" }} />
+          </Link>
         </div>
         <div className="contenedorUnaRed">
-          <p className="nombreRed">Twitter</p>
-          <Twitter />
+          <Link
+            to="https://twitter.com/EuropeaDeRepues"
+            className="linkContacto"
+          >
+            <p className="nombreRed">Twitter</p>
+            <Twitter />
+          </Link>
         </div>
       </div>
       <div className="contenedorInformacion" data-aos="flip-down">

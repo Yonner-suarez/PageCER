@@ -1,8 +1,49 @@
-.contenedorRepuestos {
-  display: inline-flex;
-  position: relative;
-  justify-content: space-around;
-  margin: 0 auto;
-  margin-top: 2%;
-  width: 80%;
+.imagenRep {
+  height: 350px;
+  box-shadow: 2px 1px 5px black;
+  border-radius: 5px;
+  margin: 0;
+}
+.imagenRep:hover {
+  transform: scale(1.1);
+  transition: 1s;
+}
+.imagenRep::after {
+  transform: scale(1.1);
+  transition: 1s;
+}
+.texto {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  text-transform: capitalize;
+  color: rgba(0, 0, 0, 0.476);
+  margin-top: 15%;
+}
+.botones {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90%;
+  height: 18%;
+  margin: 1%;
+}
+.whatsapp {
+  width: 50px;
+  height: auto;
+}
+.link {
+  width: 50px;
+  height: auto;
+  text-decoration: none;
+
+  align-items: center;
+}
+.titulo {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  text-transform: capitalize;
+  color: rgba(0, 0, 0, 0.476);
+}
+.subtitulo {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  text-transform: capitalize;
+  color: rgba(0, 0, 0, 0.476);
 }

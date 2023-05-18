@@ -63,13 +63,36 @@ const NavBari = () => {
               </div>
             </Nav>
             <div className="contenedorPro">
-              <Link to="/Productos" className="products">
+              <Link
+                to="/Productos"
+                className="products"
+                style={{
+                  textDecoration: "none",
+                  color: "black",
+                  fontFamily: "Franklin Gothic Medium",
+                }}
+              >
                 Productos
               </Link>
-              <Link to="/nosotros" className="about">
+              <Link
+                to="/nosotros"
+                className="about"
+                style={{
+                  textDecoration: "none",
+                  color: "black",
+                  fontFamily: "Franklin Gothic Medium",
+                }}
+              >
                 Nosotros
               </Link>
-              <Link to="/compras">
+              <Link
+                to="/compras"
+                style={{
+                  textDecoration: "none",
+                  color: "black",
+                  fontFamily: "Franklin Gothic Medium",
+                }}
+              >
                 <img src={carrito} alt="carrito" className="carrito" />
               </Link>
             </div>

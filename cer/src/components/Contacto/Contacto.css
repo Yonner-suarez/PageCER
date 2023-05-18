@@ -74,6 +74,14 @@
   width: 5%;
   height: 5%;
 }
+.linkContacto {
+  width: 100%;
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
 @media screen and (max-width: 450px) {
   .todoElContenedor {
     width: 90%;

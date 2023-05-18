@@ -92,6 +92,16 @@
 .logoCitroen:hover {
   filter: drop-shadow(0 0 2em #646cff);
 }
+.logoSk {
+  width: 30px;
+  height: auto;
+  margin-right: 5px;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logoSk:hover {
+  filter: drop-shadow(0 0 2em #646cff);
+}
 
 .logomb {
   width: 50%;
