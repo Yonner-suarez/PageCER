@@ -12,10 +12,14 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { getRepuestos } from "../../redux/slices/repuestos";
 
 const NavBari = () => {
+  const dispatch = useDispatch();
   const onClick = (event) => {
     console.log(event.target.alt);
+    dispatch(getRepuestos());
   };
 
   return (

@@ -1,8 +1,8 @@
-.contenedorRepuestos {
-  display: flex;
+.contenedorCartas {
+  display: inline-flexbox;
   flex-direction: row;
   margin: 0 auto;
   margin-top: 2%;
   background-color: beige;
-  width: 80%;
+  width: 90%;
 }
