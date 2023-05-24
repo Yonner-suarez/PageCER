@@ -125,17 +125,6 @@
   filter: drop-shadow(0 0 2em #646cff);
 }
 
-.carrito {
-  width: 40px;
-
-  height: auto;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.carrito:hover {
-  filter: drop-shadow(0 0 2em #646cff);
-}
-
 @media screen and (max-width: 450px) {
   .contenedorDelNav {
     width: 100%;

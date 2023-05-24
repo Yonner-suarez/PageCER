@@ -11,25 +11,32 @@ import Propuesta from "../Propuesta/Propuesta";
 import RenderLogo from "../RenderLogo/RenderLogo";
 import WhatsAppInfo from "../WhatsApp/WhatsApp";
 
-
 const Home = () => {
- 
   return (
-    <div>
-      <RenderLogo />
-      <NavBari />
-      <Carrousel />
-      <InfoNosotros />
-      <Luk />
-      <Valeo />
-      <Cofap />
-      <CarruselMarcas />
-      <Propuesta />
-      <Contacto />
-      <hr />
-      <Footer />
-      <WhatsAppInfo />
-    </div>
+    <>
+      {<Carrousel /> ? (
+        <div>
+          <RenderLogo />
+          <NavBari />
+          <Carrousel />
+          <InfoNosotros />
+          <Luk />
+          <Valeo />
+          <Cofap />
+          <CarruselMarcas />
+          <Propuesta />
+          <Contacto />
+          <hr />
+          <Footer />
+          <WhatsAppInfo />
+        </div>
+      ) : (
+        <img
+          src="https://codigofuente.io/wp-content/uploads/2018/09/progress.gif"
+          alt=""
+        />
+      )}
+    </>
   );
 };
 export default Home;

@@ -9,6 +9,7 @@ import Paginado from "../Paginado/Paginado";
 const RepuestosVw = () => {
   const { repuestos } = useSelector((state) => state.repuestos);
   const { numPage } = useSelector((state) => state.numPage);
+  const { numeroDeProductos } = useSelector((state) => state.numeroDeProductos);
 
   const dispatch = useDispatch();
 

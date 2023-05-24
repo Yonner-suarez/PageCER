@@ -3,7 +3,7 @@ import Logocer from "../../assets/SoloLogo.svg";
 import vw from "../../assets/vw.svg";
 import fiat from "../../assets/fiat.svg";
 import peugeot from "../../assets/peugeot.svg";
-import carrito from "../../assets/carrito.svg";
+
 import citroen from "../../assets/citroen.svg";
 import skoda from "../../assets/skoda.svg";
 import renault from "../../assets/renault.svg";
@@ -14,6 +14,7 @@ import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getRepuestos } from "../../redux/slices/repuestos";
+import Carrito from "../Carrito/Carrito";
 
 const NavBari = () => {
   const dispatch = useDispatch();
@@ -84,16 +85,8 @@ const NavBari = () => {
             >
               Nosotros
             </Link>
-            <Link
-              to="/compras"
-              style={{
-                textDecoration: "none",
-                color: "black",
-                fontFamily: "Franklin Gothic Medium",
-              }}
-            >
-              <img src={carrito} alt="carrito" className="carrito" />
-            </Link>
+
+            <Carrito placement="end" name="end" />
           </div>
         </Navbar.Collapse>
       </Container>

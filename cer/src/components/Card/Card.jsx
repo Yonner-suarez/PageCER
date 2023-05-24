@@ -3,6 +3,8 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 import { Star, StarFill, Whatsapp } from "react-bootstrap-icons";
+import { useDispatch } from "react-redux";
+import { añadeCarrito } from "../../redux/slices/carrito";
 
 const CardRep = ({
   id,
@@ -13,6 +15,22 @@ const CardRep = ({
   marcaRep,
   marcas,
 }) => {
+  const dispatch = useDispatch();
+
+  const onClick = () => {
+    dispatch(
+      añadeCarrito(1, {
+        id,
+        imagen,
+        nombre,
+        precio,
+        calificacion,
+        marcaRep,
+        marcas,
+      })
+    );
+  };
+
   return (
     <>
       <Card
@@ -49,8 +67,9 @@ const CardRep = ({
             <Button
               variant="primary"
               style={{ fontFamily: "Franklin Gothic Medium" }}
+              onClick={onClick}
             >
-              Comprar
+              Agregar
             </Button>
 
             <Link

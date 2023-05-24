@@ -5,8 +5,6 @@ import "./Paginado.css";
 const Paginado = ({ cantidadPages }) => {
   const { numPage } = useSelector((state) => state.numPage);
 
-  console.log(cantidadPages, numPage);
-
   const dispatch = useDispatch();
 
   const next = () => {

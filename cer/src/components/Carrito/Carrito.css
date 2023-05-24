@@ -1,0 +1,68 @@
+.Canvas {
+  width: 80%;
+  height: 100%;
+}
+.CanvasContenedor {
+  background-color: #3b44f6;
+  width: 100%;
+}
+.cuerpoCanvas {
+  background-color: rgb(0, 0, 0);
+  color: white;
+}
+.imagenCanvas {
+  width: 20%;
+  text-align: center;
+}
+.contenedorNombrePrecio {
+  background-color: black;
+  width: 60%;
+  height: 100%;
+  text-align: center;
+  margin-left: 10%;
+}
+.ContenedorCanvasRepuesto {
+  background-color: #646cff;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.carrito {
+  width: 40px;
+
+  height: auto;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.carrito:hover {
+  filter: drop-shadow(0 0 2em #646cff);
+}
+.contenedorCantidad {
+  width: 60px;
+  height: auto;
+  border-radius: 10px;
+  color: white;
+
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-weight: bold;
+}
+.parrafoCantidad {
+  background-color: rgb(55, 55, 55);
+  border-radius: 10px;
+  width: 40%;
+  margin-top: -18px;
+  position: sticky;
+}
+.boton {
+  background-color: transparent;
+  border: none;
+}
+.boton:active {
+  background-color: white;
+}
+.boton:hover {
+  background-color: transparent;
+}
