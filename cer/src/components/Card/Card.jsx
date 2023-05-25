@@ -32,23 +32,11 @@ const CardRep = ({
   };
 
   return (
-    <>
-      <Card
-        key={id}
-        style={{
-          width: "30rem",
-          height: "auto",
-          margin: 5,
-          display: "inline-flex",
-          flexDirection: "row",
-          position: "relative",
-          textAlign: "left",
-        }}
-        className="Contenedorcard"
-      >
-        <Card.Img variant="top" src={imagen} className="imagenRep" />
+    <Card key={id} className="Contenedorcard">
+      <div className="contenedorSubCard">
+        <Card.Img variant="left" src={imagen} className="imagenRep" />
 
-        <Card.Body>
+        <Card.Body className="bodyCard">
           {marcas.map((marca) => {
             return (
               <div key={marca.id}>
@@ -80,8 +68,8 @@ const CardRep = ({
             </Link>
           </div>
         </Card.Body>
-      </Card>
-    </>
+      </div>
+    </Card>
   );
 };
 

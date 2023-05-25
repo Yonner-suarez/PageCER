@@ -1,8 +1,32 @@
+.Contenedorcard {
+  background-color: transparent;
+  width: 28rem;
+  height: auto;
+  margin: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  text-align: left;
+}
+.contenedorSubCard {
+  width: 95%;
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+}
+.bodyCard {
+  width: 50%;
+  background-color: rgba(135, 144, 144, 0.264);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
 .imagenRep {
-  height: 350px;
+  width: 35%;
+  height: 280px;
+  margin: auto 0;
   box-shadow: 2px 1px 5px black;
   border-radius: 5px;
-  margin: 0;
 }
 .imagenRep:hover {
   transform: scale(1.1);
@@ -16,7 +40,7 @@
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   text-transform: capitalize;
   color: rgba(0, 0, 0, 0.476);
-  margin-top: 15%;
+  margin-top: 0%;
 }
 .botones {
   display: flex;
@@ -47,3 +71,12 @@
   text-transform: capitalize;
   color: rgba(0, 0, 0, 0.476);
 }
+@media screen and (max-width: 450px) {
+  .Contenedorcard {
+    width: 100%;
+  }
+  .contenedorSubCard {
+    width: 100%;
+  }
+}
+/* */

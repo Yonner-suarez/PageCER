@@ -1,7 +1,7 @@
 .foot {
   background-color: transparent;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   width: 55%;
@@ -11,7 +11,7 @@
 .next {
   margin: 0%;
   background-color: rgba(1, 2, 2, 0.773);
-  width: 100%;
+  width: 20%;
   height: 40px;
   justify-content: center;
   align-items: center;
@@ -29,7 +29,7 @@
   cursor: not-allowed;
 }
 .numPages {
-  margin: -5%;
+  margin: 5%;
   color: black;
   text-transform: uppercase;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;

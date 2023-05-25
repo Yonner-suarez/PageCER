@@ -9,7 +9,7 @@ export const carrito = createSlice({
   reducers: {
     setCarrito: (state, action) => {
       state.cantidad += action.payload.cantidad;
-      state.producto = [action.payload.producto];
+      state.producto = [...state.producto, action.payload.producto];
     },
   },
 });

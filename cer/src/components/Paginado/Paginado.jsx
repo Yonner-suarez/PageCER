@@ -1,5 +1,9 @@
 import { numPageNext, numPagePrevius } from "../../redux/slices/paginado";
 import { useSelector, useDispatch } from "react-redux";
+import {
+  CaretRightSquareFill,
+  CaretLeftSquareFill,
+} from "react-bootstrap-icons";
 import "./Paginado.css";
 
 const Paginado = ({ cantidadPages }) => {
@@ -22,7 +26,7 @@ const Paginado = ({ cantidadPages }) => {
         className="next"
         disabled={numPage === 1 ? true : false}
       >
-        Previus
+        <CaretLeftSquareFill style={{ width: "80%", height: "auto" }} />
       </button>
       <br />
       <p className="numPages">
@@ -34,7 +38,7 @@ const Paginado = ({ cantidadPages }) => {
         className="next"
         disabled={numPage === cantidadPages + 1 ? true : false}
       >
-        Next
+        <CaretRightSquareFill style={{ width: "80%", height: "auto" }} />
       </button>
     </footer>
   );

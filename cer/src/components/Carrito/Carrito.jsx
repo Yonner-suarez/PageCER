@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import carritoIcon from "../../assets/carrito.svg";
+import CantidadEnLaCard from "../cantidadEnLa Card/CantidadEnLaCard";
 
 const Carrito = ({ name, ...props }) => {
   const { carrito } = useSelector((state) => state);
@@ -27,10 +28,10 @@ const Carrito = ({ name, ...props }) => {
         {...props}
       >
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>
+          <Offcanvas.Title className="canvasTitle">
             <div className="contenedorCantidad">
               <img src={carritoIcon} alt="carrito" className="carrito" />
-              <p className="parrafoCantidad">{carrito.cantidad}</p>
+              <p className="parrafoCantidadCanvas">{carrito.cantidad}</p>
             </div>
           </Offcanvas.Title>
         </Offcanvas.Header>
@@ -39,8 +40,11 @@ const Carrito = ({ name, ...props }) => {
             <div key={rep.id} className="ContenedorCanvasRepuesto">
               <img src={rep.imagen} alt={rep.nombre} className="imagenCanvas" />
               <div className="contenedorNombrePrecio">
-                <h6>{rep.nombre}</h6>
-                <p>${rep.precio}</p>
+                <h6 className="h6">{rep.nombre}</h6>
+                <div className="Cantidades">
+                  <CantidadEnLaCard />
+                  <p>${rep.precio}</p>
+                </div>
               </div>
             </div>
           ))}
