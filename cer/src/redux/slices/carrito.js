@@ -5,6 +5,9 @@ export const carrito = createSlice({
   initialState: {
     cantidad: 0,
     producto: [],
+    subTotal: 0,
+    envio: 0,
+    total: 0,
   },
   reducers: {
     setCarrito: (state, action) => {
@@ -13,8 +16,6 @@ export const carrito = createSlice({
       if (state.producto.length !== 0) {
         console.log("SI HAY REPUESTOS");
         let busca = state.producto.find((pro) => pro.id == action.payload.id);
-
-        console.log(busca);
 
         if (busca === undefined) {
           state.producto = [
@@ -38,12 +39,15 @@ export const carrito = createSlice({
         ];
       }
     },
+    setPrecio: (state, action) => {
+      state.subTotal += action.payload;
+    },
   },
 });
 
 export default carrito.reducer;
 
-export const { setCarrito } = carrito.actions;
+export const { setCarrito, setPrecio } = carrito.actions;
 
 export const añadeCarrito = (cantidad, producto, id) => (dispatch) => {
   const obj = {
@@ -52,4 +56,9 @@ export const añadeCarrito = (cantidad, producto, id) => (dispatch) => {
     producto,
   };
   dispatch(setCarrito(obj));
+};
+
+export const subTotal = (precio) => (dispatch) => {
+  const num = parseInt(precio.replace(/\./g, ""));
+  dispatch(setPrecio(num));
 };

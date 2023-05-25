@@ -6,14 +6,20 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import carritoIcon from "../../assets/carrito.svg";
 import PropTypes from "prop-types";
 import CantidadEnLaCard from "../cantidadEnLa Card/CantidadEnLaCard";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Carrito = ({ ...props }) => {
   const { carrito } = useSelector((state) => state);
-  console.log(carrito);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const { loginWithRedirect } = useAuth0();
+
+  const onClick = () => {
+    loginWithRedirect();
+  };
 
   return (
     <>
@@ -48,7 +54,11 @@ const Carrito = ({ ...props }) => {
               <div className="contenedorNombrePrecio">
                 <h6 className="h6">{rep.nombre}</h6>
                 <div className="Cantidades">
-                  <CantidadEnLaCard repuesto={rep} id={rep.id} />
+                  <CantidadEnLaCard
+                    repuesto={rep}
+                    id={rep.id}
+                    precio={rep.precio}
+                  />
                   <p>${rep.precio}</p>
                 </div>
               </div>
@@ -59,18 +69,20 @@ const Carrito = ({ ...props }) => {
             <hr style={{ color: "white" }} />
             <div className="ContenedorValor">
               <h5>SubTotal</h5>
-              <p>10.000</p>
+              <p>{carrito.subTotal}</p>
             </div>
             <div className="ContenedorValor">
               <h5>Envio</h5>
-              <p>8.000</p>
+              <p>{carrito.envio}</p>
             </div>
             <hr style={{ color: "white" }} />
             <div className="ContenedorValor">
               <h5>Total</h5>
-              <p>18.000</p>
+              <p>{carrito.total}</p>
             </div>
-            <button className="botonCompra">Finalizar compra</button>
+            <button className="botonCompra" onClick={onClick}>
+              Finalizar compra
+            </button>
           </div>
         </Offcanvas.Body>
       </Offcanvas>

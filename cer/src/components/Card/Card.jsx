@@ -4,7 +4,7 @@ import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 import { Star, StarFill, Whatsapp } from "react-bootstrap-icons";
 import { useDispatch } from "react-redux";
-import { añadeCarrito } from "../../redux/slices/carrito";
+import { añadeCarrito, subTotal } from "../../redux/slices/carrito";
 import PropTypes from "prop-types";
 import Carrito from "../Carrito/Carrito";
 import { useState } from "react";
@@ -22,6 +22,7 @@ const CardRep = ({
   const dispatch = useDispatch();
 
   const onClick = () => {
+    dispatch(subTotal(precio));
     dispatch(
       añadeCarrito(
         1,

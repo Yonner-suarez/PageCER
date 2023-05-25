@@ -1,18 +1,21 @@
 import { useSelector, useDispatch } from "react-redux";
 import "./CantidadEnLaCard.css";
 import { FilePlusFill, FileMinusFill } from "react-bootstrap-icons";
-import { añadeCarrito } from "../../redux/slices/carrito";
+import { añadeCarrito, subTotal } from "../../redux/slices/carrito";
 import PropTypes from "prop-types";
 
-const CantidadEnLaCard = ({ repuesto, id }) => {
+const CantidadEnLaCard = ({ repuesto, id, precio }) => {
   const dispatch = useDispatch();
   const { carrito } = useSelector((state) => state);
 
-  console.log(carrito);
-
   const unoMas = () => {
-    if (carrito.cantidad >= 5) return;
+    const limite = carrito.producto.map((pro) => pro.cantidad);
 
+    for (const cant of limite) {
+      console.log(cant);
+      if (limite[cant] >= 5) return;
+      dispatch(subTotal(precio));
+    }
     dispatch(añadeCarrito(1, repuesto, id));
   };
   const unoMenos = () => {
@@ -36,8 +39,6 @@ const CantidadEnLaCard = ({ repuesto, id }) => {
         }
       })}
 
-      {/* <p className="cantidades">{cantidad[0]}</p> */}
-
       <FileMinusFill
         style={{ width: "25%", height: "auto" }}
         onClick={unoMenos}
@@ -47,7 +48,7 @@ const CantidadEnLaCard = ({ repuesto, id }) => {
 };
 
 CantidadEnLaCard.PropTypes = {
-  repuesto: PropTypes.object.isRequired,
+  repuesto: PropTypes.array.isRequired,
   id: PropTypes.number.isRequired,
 };
 
