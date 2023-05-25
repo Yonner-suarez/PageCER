@@ -54,9 +54,10 @@ const CantidadEnLaCard = ({ repuesto, id, precio }) => {
   );
 };
 
-CantidadEnLaCard.PropTypes = {
-  repuesto: PropTypes.array.isRequired,
+CantidadEnLaCard.propTypes = {
+  repuesto: PropTypes.object.isRequired,
   id: PropTypes.number.isRequired,
+  precio: PropTypes.string.isRequired,
 };
 
 export default CantidadEnLaCard;

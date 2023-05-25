@@ -18,8 +18,7 @@ import Carrito from "../Carrito/Carrito";
 
 const NavBari = () => {
   const dispatch = useDispatch();
-  const onClick = (event) => {
-    console.log(event.target.alt);
+  const onClick = () => {
     dispatch(getRepuestos());
   };
 

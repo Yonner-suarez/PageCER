@@ -14,7 +14,6 @@ export const carrito = createSlice({
       state.cantidad += action.payload.cantidad;
 
       if (state.producto.length !== 0) {
-        console.log("SI HAY REPUESTOS");
         let busca = state.producto.find((pro) => pro.id == action.payload.id);
 
         if (busca === undefined) {
@@ -32,7 +31,6 @@ export const carrito = createSlice({
           });
         }
       } else {
-        console.log("NO HAY PRODUCTOS");
         state.producto = [
           ...state.producto,
           { ...action.payload.producto, cantidad: 1 },
@@ -43,7 +41,6 @@ export const carrito = createSlice({
       state.cantidad -= action.payload.cantidad;
 
       state.producto.filter((pro) => {
-        console.log(action.payload.cantidad);
         if (pro.id === action.payload.id && action.payload.cantidad > 0)
           pro.cantidad -= action.payload.cantidad;
       });

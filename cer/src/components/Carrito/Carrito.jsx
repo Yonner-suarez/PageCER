@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import carritoIcon from "../../assets/carrito.svg";
-import PropTypes from "prop-types";
 import CantidadEnLaCard from "../cantidadEnLa Card/CantidadEnLaCard";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -88,10 +87,6 @@ const Carrito = ({ ...props }) => {
       </Offcanvas>
     </>
   );
-};
-
-Carrito.propTypes = {
-  name: PropTypes.string.isRequired,
 };
 
 export default Carrito;

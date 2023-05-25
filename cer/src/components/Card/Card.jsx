@@ -91,8 +91,8 @@ CardRep.propTypes = {
   imagen: PropTypes.string.isRequired,
   nombre: PropTypes.string.isRequired,
   precio: PropTypes.string.isRequired,
-  calificacion: PropTypes.string.isRequired,
-  marcaRep: PropTypes.array.isRequired,
+  calificacion: PropTypes.number.isRequired,
+  marcaRep: PropTypes.object.isRequired,
   marcas: PropTypes.array.isRequired,
 };
 export default CardRep;
