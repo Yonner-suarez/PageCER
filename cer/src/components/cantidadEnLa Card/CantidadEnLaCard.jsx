@@ -1,21 +1,22 @@
 import { useSelector, useDispatch } from "react-redux";
 import "./CantidadEnLaCard.css";
-import { aumentarCantidad, quitarcantidad } from "../../redux/slices/repuestos";
 import { FilePlusFill, FileMinusFill } from "react-bootstrap-icons";
 import { añadeCarrito } from "../../redux/slices/carrito";
+import PropTypes from "prop-types";
 
-const CantidadEnLaCard = () => {
+const CantidadEnLaCard = ({ repuesto, id }) => {
   const dispatch = useDispatch();
-  const { cantidad } = useSelector((state) => state.repuestos);
+  const { carrito } = useSelector((state) => state);
+
+  console.log(carrito);
 
   const unoMas = () => {
-    if (cantidad >= 5) return;
-    dispatch(aumentarCantidad(1));
-    dispatch(añadeCarrito(1));
+    if (carrito.cantidad >= 5) return;
+
+    dispatch(añadeCarrito(1, repuesto, id));
   };
   const unoMenos = () => {
-    if (cantidad <= 0) return;
-    dispatch(quitarcantidad(1));
+    if (carrito.cantidad <= 0) return;
   };
 
   return (
@@ -25,7 +26,17 @@ const CantidadEnLaCard = () => {
         onClick={unoMas}
       />
 
-      <p className="cantidades">{cantidad}</p>
+      {carrito.producto.map((pro) => {
+        if (pro.id == id) {
+          return (
+            <div key={id}>
+              <p>{pro.cantidad}</p>
+            </div>
+          );
+        }
+      })}
+
+      {/* <p className="cantidades">{cantidad[0]}</p> */}
 
       <FileMinusFill
         style={{ width: "25%", height: "auto" }}
@@ -33,6 +44,11 @@ const CantidadEnLaCard = () => {
       />
     </div>
   );
+};
+
+CantidadEnLaCard.PropTypes = {
+  repuesto: PropTypes.object.isRequired,
+  id: PropTypes.number.isRequired,
 };
 
 export default CantidadEnLaCard;

@@ -48,7 +48,7 @@ const Carrito = ({ ...props }) => {
               <div className="contenedorNombrePrecio">
                 <h6 className="h6">{rep.nombre}</h6>
                 <div className="Cantidades">
-                  <CantidadEnLaCard />
+                  <CantidadEnLaCard repuesto={rep} id={rep.id} />
                   <p>${rep.precio}</p>
                 </div>
               </div>

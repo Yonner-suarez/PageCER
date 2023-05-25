@@ -23,15 +23,19 @@ const CardRep = ({
 
   const onClick = () => {
     dispatch(
-      añadeCarrito(1, {
-        id,
-        imagen,
-        nombre,
-        precio,
-        calificacion,
-        marcaRep,
-        marcas,
-      })
+      añadeCarrito(
+        1,
+        {
+          id,
+          imagen,
+          nombre,
+          precio,
+          calificacion,
+          marcaRep,
+          marcas,
+        },
+        id
+      )
     );
     setMostrarComponente(true);
   };

@@ -24,29 +24,35 @@ const RepuestosVw = () => {
   }, [dispatch]);
 
   return (
-    <div className="contenedorCartas">
+    <>
       {repuestos.length ? (
-        viewRep.map((repuesto) => {
-          return (
-            <CardRep
-              key={repuesto.id}
-              id={repuesto.id}
-              imagen={repuesto.imagen}
-              nombre={repuesto.nombre}
-              precio={repuesto.precio}
-              calificacion={repuesto.calificacion}
-              marcaRep={repuesto.MarcaRep}
-              marcas={repuesto.Marcas}
-            />
-          );
-        })
+        <div className="contenedorCartas">
+          {repuestos.length
+            ? viewRep.map((repuesto) => {
+                return (
+                  <CardRep
+                    key={repuesto.id}
+                    id={repuesto.id}
+                    imagen={repuesto.imagen}
+                    nombre={repuesto.nombre}
+                    precio={repuesto.precio}
+                    calificacion={repuesto.calificacion}
+                    marcaRep={repuesto.MarcaRep}
+                    marcas={repuesto.Marcas}
+                  />
+                );
+              })
+            : null}
+          <div className="paginado">
+            <Paginado cantidadPages={cantidadPages} />
+          </div>
+        </div>
       ) : (
-        <img src={gif} className="gif" />
+        <div className="contenedorLoading">
+          <img src={gif} alt="loading..." className="gif" />
+        </div>
       )}
-      <div className="paginado">
-        <Paginado cantidadPages={cantidadPages} />
-      </div>
-    </div>
+    </>
   );
 };
 

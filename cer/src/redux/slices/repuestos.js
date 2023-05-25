@@ -13,19 +13,12 @@ export const repuestoSlice = createSlice({
       state.repuestos = action.payload;
       state.copiaDeRepuestos = action.payload;
     },
-    setCantidadMas: (state, action) => {
-      state.cantidad += action.payload;
-    },
-    setCantidadMenos: (state, action) => {
-      state.cantidad -= action.payload;
-    },
   },
 });
 
 export default repuestoSlice.reducer;
 
-export const { setRepuestos, setCantidadMas, setCantidadMenos } =
-  repuestoSlice.actions;
+export const { setRepuestos } = repuestoSlice.actions;
 
 export const getRepuestos = () => (dispatch) => {
   axios
@@ -34,10 +27,4 @@ export const getRepuestos = () => (dispatch) => {
       dispatch(setRepuestos(res.data));
     })
     .catch((err) => err.message);
-};
-export const aumentarCantidad = (cantidad) => (dispatch) => {
-  dispatch(setCantidadMas(cantidad));
-};
-export const quitarcantidad = (cantidad) => (dispatch) => {
-  dispatch(setCantidadMenos(cantidad));
 };

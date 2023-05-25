@@ -12,6 +12,13 @@
   width: 20%;
   height: 20%;
 }
+.contenedorLoading {
+  background-color: transparent;
+  width: 1500px;
+  height: 30%;
+  margin: auto auto;
+  margin-top: 10%;
+}
 .contenedorCartas .paginado {
   width: 30%;
   height: 100%;
