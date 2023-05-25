@@ -1,7 +1,12 @@
 import { useSelector, useDispatch } from "react-redux";
 import "./CantidadEnLaCard.css";
 import { FilePlusFill, FileMinusFill } from "react-bootstrap-icons";
-import { añadeCarrito, subTotal } from "../../redux/slices/carrito";
+import {
+  añadeCarrito,
+  subTotal,
+  qutarCarrito,
+  bajarPrecio,
+} from "../../redux/slices/carrito";
 import PropTypes from "prop-types";
 
 const CantidadEnLaCard = ({ repuesto, id, precio }) => {
@@ -9,17 +14,19 @@ const CantidadEnLaCard = ({ repuesto, id, precio }) => {
   const { carrito } = useSelector((state) => state);
 
   const unoMas = () => {
-    const limite = carrito.producto.map((pro) => pro.cantidad);
+    const find = carrito.producto.find((pro) => pro.id == id);
 
-    for (const cant of limite) {
-      console.log(cant);
-      if (limite[cant] >= 5) return;
-      dispatch(subTotal(precio));
-    }
+    if (find.cantidad >= 5) return;
+
+    dispatch(subTotal(precio));
     dispatch(añadeCarrito(1, repuesto, id));
   };
   const unoMenos = () => {
-    if (carrito.cantidad <= 0) return;
+    const find = carrito.producto.find((pro) => pro.id == id);
+
+    if (find.cantidad <= 0) return;
+    dispatch(bajarPrecio(precio));
+    dispatch(qutarCarrito(1, id));
   };
 
   return (

@@ -10,7 +10,7 @@ export const carrito = createSlice({
     total: 0,
   },
   reducers: {
-    setCarrito: (state, action) => {
+    setCarritoAdd: (state, action) => {
       state.cantidad += action.payload.cantidad;
 
       if (state.producto.length !== 0) {
@@ -39,15 +39,32 @@ export const carrito = createSlice({
         ];
       }
     },
+    setCarritoRemove: (state, action) => {
+      state.cantidad -= action.payload.cantidad;
+
+      state.producto.filter((pro) => {
+        console.log(action.payload.cantidad);
+        if (pro.id === action.payload.id && action.payload.cantidad > 0)
+          pro.cantidad -= action.payload.cantidad;
+      });
+    },
     setPrecio: (state, action) => {
       state.subTotal += action.payload;
+    },
+    setPrecioHaciaAbajo: (state, action) => {
+      state.subTotal -= action.payload;
     },
   },
 });
 
 export default carrito.reducer;
 
-export const { setCarrito, setPrecio } = carrito.actions;
+export const {
+  setCarritoAdd,
+  setPrecio,
+  setCarritoRemove,
+  setPrecioHaciaAbajo,
+} = carrito.actions;
 
 export const añadeCarrito = (cantidad, producto, id) => (dispatch) => {
   const obj = {
@@ -55,10 +72,21 @@ export const añadeCarrito = (cantidad, producto, id) => (dispatch) => {
     cantidad,
     producto,
   };
-  dispatch(setCarrito(obj));
+  dispatch(setCarritoAdd(obj));
+};
+export const qutarCarrito = (cantidad, id) => (dispatch) => {
+  const obj = {
+    cantidad,
+    id,
+  };
+  dispatch(setCarritoRemove(obj));
 };
 
 export const subTotal = (precio) => (dispatch) => {
   const num = parseInt(precio.replace(/\./g, ""));
   dispatch(setPrecio(num));
+};
+export const bajarPrecio = (precio) => (dispatch) => {
+  const num = parseInt(precio.replace(/\./g, ""));
+  dispatch(setPrecioHaciaAbajo(num));
 };
