@@ -1,16 +1,17 @@
 import { useSelector, useDispatch } from "react-redux";
-import "./CantidadEnLaCard";
+import "./CantidadEnLaCard.css";
 import { aumentarCantidad, quitarcantidad } from "../../redux/slices/repuestos";
+import { FilePlusFill, FileMinusFill } from "react-bootstrap-icons";
+import { añadeCarrito } from "../../redux/slices/carrito";
 
-const CantidadEnLaCard = ({ id }) => {
+const CantidadEnLaCard = () => {
   const dispatch = useDispatch();
   const { cantidad } = useSelector((state) => state.repuestos);
-
-  console.log(cantidad);
 
   const unoMas = () => {
     if (cantidad >= 5) return;
     dispatch(aumentarCantidad(1));
+    dispatch(añadeCarrito(1));
   };
   const unoMenos = () => {
     if (cantidad <= 0) return;
@@ -18,10 +19,18 @@ const CantidadEnLaCard = ({ id }) => {
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "row" }}>
-      <button onClick={unoMas}>+</button>
-      <p>{cantidad}</p>
-      <button onClick={unoMenos}>-</button>
+    <div className="contenedorCantidadRepuestos">
+      <FilePlusFill
+        style={{ width: "25%", height: "auto", fontWeight: "bold" }}
+        onClick={unoMas}
+      />
+
+      <p className="cantidades">{cantidad}</p>
+
+      <FileMinusFill
+        style={{ width: "25%", height: "auto" }}
+        onClick={unoMenos}
+      />
     </div>
   );
 };

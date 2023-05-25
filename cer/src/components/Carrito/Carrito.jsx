@@ -9,6 +9,7 @@ import CantidadEnLaCard from "../cantidadEnLa Card/CantidadEnLaCard";
 
 const Carrito = ({ ...props }) => {
   const { carrito } = useSelector((state) => state);
+  console.log(carrito);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -53,6 +54,24 @@ const Carrito = ({ ...props }) => {
               </div>
             </div>
           ))}
+
+          <div className="ContenedorValores">
+            <hr style={{ color: "white" }} />
+            <div className="ContenedorValor">
+              <h5>SubTotal</h5>
+              <p>10.000</p>
+            </div>
+            <div className="ContenedorValor">
+              <h5>Envio</h5>
+              <p>8.000</p>
+            </div>
+            <hr style={{ color: "white" }} />
+            <div className="ContenedorValor">
+              <h5>Total</h5>
+              <p>18.000</p>
+            </div>
+            <button className="botonCompra">Finalizar compra</button>
+          </div>
         </Offcanvas.Body>
       </Offcanvas>
     </>

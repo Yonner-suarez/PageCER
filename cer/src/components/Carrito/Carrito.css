@@ -95,3 +95,20 @@
 .boton:visited {
   background-color: transparent;
 }
+.ContenedorValores {
+  position: absolute;
+  bottom: 2%;
+  width: 90%;
+}
+.ContenedorValor {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.botonCompra {
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: larger;
+}
