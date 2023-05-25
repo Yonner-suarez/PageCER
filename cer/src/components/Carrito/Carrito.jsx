@@ -4,9 +4,10 @@ import { useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import carritoIcon from "../../assets/carrito.svg";
+import PropTypes from "prop-types";
 import CantidadEnLaCard from "../cantidadEnLa Card/CantidadEnLaCard";
 
-const Carrito = ({ name, ...props }) => {
+const Carrito = ({ ...props }) => {
   const { carrito } = useSelector((state) => state);
   const [show, setShow] = useState(false);
 
@@ -15,7 +16,11 @@ const Carrito = ({ name, ...props }) => {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow} className="boton">
+      <Button
+        variant="primary"
+        onClick={handleShow}
+        style={{ backgroundColor: "transparent", border: "none" }}
+      >
         <div className="contenedorCantidad">
           <img src={carritoIcon} alt="carrito" className="carrito" />
           <p className="parrafoCantidad">{carrito.cantidad}</p>
@@ -52,6 +57,10 @@ const Carrito = ({ name, ...props }) => {
       </Offcanvas>
     </>
   );
+};
+
+Carrito.propTypes = {
+  name: PropTypes.string.isRequired,
 };
 
 export default Carrito;

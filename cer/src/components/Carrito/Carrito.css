@@ -92,3 +92,6 @@
 .boton:hover {
   background-color: transparent;
 }
+.boton:visited {
+  background-color: transparent;
+}

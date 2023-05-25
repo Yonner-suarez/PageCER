@@ -1,27 +1,26 @@
 import { useSelector, useDispatch } from "react-redux";
 import "./CantidadEnLaCard";
-import {
-  restaUnProduto,
-  sumaUnProducto,
-} from "../../redux/slices/numeroDeProductos";
+import { aumentarCantidad, quitarcantidad } from "../../redux/slices/repuestos";
 
 const CantidadEnLaCard = ({ id }) => {
   const dispatch = useDispatch();
-  const { numeroDeProductos } = useSelector((state) => state.numeroDeProductos);
+  const { cantidad } = useSelector((state) => state.repuestos);
+
+  console.log(cantidad);
 
   const unoMas = () => {
-    if (numeroDeProductos[0].cantidad >= 5) return;
-    dispatch(sumaUnProducto(1, id));
+    if (cantidad >= 5) return;
+    dispatch(aumentarCantidad(1));
   };
   const unoMenos = () => {
-    if (numeroDeProductos[0].cantidad <= 0) return;
-    dispatch(restaUnProduto(1, id));
+    if (cantidad <= 0) return;
+    dispatch(quitarcantidad(1));
   };
 
   return (
     <div style={{ display: "flex", flexDirection: "row" }}>
       <button onClick={unoMas}>+</button>
-      <p>{numeroDeProductos[0].cantidad}</p>
+      <p>{cantidad}</p>
       <button onClick={unoMenos}>-</button>
     </div>
   );

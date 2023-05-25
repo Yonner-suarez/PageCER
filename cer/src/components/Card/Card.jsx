@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 import { Star, StarFill, Whatsapp } from "react-bootstrap-icons";
 import { useDispatch } from "react-redux";
 import { añadeCarrito } from "../../redux/slices/carrito";
+import PropTypes from "prop-types";
+import Carrito from "../Carrito/Carrito";
+import { useState } from "react";
 
 const CardRep = ({
   id,
@@ -15,6 +18,7 @@ const CardRep = ({
   marcaRep,
   marcas,
 }) => {
+  const [mostrarComponente, setMostrarComponente] = useState(false);
   const dispatch = useDispatch();
 
   const onClick = () => {
@@ -29,6 +33,7 @@ const CardRep = ({
         marcas,
       })
     );
+    setMostrarComponente(true);
   };
 
   return (
@@ -67,10 +72,22 @@ const CardRep = ({
               <Whatsapp className="whatsapp" />
             </Link>
           </div>
+          <div className="ContenedorCarrito">
+            {mostrarComponente && <Carrito />}
+          </div>
         </Card.Body>
       </div>
     </Card>
   );
 };
 
+CardRep.propTypes = {
+  id: PropTypes.number.isRequired,
+  imagen: PropTypes.string.isRequired,
+  nombre: PropTypes.string.isRequired,
+  precio: PropTypes.string.isRequired,
+  calificacion: PropTypes.string.isRequired,
+  marcaRep: PropTypes.array.isRequired,
+  marcas: PropTypes.array.isRequired,
+};
 export default CardRep;
