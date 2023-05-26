@@ -102,7 +102,6 @@
   background-color: black;
   width: 26%;
   height: auto;
-
   overflow: hidden;
 }
 .contenedorBodyModal {
@@ -121,10 +120,7 @@
   justify-content: space-between;
   align-items: center;
 }
-.contenedorCarrito {
-  background-color: blue;
-  width: 30%;
-}
+
 .contenedorLogosCard {
   width: 100%;
   height: auto;
@@ -214,6 +210,23 @@
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-size: 28px;
   margin: auto 0;
+}
+.contenedorCarrito {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 30%;
+  overflow: hidden;
+}
+.imagenRepuesto {
+  width: 100%;
+  height: auto;
+  transition: 0.5s;
+  object-fit: cover;
+}
+.imagenRepuesto:hover {
+  transform: scale(1.1);
 }
 @media screen and (max-width: 450px) {
   .contenedorBodyModal {

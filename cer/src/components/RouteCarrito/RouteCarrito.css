@@ -1,0 +1,41 @@
+.contenedorCarritoComponente {
+  width: 78%;
+  background-color: transparent;
+  box-shadow: 1px 1px 3px black;
+  height: 100%;
+  margin: 0 auto;
+  margin-top: 2%;
+  border-radius: 10px;
+}
+.card {
+  background-color: transparent;
+  flex-direction: row;
+  margin-top: 1%;
+}
+.card-body {
+  background-color: rgba(135, 144, 144, 0.264);
+  width: 50%;
+  border-radius: 5px;
+}
+.contenedorCantidades {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  width: 21%;
+}
+.contenedorPrecio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  width: 15%;
+}
+.contenedorImagenCarrito {
+  width: 9%;
+  height: auto;
+  margin: auto 0;
+}
+.linkCarrito {
+  width: 5px;
+}

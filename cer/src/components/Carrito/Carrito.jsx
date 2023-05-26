@@ -13,6 +13,7 @@ import {
   resetPrecioState,
 } from "../../redux/slices/carrito";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Carrito = ({ ...props }) => {
   const dispatch = useDispatch();
@@ -108,6 +109,9 @@ const Carrito = ({ ...props }) => {
             <button className="botonCompra" onClick={onClick}>
               Finalizar compra
             </button>
+            <Link to="carrito">
+              <button className="botonCompra">Ver Carrito</button>
+            </Link>
           </div>
         </Offcanvas.Body>
       </Offcanvas>

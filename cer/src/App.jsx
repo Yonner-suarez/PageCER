@@ -10,6 +10,7 @@ import WhatsAppInfo from "./components/WhatsApp/WhatsApp";
 import NavBari from "./components/navBar/NavBar";
 import { Routes, Route, useLocation } from "react-router-dom";
 import RepuestosFiat from "./components/RepuestosFiat/RepuestosFiat";
+import RouteCarrito from "./components/RouteCarrito/RouteCarrito";
 
 function App() {
   const { pathname } = useLocation();
@@ -25,6 +26,7 @@ function App() {
         <Route path="/repuestosCitroen" element={<RepuestosCitroen />} />
         <Route path="/repuestosMb" element={<RepuestosMb />} />
         <Route path="/repuestosRenault" element={<RepuestosRenault />} />
+        <Route path="/carrito" element={<RouteCarrito />} />
       </Routes>
       {pathname !== "/" && <WhatsAppInfo />}
     </div>
