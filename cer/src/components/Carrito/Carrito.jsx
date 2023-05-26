@@ -28,8 +28,8 @@ const Carrito = ({ ...props }) => {
         style={{ backgroundColor: "transparent", border: "none" }}
       >
         <div className="contenedorCantidad">
-          <img src={carritoIcon} alt="carrito" className="carrito" />
           <p className="parrafoCantidad">{carrito.cantidad}</p>
+          <img src={carritoIcon} alt="carrito" className="carrito" />
         </div>
       </Button>
       <Offcanvas
@@ -41,8 +41,8 @@ const Carrito = ({ ...props }) => {
         <Offcanvas.Header closeButton>
           <Offcanvas.Title className="canvasTitle">
             <div className="contenedorCantidad">
-              <img src={carritoIcon} alt="carrito" className="carrito" />
               <p className="parrafoCantidadCanvas">{carrito.cantidad}</p>
+              <img src={carritoIcon} alt="carrito" className="carrito" />
             </div>
           </Offcanvas.Title>
         </Offcanvas.Header>
@@ -65,7 +65,7 @@ const Carrito = ({ ...props }) => {
           ))}
 
           <div className="ContenedorValores">
-            <hr style={{ color: "white" }} />
+            <hr style={{ color: "Black" }} />
             <div className="ContenedorValor">
               <h5>SubTotal</h5>
               <p>{carrito.subTotal}</p>
@@ -74,7 +74,7 @@ const Carrito = ({ ...props }) => {
               <h5>Envio</h5>
               <p>{carrito.envio}</p>
             </div>
-            <hr style={{ color: "white" }} />
+            <hr style={{ color: "Black" }} />
             <div className="ContenedorValor">
               <h5>Total</h5>
               <p>{carrito.total}</p>

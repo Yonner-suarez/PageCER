@@ -14,15 +14,7 @@
   display: flex;
   flex-direction: row;
 }
-.ContenedorCarrito {
-  width: 40%;
-  height: auto;
-  background-color: transparent;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-}
+
 .bodyCard {
   width: 50%;
   background-color: rgba(135, 144, 144, 0.264);
@@ -52,12 +44,23 @@
   margin-top: 0%;
 }
 .botones {
+  background-color: transparent;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  width: 90%;
-  height: 18%;
+  justify-content: space-around;
+  width: 100%;
+  height: 20%;
   margin: 1%;
+}
+.ContenedorCarrito {
+  width: 20%;
+  height: 90%;
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  float: left;
 }
 .whatsapp {
   width: 50px;

@@ -76,9 +76,9 @@ const CardRep = ({
             >
               <Whatsapp className="whatsapp" />
             </Link>
-          </div>
-          <div className="ContenedorCarrito">
-            {mostrarComponente && <Carrito />}
+            <div className="ContenedorCarrito">
+              {mostrarComponente && <Carrito placement="end" name="end" />}
+            </div>
           </div>
         </Card.Body>
       </div>

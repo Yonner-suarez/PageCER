@@ -9,6 +9,7 @@
 .cuerpoCanvas {
   background-color: rgb(0, 0, 0);
   color: white;
+  margin-bottom: 60%;
 }
 .canvasTitle {
   height: 50px;
@@ -48,6 +49,7 @@
 .carrito {
   width: 40px;
   height: auto;
+  margin-top: -45px;
   will-change: filter;
   transition: filter 300ms;
 }
@@ -56,8 +58,8 @@
 }
 .contenedorCantidad {
   /* align-items: center; */
-  width: 60px;
-  height: auto;
+  width: 50px;
+  height: 60px;
   border-radius: 10px;
   color: white;
   background-color: transparent;
@@ -71,16 +73,18 @@
   margin-top: -10px;
   font-size: medium;
   text-align: center;
-  position: sticky;
+  position: relative;
+  float: right;
 }
 .parrafoCantidad {
   background-color: rgb(55, 55, 55);
   border-radius: 10px;
   width: 40%;
-  margin-top: -10px;
+  margin-top: 0px;
   font-size: medium;
   text-align: center;
-  position: sticky;
+  position: relative;
+  float: right;
 }
 .boton {
   background-color: transparent;
@@ -96,12 +100,15 @@
   background-color: transparent;
 }
 .ContenedorValores {
-  background-color: black;
+  background-color: white;
   position: absolute;
-  bottom: 2%;
+  bottom: 0%;
   width: 90%;
 }
 .ContenedorValor {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  background-color: transparent;
+  color: black;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
