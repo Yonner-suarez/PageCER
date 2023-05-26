@@ -210,6 +210,11 @@
   text-transform: capitalize;
   text-align: start;
 }
+.tituloPrecio {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 28px;
+  margin: auto 0;
+}
 @media screen and (max-width: 450px) {
   .contenedorBodyModal {
     flex-direction: column;

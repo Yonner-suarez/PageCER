@@ -107,8 +107,18 @@ const CardRep = ({
                 {calificacion === 0 ? <Star /> : <StarFill />}
 
                 <div className="contenedorPrecioModal" style={{}}>
-                  <h3 className="tituloh3">${precio}</h3>
-                  <CantidadEnLaCard repuesto={obj} id={id} precio={precio} />
+                  <h3 className="tituloPrecio">${precio}</h3>
+                  {mostrarComponente ? (
+                    <CantidadEnLaCard repuesto={obj} id={id} precio={precio} />
+                  ) : (
+                    <Button
+                      variant="primary"
+                      style={{ fontFamily: "Franklin Gothic Medium" }}
+                      onClick={onClick}
+                    >
+                      Agregar
+                    </Button>
+                  )}
                 </div>
 
                 <div className="contenedorLogosCard">

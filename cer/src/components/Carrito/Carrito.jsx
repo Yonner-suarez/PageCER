@@ -29,8 +29,6 @@ const Carrito = ({ ...props }) => {
     loginWithRedirect();
   };
 
-  console.log(carrito.subTotal);
-
   const quitarCarrito = (id) => {
     const find = carrito.producto.find((pro) => pro.id === id);
 
