@@ -82,14 +82,7 @@
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   text-transform: capitalize;
   color: rgba(0, 0, 0, 0.476);
-}
-@media screen and (max-width: 450px) {
-  .Contenedorcard {
-    width: 100%;
-  }
-  .contenedorSubCard {
-    width: 100%;
-  }
+  font-size: 28px;
 }
 
 /* ! AQUI PARA ABAJO DISEÑOS DEL MODAL*/
@@ -241,5 +234,11 @@
   .contenedorCarrito {
     width: 100%;
     flex-direction: column;
+  }
+  .Contenedorcard {
+    width: 100%;
+  }
+  .contenedorSubCard {
+    width: 100%;
   }
 }
