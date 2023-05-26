@@ -32,7 +32,12 @@ const CantidadEnLaCard = ({ repuesto, id, precio }) => {
   return (
     <div className="contenedorCantidadRepuestos">
       <FilePlusFill
-        style={{ width: "25%", height: "auto", fontWeight: "bold" }}
+        style={{
+          width: "25%",
+          height: "auto",
+          fontWeight: "bold",
+          cursor: "pointer",
+        }}
         onClick={unoMas}
       />
 
@@ -40,14 +45,14 @@ const CantidadEnLaCard = ({ repuesto, id, precio }) => {
         if (pro.id == id) {
           return (
             <div key={id}>
-              <p>{pro.cantidad}</p>
+              <p className="cantidad">{pro.cantidad}</p>
             </div>
           );
         }
       })}
 
       <FileMinusFill
-        style={{ width: "25%", height: "auto" }}
+        style={{ width: "25%", height: "auto", cursor: "pointer" }}
         onClick={unoMenos}
       />
     </div>

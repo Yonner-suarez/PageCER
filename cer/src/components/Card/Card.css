@@ -23,7 +23,7 @@
   flex-direction: column;
 }
 .imagenRep {
-  width: 35%;
+  width: 100%;
   height: 280px;
   margin: auto 0;
   box-shadow: 2px 1px 5px black;
@@ -91,4 +91,129 @@
     width: 100%;
   }
 }
-/* */
+
+/* ! AQUI PARA ABAJO DISEÑOS DEL MODAL*/
+.Modal {
+  background-color: rgba(0, 0, 0, 0.433);
+}
+
+.imagenModal {
+  width: 100%;
+  transition: 0.5s;
+  object-fit: cover;
+}
+.imagenModal:hover {
+  transform: scale(1.2);
+}
+.contenedorImagenModal {
+  background-color: black;
+  width: 26%;
+  height: auto;
+
+  overflow: hidden;
+}
+.contenedorBodyModal {
+  width: 100%;
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.contenedorInfo {
+  background-color: transparent;
+  width: 35%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.contenedorCarrito {
+  background-color: blue;
+  width: 30%;
+}
+.contenedorLogosCard {
+  width: 100%;
+  height: auto;
+  background-color: rgb(241, 241, 241);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.logovwModal {
+  width: 100px;
+  height: auto;
+  transition: 0.5s;
+}
+.logovwModal:hover {
+  transform: scale(1.2);
+}
+.logoSkModal {
+  width: 100px;
+  height: auto;
+  transition: 0.5s;
+}
+.logoSkModal:hover {
+  transform: scale(1.2);
+}
+.logofiatModal {
+  width: 108px;
+  height: auto;
+  transition: 0.5s;
+}
+.logofiatModal:hover {
+  transform: scale(1.2);
+}
+.logoPeugeotModal {
+  width: 100px;
+  height: auto;
+  transition: 0.5s;
+}
+.logoPeugeotModal:hover {
+  transform: scale(1.2);
+}
+
+.logoCitroenModal {
+  width: 100px;
+  height: auto;
+  transition: 0.5s;
+}
+.logoCitroenModal:hover {
+  transform: scale(1.2);
+}
+
+.logombModal {
+  width: 115px;
+  height: auto;
+  transition: 0.5s;
+}
+.logombModal:hover {
+  transform: scale(1.2);
+}
+.logorenaultModal {
+  width: 100px;
+  height: auto;
+  transition: 0.5s;
+}
+.logorenaultModal:hover {
+  transform: scale(1.2);
+}
+.contenedorPrecioModal {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: transparent;
+  width: 100%;
+}
+.tituloh3 {
+  color: black;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  text-align: center;
+}
+.marcah5 {
+  color: rgba(0, 0, 0, 0.54);
+  font-size: x-large;
+  text-transform: capitalize;
+  text-align: start;
+}
