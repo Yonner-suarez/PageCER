@@ -51,6 +51,12 @@ export const carrito = createSlice({
     setPrecioHaciaAbajo: (state, action) => {
       state.subTotal -= action.payload;
     },
+    eliminarProducto: (state, { payload }) => {
+      state.producto = state.producto.filter((pro) => pro.id !== payload);
+    },
+    resetPrecioState: (state, { payload }) => {
+      state.subTotal -= payload;
+    },
   },
 });
 
@@ -61,6 +67,8 @@ export const {
   setPrecio,
   setCarritoRemove,
   setPrecioHaciaAbajo,
+  eliminarProducto,
+  resetPrecioState,
 } = carrito.actions;
 
 export const añadeCarrito = (cantidad, producto, id) => (dispatch) => {
@@ -86,4 +94,10 @@ export const subTotal = (precio) => (dispatch) => {
 export const bajarPrecio = (precio) => (dispatch) => {
   const num = parseInt(precio.replace(/\./g, ""));
   dispatch(setPrecioHaciaAbajo(num));
+};
+export const eliminarDelCarrito = (id) => (dispatch) => {
+  dispatch(eliminarProducto(id));
+};
+export const resetPrecio = (valor) => (dispatch) => {
+  dispatch(resetPrecioState(valor));
 };

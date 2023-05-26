@@ -6,8 +6,17 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import carritoIcon from "../../assets/carrito.svg";
 import CantidadEnLaCard from "../cantidadEnLa Card/CantidadEnLaCard";
 import { useAuth0 } from "@auth0/auth0-react";
+import { DashCircle } from "react-bootstrap-icons";
+import {
+  eliminarDelCarrito,
+  qutarCarrito,
+  resetPrecioState,
+} from "../../redux/slices/carrito";
+import { useDispatch } from "react-redux";
 
 const Carrito = ({ ...props }) => {
+  const dispatch = useDispatch();
+
   const { carrito } = useSelector((state) => state);
   const [show, setShow] = useState(false);
 
@@ -18,6 +27,19 @@ const Carrito = ({ ...props }) => {
 
   const onClick = () => {
     loginWithRedirect();
+  };
+
+  console.log(carrito.subTotal);
+
+  const quitarCarrito = (id) => {
+    const find = carrito.producto.find((pro) => pro.id === id);
+
+    dispatch(qutarCarrito(find.cantidad));
+
+    const final = parseFloat(find.precio.replace(/\./g, "").replace(",", "."));
+    dispatch(resetPrecioState(find.cantidad * final));
+
+    dispatch(eliminarDelCarrito(id));
   };
 
   return (
@@ -59,6 +81,12 @@ const Carrito = ({ ...props }) => {
                     precio={rep.precio}
                   />
                   <p>${rep.precio}</p>
+                  <DashCircle
+                    style={{ width: "10%", height: "auto" }}
+                    onClick={() => {
+                      quitarCarrito(rep.id);
+                    }}
+                  />
                 </div>
               </div>
             </div>
@@ -68,16 +96,16 @@ const Carrito = ({ ...props }) => {
             <hr style={{ color: "Black" }} />
             <div className="ContenedorValor">
               <h5>SubTotal</h5>
-              <p>{carrito.subTotal}</p>
+              <p>${carrito.subTotal.toLocaleString()}</p>
             </div>
             <div className="ContenedorValor">
               <h5>Envio</h5>
-              <p>{carrito.envio}</p>
+              <p>${carrito.envio.toLocaleString()}</p>
             </div>
             <hr style={{ color: "Black" }} />
             <div className="ContenedorValor">
               <h5>Total</h5>
-              <p>{carrito.total}</p>
+              <p>${carrito.total.toLocaleString()}</p>
             </div>
             <button className="botonCompra" onClick={onClick}>
               Finalizar compra
