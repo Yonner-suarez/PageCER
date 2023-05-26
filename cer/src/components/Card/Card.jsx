@@ -1,6 +1,6 @@
 import "./Card.css";
 import fiat from "../../assets/fiat.svg";
-import valeo from "../../assets/valeoOriginal.jpg";
+import vl from "../../assets/ValeoOriginal.jpg";
 import borsheung from "../../assets/borsheung.png";
 import moog from "../../assets/moogModal.jpg";
 import peugeot from "../../assets/peugeot.svg";
@@ -166,7 +166,7 @@ const CardRep = ({
                 </div>
               </div>
               <div className="contenedorCarrito">
-                <img src={valeo} alt="Valeo" className="imagenRepuesto" />
+                <img src={vl} alt="Valeo" className="imagenRepuesto" />
                 <img
                   src={borsheung}
                   alt="borsheung"
