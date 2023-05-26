@@ -217,3 +217,29 @@
   text-transform: capitalize;
   text-align: start;
 }
+@media screen and (max-width: 450px) {
+  .contenedorBodyModal {
+    flex-direction: column;
+    width: 100%;
+  }
+  .contenedorImagenModal {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .contenedorInfo {
+    width: 100%;
+  }
+  .contenedorPrecioModal {
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .contenedorLogosCard {
+    width: 100%;
+  }
+  .contenedorCarrito {
+    width: 100%;
+    flex-direction: column;
+  }
+}
