@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import "./RouteCarrito.css";
+import engine from "../../assets/engine.svg";
 import CantidadEnlaCard from "../cantidadEnLa Card/CantidadEnLaCard";
 import { Whatsapp } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
@@ -145,15 +146,16 @@ const RouteCarrito = () => {
             }}
           >
             <div>
-              {/* <img
-                src={motorRoto}
+              <img
+                src={engine}
                 alt="No hay productos"
                 style={{ width: "40%" }}
-              /> */}
-              <p>NO HAY REPUESTOS</p>
+              />
             </div>
             <h2>No tienes productos</h2>
-            <h5>vamos a comprar</h5>
+            <Link to="/" style={{ textDecoration: "none" }}>
+              <h5>vamos a comprar</h5>
+            </Link>
           </div>
         )}
       </div>

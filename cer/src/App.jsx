@@ -11,11 +11,20 @@ import NavBari from "./components/navBar/NavBar";
 import { Routes, Route, useLocation } from "react-router-dom";
 import RepuestosFiat from "./components/RepuestosFiat/RepuestosFiat";
 import RouteCarrito from "./components/RouteCarrito/RouteCarrito";
-
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { obtenTotal, obtenerCantidadesDelLocal } from "./redux/slices/carrito";
 function App() {
+  const dispatch = useDispatch();
+
   window.addEventListener("beforeunload", () => {
     localStorage.removeItem("isAlertShown");
   });
+
+  useEffect(() => {
+    dispatch(obtenTotal());
+    dispatch(obtenerCantidadesDelLocal());
+  }, [dispatch]);
 
   const { pathname } = useLocation();
   return (

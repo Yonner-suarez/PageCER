@@ -82,6 +82,8 @@ const CardRep = ({ id, imagen, nombre, precio, marcaRep, marcas }) => {
     });
   };
 
+  const buscaElProductoActual = carrito.local.find((rep) => rep.id === id);
+
   return (
     <Card key={id} className="Contenedorcard">
       <div className="contenedorSubCard">
@@ -123,7 +125,7 @@ const CardRep = ({ id, imagen, nombre, precio, marcaRep, marcas }) => {
 
                 <div className="contenedorPrecioModal" style={{}}>
                   <h3 className="tituloPrecio">${precio}</h3>
-                  {!mostrarComponente && carrito.cantidad === 0 ? (
+                  {!mostrarComponente && !buscaElProductoActual ? (
                     <Button
                       variant="primary"
                       style={{ fontFamily: "Franklin Gothic Medium" }}
