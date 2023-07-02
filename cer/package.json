@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "@auth0/auth0-react": "^2.1.0",
+    "@mercadopago/sdk-react": "^0.0.10",
     "@reduxjs/toolkit": "^1.9.5",
+    "animate.css": "^4.1.1",
     "aos": "^2.3.4",
     "axios": "^1.4.0",
     "bootstrap": "^5.2.3",
@@ -19,8 +21,10 @@
     "react-bootstrap": "^2.7.4",
     "react-bootstrap-icons": "^1.10.3",
     "react-dom": "^18.2.0",
+    "react-loader-spinner": "^5.3.4",
     "react-redux": "^8.0.5",
-    "react-router-dom": "^6.11.1"
+    "react-router-dom": "^6.11.1",
+    "sweetalert2": "^11.7.5"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

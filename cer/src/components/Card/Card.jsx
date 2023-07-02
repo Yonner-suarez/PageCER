@@ -11,25 +11,23 @@ import mb from "../../assets/mb.svg";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
-import { Star, StarFill, Whatsapp } from "react-bootstrap-icons";
+import { Whatsapp } from "react-bootstrap-icons";
 import { useDispatch } from "react-redux";
-import { añadeCarrito, subTotal } from "../../redux/slices/carrito";
+import {
+  añadeCarrito,
+  subTotal,
+  localStorageToState,
+  obtenTotal,
+} from "../../redux/slices/carrito";
 import PropTypes from "prop-types";
 import Carrito from "../Carrito/Carrito";
 import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import vw from "../../assets/vw.svg";
 import CantidadEnLaCard from "../cantidadEnLa Card/CantidadEnLaCard";
+import Swal from "sweetalert2";
 
-const CardRep = ({
-  id,
-  imagen,
-  nombre,
-  precio,
-  calificacion,
-  marcaRep,
-  marcas,
-}) => {
+const CardRep = ({ id, imagen, nombre, precio, marcaRep, marcas }) => {
   const [show, setShow] = useState(false);
   const [mostrarComponente, setMostrarComponente] = useState(false);
   const dispatch = useDispatch();
@@ -43,13 +41,11 @@ const CardRep = ({
     imagen,
     nombre,
     precio,
-    calificacion,
     marcaRep,
     marcas,
   };
 
-  const onClick = () => {
-    dispatch(subTotal(precio));
+  const onClick = async () => {
     dispatch(
       añadeCarrito(
         1,
@@ -58,14 +54,31 @@ const CardRep = ({
           imagen,
           nombre,
           precio,
-          calificacion,
           marcaRep,
           marcas,
         },
         id
       )
     );
+    dispatch(localStorageToState());
+    dispatch(subTotal(precio));
+    dispatch(obtenTotal());
     setMostrarComponente(true);
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-right",
+      iconColor: "white",
+      customClass: {
+        popup: "colored-toast",
+      },
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+    });
+    await Toast.fire({
+      icon: "success",
+      title: "Producto añadido correctamente",
+    });
   };
 
   return (
@@ -106,8 +119,6 @@ const CardRep = ({
               <div className=" contenedorInfo">
                 <h3 className="tituloh3">{nombre}</h3>
                 <h5 className="marcah5">{marcaRep.marcaRep}</h5>
-
-                {calificacion === 0 ? <Star /> : <StarFill />}
 
                 <div className="contenedorPrecioModal" style={{}}>
                   <h3 className="tituloPrecio">${precio}</h3>
@@ -190,9 +201,7 @@ const CardRep = ({
           <Card.Text className="texto">${precio}</Card.Text>
 
           <Card.Text className="texto">{marcaRep.marcaRep}</Card.Text>
-          <Card.Text className="texto">
-            {calificacion === 0 ? <Star /> : <StarFill />}
-          </Card.Text>
+
           <div className="botones">
             <Button
               variant="primary"
@@ -223,7 +232,6 @@ CardRep.propTypes = {
   imagen: PropTypes.string.isRequired,
   nombre: PropTypes.string.isRequired,
   precio: PropTypes.string.isRequired,
-  calificacion: PropTypes.number.isRequired,
   marcaRep: PropTypes.object.isRequired,
   marcas: PropTypes.array.isRequired,
 };

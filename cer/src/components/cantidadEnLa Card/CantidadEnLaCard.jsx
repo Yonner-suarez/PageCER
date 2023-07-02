@@ -6,6 +6,7 @@ import {
   subTotal,
   qutarCarrito,
   bajarPrecio,
+  localStorageToState,
 } from "../../redux/slices/carrito";
 import PropTypes from "prop-types";
 
@@ -14,19 +15,22 @@ const CantidadEnLaCard = ({ repuesto, id, precio }) => {
   const { carrito } = useSelector((state) => state);
 
   const unoMas = () => {
-    const find = carrito.producto.find((pro) => pro.id == id);
+    const find = carrito.local.find((pro) => pro.id == id);
 
     if (find.cantidad >= 5) return;
 
-    dispatch(subTotal(precio));
     dispatch(añadeCarrito(1, repuesto, id));
+    dispatch(localStorageToState());
+    dispatch(subTotal(precio));
   };
+
   const unoMenos = () => {
-    const find = carrito.producto.find((pro) => pro.id == id);
+    const find = carrito.local.find((pro) => pro.id == id);
 
     if (find.cantidad <= 0) return;
+    dispatch(qutarCarrito(id, 1));
+    dispatch(localStorageToState());
     dispatch(bajarPrecio(precio));
-    dispatch(qutarCarrito(1, id));
   };
 
   return (
@@ -41,7 +45,7 @@ const CantidadEnLaCard = ({ repuesto, id, precio }) => {
         onClick={unoMas}
       />
 
-      {carrito.producto.map((pro) => {
+      {carrito.local.map((pro) => {
         if (pro.id == id) {
           return (
             <div key={id}>

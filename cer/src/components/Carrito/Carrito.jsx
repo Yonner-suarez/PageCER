@@ -1,45 +1,40 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Carrito.css";
 import { useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import carritoIcon from "../../assets/carrito.svg";
 import CantidadEnLaCard from "../cantidadEnLa Card/CantidadEnLaCard";
-import { useAuth0 } from "@auth0/auth0-react";
 import { DashCircle } from "react-bootstrap-icons";
 import {
   eliminarDelCarrito,
-  qutarCarrito,
-  resetPrecioState,
+  localStorageToState,
+  subTotal,
+  obtenTotal,
 } from "../../redux/slices/carrito";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import formatearNumeroCOP from "./utils/formaterCOP";
 
 const Carrito = ({ ...props }) => {
   const dispatch = useDispatch();
 
   const { carrito } = useSelector((state) => state);
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const { loginWithRedirect } = useAuth0();
-
-  const onClick = () => {
-    loginWithRedirect();
+  const quitarCarrito = (id, cantidad) => {
+    dispatch(eliminarDelCarrito(id, cantidad));
+    dispatch(localStorageToState());
+    dispatch(subTotal());
   };
 
-  const quitarCarrito = (id) => {
-    const find = carrito.producto.find((pro) => pro.id === id);
-
-    dispatch(qutarCarrito(find.cantidad));
-
-    const final = parseFloat(find.precio.replace(/\./g, "").replace(",", "."));
-    dispatch(resetPrecioState(find.cantidad * final));
-
-    dispatch(eliminarDelCarrito(id));
-  };
+  useEffect(() => {
+    dispatch(obtenTotal());
+  }, [dispatch]);
 
   return (
     <>
@@ -68,7 +63,7 @@ const Carrito = ({ ...props }) => {
           </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body className="cuerpoCanvas">
-          {carrito.producto.map((rep) => (
+          {carrito?.local?.map((rep) => (
             <div key={rep.id} className="ContenedorCanvasRepuesto">
               <img src={rep.imagen} alt={rep.nombre} className="imagenCanvas" />
               <div className="contenedorNombrePrecio">
@@ -79,12 +74,15 @@ const Carrito = ({ ...props }) => {
                     id={rep.id}
                     precio={rep.precio}
                   />
-                  <p>${rep.precio}</p>
+                  <p className="parrafoPrecioUnit">${rep.precio}</p>
+
                   <DashCircle
-                    style={{ width: "10%", height: "auto" }}
-                    onClick={() => {
-                      quitarCarrito(rep.id);
+                    style={{
+                      width: "10%",
+                      height: "auto",
+                      cursor: "pointer",
                     }}
+                    onClick={() => quitarCarrito(rep.id, rep.cantidad)}
                   />
                 </div>
               </div>
@@ -95,21 +93,26 @@ const Carrito = ({ ...props }) => {
             <hr style={{ color: "Black" }} />
             <div className="ContenedorValor">
               <h5>SubTotal</h5>
-              <p>${carrito.subTotal.toLocaleString()}</p>
+              <p>{formatearNumeroCOP(carrito.subTotal)}</p>
             </div>
             <div className="ContenedorValor">
               <h5>Envio</h5>
-              <p>${carrito.envio.toLocaleString()}</p>
+              <p>{formatearNumeroCOP(carrito.envio)}</p>
             </div>
             <hr style={{ color: "Black" }} />
             <div className="ContenedorValor">
               <h5>Total</h5>
-              <p>${carrito.total.toLocaleString()}</p>
+              <p>{formatearNumeroCOP(carrito.total)}</p>
             </div>
-            <button className="botonCompra" onClick={onClick}>
-              Finalizar compra
-            </button>
-            <Link to="carrito">
+            {/* <Link to="/carrito">
+              <button
+                className="botonCompra"
+                disabled={!isAuthenticated ? true : false}
+              >
+                Finalizar compra
+              </button>
+            </Link> */}
+            <Link to="/carrito">
               <button className="botonCompra">Ver Carrito</button>
             </Link>
           </div>

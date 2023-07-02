@@ -13,6 +13,10 @@ import RepuestosFiat from "./components/RepuestosFiat/RepuestosFiat";
 import RouteCarrito from "./components/RouteCarrito/RouteCarrito";
 
 function App() {
+  window.addEventListener("beforeunload", () => {
+    localStorage.removeItem("isAlertShown");
+  });
+
   const { pathname } = useLocation();
   return (
     <div>
