@@ -8,7 +8,7 @@ initMercadoPago("TEST-47e34156-124e-4b9c-8c4c-60c0285d719b");
 import axios from "axios";
 import Contacto from "../Contacto/Contacto";
 import Footer from "../Footer/Footer";
-import motorRoto from "../../assets/motorRoto.svg";
+//import motorRoto from "../../assets/motorRoto.svg";
 import { ThreeCircles } from "react-loader-spinner";
 import { useEffect } from "react";
 import {
@@ -145,11 +145,12 @@ const RouteCarrito = () => {
             }}
           >
             <div>
-              <img
+              {/* <img
                 src={motorRoto}
                 alt="No hay productos"
                 style={{ width: "40%" }}
-              />
+              /> */}
+              <p>NO HAY REPUESTOS</p>
             </div>
             <h2>No tienes productos</h2>
             <h5>vamos a comprar</h5>
