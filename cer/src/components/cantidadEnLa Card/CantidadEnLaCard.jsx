@@ -7,8 +7,11 @@ import {
   qutarCarrito,
   bajarPrecio,
   localStorageToState,
+  obtenTotal,
+  obtenerCantidadesDelLocal,
 } from "../../redux/slices/carrito";
 import PropTypes from "prop-types";
+import { useEffect } from "react";
 
 const CantidadEnLaCard = ({ repuesto, id, precio }) => {
   const dispatch = useDispatch();
@@ -32,6 +35,11 @@ const CantidadEnLaCard = ({ repuesto, id, precio }) => {
     dispatch(localStorageToState());
     dispatch(bajarPrecio(precio));
   };
+
+  useEffect(() => {
+    dispatch(obtenTotal());
+    dispatch(obtenerCantidadesDelLocal());
+  }, [dispatch]);
 
   return (
     <div className="contenedorCantidadRepuestos">

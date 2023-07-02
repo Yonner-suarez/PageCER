@@ -12,7 +12,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 import { Whatsapp } from "react-bootstrap-icons";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   añadeCarrito,
   subTotal,
@@ -30,6 +30,7 @@ import Swal from "sweetalert2";
 const CardRep = ({ id, imagen, nombre, precio, marcaRep, marcas }) => {
   const [show, setShow] = useState(false);
   const [mostrarComponente, setMostrarComponente] = useState(false);
+  const { carrito } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   const modal = () => {
@@ -122,9 +123,7 @@ const CardRep = ({ id, imagen, nombre, precio, marcaRep, marcas }) => {
 
                 <div className="contenedorPrecioModal" style={{}}>
                   <h3 className="tituloPrecio">${precio}</h3>
-                  {mostrarComponente ? (
-                    <CantidadEnLaCard repuesto={obj} id={id} precio={precio} />
-                  ) : (
+                  {!mostrarComponente && carrito.cantidad === 0 ? (
                     <Button
                       variant="primary"
                       style={{ fontFamily: "Franklin Gothic Medium" }}
@@ -132,6 +131,8 @@ const CardRep = ({ id, imagen, nombre, precio, marcaRep, marcas }) => {
                     >
                       Agregar
                     </Button>
+                  ) : (
+                    <CantidadEnLaCard repuesto={obj} id={id} precio={precio} />
                   )}
                 </div>
 
