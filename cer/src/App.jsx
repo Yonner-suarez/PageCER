@@ -22,8 +22,8 @@ function App() {
   });
 
   useEffect(() => {
-    dispatch(obtenTotal());
     dispatch(obtenerCantidadesDelLocal());
+    dispatch(obtenTotal());
   }, [dispatch]);
 
   const { pathname } = useLocation();

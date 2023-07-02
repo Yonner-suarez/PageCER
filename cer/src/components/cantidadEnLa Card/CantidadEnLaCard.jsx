@@ -8,10 +8,8 @@ import {
   bajarPrecio,
   localStorageToState,
   obtenTotal,
-  obtenerCantidadesDelLocal,
 } from "../../redux/slices/carrito";
 import PropTypes from "prop-types";
-import { useEffect } from "react";
 
 const CantidadEnLaCard = ({ repuesto, id, precio }) => {
   const dispatch = useDispatch();
@@ -25,6 +23,7 @@ const CantidadEnLaCard = ({ repuesto, id, precio }) => {
     dispatch(añadeCarrito(1, repuesto, id));
     dispatch(localStorageToState());
     dispatch(subTotal(precio));
+    dispatch(obtenTotal());
   };
 
   const unoMenos = () => {
@@ -34,12 +33,13 @@ const CantidadEnLaCard = ({ repuesto, id, precio }) => {
     dispatch(qutarCarrito(id, 1));
     dispatch(localStorageToState());
     dispatch(bajarPrecio(precio));
+    dispatch(obtenTotal());
   };
 
-  useEffect(() => {
-    dispatch(obtenTotal());
-    dispatch(obtenerCantidadesDelLocal());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(obtenerCantidadesDelLocal());
+  //   dispatch(obtenTotal());
+  // }, [dispatch]);
 
   return (
     <div className="contenedorCantidadRepuestos">

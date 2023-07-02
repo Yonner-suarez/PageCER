@@ -127,6 +127,7 @@
   border-radius: 10px;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-size: larger;
+  margin-bottom: 5%;
 }
 .botonCompra:hover {
   background-color: #646cff;

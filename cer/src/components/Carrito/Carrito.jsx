@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./Carrito.css";
 import { useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
@@ -30,11 +30,8 @@ const Carrito = ({ ...props }) => {
     dispatch(eliminarDelCarrito(id, cantidad));
     dispatch(localStorageToState());
     dispatch(subTotal());
-  };
-
-  useEffect(() => {
     dispatch(obtenTotal());
-  }, [dispatch]);
+  };
 
   return (
     <>
