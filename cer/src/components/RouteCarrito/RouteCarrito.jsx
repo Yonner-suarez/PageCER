@@ -24,7 +24,7 @@ const RouteCarrito = () => {
 
   const onSubmit = async () => {
     try {
-      const resp = await axios.post("/ordenDePago", carrito.producto);
+      const resp = await axios.post("/ordenDePago", carrito.local);
 
       window.location.href = resp.data;
     } catch (error) {

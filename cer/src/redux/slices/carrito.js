@@ -162,6 +162,13 @@ export const carrito = createSlice({
       }
       state.total = total(state.subTotal, state.envio);
     },
+    resetLocalForBuySuccess: (state) => {
+      localStorage.removeItem("carrito");
+
+      // carritoLocal = [];
+      // localStorage.setItem("carrito", carritoLocal);
+      state.local = [];
+    },
   },
 });
 
@@ -176,6 +183,7 @@ export const {
   setLocalState,
   obtenerCantidadesDelLocal,
   obtenerTotal,
+  resetLocalForBuySuccess,
 } = carrito.actions;
 
 export const añadeCarrito = (cantidad, producto, id) => (dispatch) => {
@@ -216,6 +224,9 @@ export const obtenerCantidades = () => (dispatch) => {
 };
 export const obtenTotal = () => (dispatch) => {
   dispatch(obtenerTotal());
+};
+export const vaciarCarritoSucces = () => (dispatch) => {
+  dispatch(resetLocalForBuySuccess());
 };
 /*
 ahora si no se repite y guarda los cambios nuevos sin que se borre nada pero tengo una funcionalidad en el carrito de compra que eliminar a un prod completo del carrito y esto se veia reflejado en el estado global pero ya no como lo vuelvo hacer
