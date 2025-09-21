@@ -47,10 +47,11 @@ const Contacto = () => {
         <div className="informacionNosotros">
           <img src={logo} alt="Logo" className="logo" />
           <p className="parrafos">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque
-            fugiat ex magni, facere corrupti consectetur perspiciatis ut qui
-            aliquid mollitia maxime earum unde soluta eligendi sunt ipsa aperiam
-            quidem dolorem!
+            Somos un almacén especializado en la venta de repuestos automotrices
+            para las principales marcas europeas: Volkswagen, Škoda, Fiat,
+            Peugeot, Citroën y Mercedes-Benz. Nuestro compromiso es ofrecer
+            piezas de calidad, confianza y respaldo, para que tu vehículo
+            siempre tenga el mejor rendimiento.
           </p>
         </div>
         <div className="informacionNosotros" data-aos="flip-down">
@@ -58,10 +59,11 @@ const Contacto = () => {
           <h4 className="subtitulo">info</h4>
           <hr className="saltos" />
           <p className="parrafos">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque
-            fugiat ex magni, facere corrupti consectetur perspiciatis ut qui
-            aliquid mollitia maxime earum unde soluta eligendi sunt ipsa aperiam
-            quidem dolorem!
+            En Casa Europea de Repuestos encontrarás repuestos originales y
+            alternativos, con garantía y el respaldo de un equipo experto.
+            Realizamos envíos seguros a todo el país y ofrecemos asesoría
+            personalizada para ayudarte a elegir la mejor opción para tu
+            vehículo.
           </p>
         </div>
         <div className="informacionNosotros" data-aos="flip-down">
@@ -69,10 +71,10 @@ const Contacto = () => {
           <h4 className="subtitulo">Novedades</h4>
           <hr className="saltos" />
           <p className="parrafos">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque
-            fugiat ex magni, facere corrupti consectetur perspiciatis ut qui
-            aliquid mollitia maxime earum unde soluta eligendi sunt ipsa aperiam
-            quidem dolorem!
+            Mantente al día con nuestras promociones, nuevos ingresos y
+            lanzamientos exclusivos en repuestos para tu marca preferida.
+            Suscríbete a nuestro boletín y sé el primero en conocer ofertas
+            especiales y descuentos en productos seleccionados.
           </p>
         </div>
       </div>

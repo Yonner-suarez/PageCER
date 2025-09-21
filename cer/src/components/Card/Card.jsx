@@ -103,15 +103,13 @@ const CardRep = ({ id, imagen, nombre, precio, marcaRep, marcas }) => {
         >
           <Modal.Header closeButton>
             <Modal.Title id="example-custom-modal-styling-title">
-              {marcas.map((mar) => (
-                <div
-                  key={mar.id}
-                  style={{ display: "flex", flexDirection: "row" }}
-                >
-                  <img src={vw} alt="Volkswagen" />
-                  <h2>{mar.marca}</h2>
-                </div>
-              ))}
+              <div
+                key={marcas.id}
+                style={{ display: "flex", flexDirection: "row" }}
+              >
+                <img src={vw} alt="Volkswagen" />
+                <h2>{marcas.marca}</h2>
+              </div>
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
@@ -193,13 +191,9 @@ const CardRep = ({ id, imagen, nombre, precio, marcaRep, marcas }) => {
         </Modal>
 
         <Card.Body className="bodyCard">
-          {marcas.map((marca) => {
-            return (
-              <div key={marca.id}>
-                <h2 className="subtitulo">{marca.marca}</h2>
-              </div>
-            );
-          })}
+          <div key={marcas.id}>
+            <h2 className="subtitulo">{marcas.marca}</h2>
+          </div>
           <Card.Title className="titulo">{nombre}</Card.Title>
           <Card.Text className="texto">${precio}</Card.Text>
 
@@ -211,15 +205,9 @@ const CardRep = ({ id, imagen, nombre, precio, marcaRep, marcas }) => {
               style={{ fontFamily: "Franklin Gothic Medium" }}
               onClick={onClick}
             >
-              Agregar
+              Comprar
             </Button>
 
-            <Link
-              to="https://api.whatsapp.com/send?phone=573134421215&text=Buen_día_estoy_buscando_Repuestos"
-              className="link"
-            >
-              <Whatsapp className="whatsapp" />
-            </Link>
             <div className="ContenedorCarrito">
               {mostrarComponente && <Carrito placement="end" name="end" />}
             </div>

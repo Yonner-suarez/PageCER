@@ -26,3 +26,51 @@
     text-align: center;
   }
 }
+.footer-container {
+  display: flex;
+  justify-content: space-between; /* Distribuye los elementos a lo largo del footer */
+  align-items: center; /* Centra verticalmente */
+  padding: 10px 0;
+  gap: 20px; /* Espacio opcional entre elementos */
+}
+
+.footer-item {
+  font-size: 14px;
+  color: #555; /* Cambia según tu diseño */
+}
+
+.cohete {
+  margin: 0 5px;
+  vertical-align: middle;
+}
+.kt-footer {
+  background-color: #f5f5f5; /* color de fondo del footer */
+  width: 100%;
+}
+
+.kt-container {
+  max-width: 1200px; /* ancho máximo del contenido */
+  width: 100%;
+  margin: 0 auto; /* centra el footer */
+  padding: 0 15px; /* padding lateral para que no toque los bordes */
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between; /* distribuye los items */
+  align-items: center;
+  flex-wrap: wrap; /* para que no se salga en pantallas pequeñas */
+  padding: 10px 0;
+  gap: 10px; /* separación opcional entre elementos */
+}
+
+.footer-item {
+  font-size: 14px;
+  color: #555;
+  white-space: nowrap; /* evita que el texto se rompa */
+}
+
+.cohete {
+  margin: 0 5px;
+  vertical-align: middle;
+}

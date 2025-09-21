@@ -15,19 +15,12 @@ const InfoNosotros = () => {
       </h2>
       <hr className="hr" />
       <p className="parrafosNosotros" data-aos="zoom-in">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium sit
-        iste ex nesciunt vero id excepturi rem, totam deleniti rerum maxime
-        similique modi quis velit illum laborum illo reprehenderit eaque. Lorem
-        ipsum dolor sit amet, consectetur adipisicing elit. Veniam iusto, neque
-        corrupti quos sequi culpa et facere omnis ratione pariatur repellendus
-        vero, dolores quod nesciunt fuga suscipit consequuntur nemo illo. Lorem
-        ipsum dolor sit amet consectetur, adipisicing elit. Facilis in
-        consequuntur ullam ab molestias, sint ex? Iste distinctio ratione
-        provident accusamus hic harum fuga at sequi sit doloribus, quisquam
-        repellendus? Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Quis recusandae iste facere deserunt nobis similique quia excepturi
-        veniam, repellendus quo placeat amet natus id quaerat in doloremque
-        porro dolorem possimus!
+        Somos un almacén de repuestos automotrices especializado en ofrecer
+        soluciones confiables y de calidad para vehículos de las principales
+        marcas europeas, entre ellas Volkswagen, Škoda, Fiat, Peugeot, Citroën y
+        Mercedes-Benz. Nuestro compromiso es brindar a nuestros clientes un
+        servicio ágil, seguro y cercano, respaldado por una amplia experiencia
+        en el sector automotor.
       </p>
       <img
         src={Cartel}
