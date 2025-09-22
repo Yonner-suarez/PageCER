@@ -1,32 +1,16 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import NavbarAdmin from "../../components/ModuloAdminComponents/NavBarAdmin/NavBarAdmin";
 import Footer from "../../components/Footer/Footer";
-
-// Función para decodificar JWT
-function parseJwt(token) {
-  if (!token) return null;
-  try {
-    const base64Url = token.split(".")[1];
-    const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-    const jsonPayload = decodeURIComponent(
-      atob(base64)
-        .split("")
-        .map((c) => "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2))
-        .join("")
-    );
-    return JSON.parse(jsonPayload);
-  } catch (e) {
-    console.error("Error decodificando JWT:", e);
-    return null;
-  }
-}
+import { parseJwt } from "../../Helpers/functions";
 
 const ModuloAdmin = () => {
+  const navigate = useNavigate();
+
   // Leer token desde localStorage bajo la clave "user"
   const userObj = JSON.parse(localStorage.getItem("user") || "{}");
   const jwt = userObj.token;
 
-  const tokenData = parseJwt(jwt);
+  const tokenData = parseJwt(jwt, navigate); // 👈 ahora le pasamos navigate
 
   // Roles permitidos
   const rolesPermitidos = ["Administrador", "Logistico"];

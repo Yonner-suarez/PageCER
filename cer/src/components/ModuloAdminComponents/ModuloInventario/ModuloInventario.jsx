@@ -11,12 +11,18 @@ const ModuloInventario = () => {
   const [productos, setProductos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
+  const [role, setRole] = useState("");
   const [nuevoProducto, setNuevoProducto] = useState({
     nombre: "",
     precio: "",
   });
 
   useEffect(() => {
+    const userObj = JSON.parse(localStorage.getItem("user") || "{}");
+    const jwt = userObj.token;
+    const role = getRoleFromToken(jwt);
+    setRole(role);
+
     api
       .get(inventario.PRODUCTOS)
       .then((res) => {
@@ -86,20 +92,24 @@ const ModuloInventario = () => {
           }}
         >
           <h3>Catálogo de Productos</h3>
-          <button
-            onClick={handleAgregar}
-            style={{
-              backgroundColor: "#7066E0",
-              color: "#fff",
-              border: "none",
-              borderRadius: "5px",
-              padding: "8px 16px",
-              cursor: "pointer",
-              fontWeight: "bold",
-            }}
-          >
-            Agregar
-          </button>
+          {role != "Administrador" ? (
+            <button
+              onClick={handleAgregar}
+              style={{
+                backgroundColor: "#7066E0",
+                color: "#fff",
+                border: "none",
+                borderRadius: "5px",
+                padding: "8px 16px",
+                cursor: "pointer",
+                fontWeight: "bold",
+              }}
+            >
+              Agregar
+            </button>
+          ) : (
+            <></>
+          )}
         </div>
 
         <DataTable

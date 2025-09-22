@@ -58,3 +58,54 @@ export const handleError = (
     }
   }
 };
+
+/**
+ * Decodifica un JWT y, si está vencido, ejecuta la acción de expirado.
+ *
+ * @param {string} token - JWT completo.
+ * @param {object} options - Opciones:
+ *    - navigateFn: función a llamar cuando el token esté vencido (ej: navigate de react-router).
+ *    - redirectTo: ruta a la que navegar si no se pasa navigateFn (opcional).
+ *    - onExpired: callback adicional a ejecutar cuando el token esté vencido (opcional).
+ * @returns {object|null} payload decodificado o null en error.
+ */
+export function parseJwt(token, navigateFn, redirectTo = "/login") {
+  if (!token) return null;
+
+  try {
+    const base64Url = token.split(".")[1];
+    if (!base64Url) return null;
+
+    const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    const jsonPayload = decodeURIComponent(
+      atob(base64)
+        .split("")
+        .map((c) => "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2))
+        .join("")
+    );
+
+    const payload = JSON.parse(jsonPayload);
+
+    // Verificar expiración
+    if (payload?.exp) {
+      const now = Math.floor(Date.now() / 1000);
+      if (payload.exp <= now) {
+        // Token vencido -> limpiar y redirigir
+        localStorage.removeItem("user");
+        if (typeof navigateFn === "function") {
+          navigateFn(redirectTo);
+        }
+        return null;
+      }
+    }
+
+    return payload;
+  } catch (e) {
+    console.error("Error decodificando JWT:", e);
+    return null;
+  }
+}
+export function getRoleFromToken(token) {
+  const payload = parseJwt(token, navigateFn, redirectTo);
+  return payload?.role || null;
+}
