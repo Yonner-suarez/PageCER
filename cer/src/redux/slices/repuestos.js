@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { apiSinAuth } from "../../Helpers/api";
+import { handleError } from "../../Helpers/functions";
 
 export const repuestoSlice = createSlice({
   name: "repuestos",
@@ -21,15 +23,17 @@ export default repuestoSlice.reducer;
 export const { setRepuestos } = repuestoSlice.actions;
 
 // Acción Redux con body
-export const getRepuestos = () => (dispatch) => {
-  axios
-    .post("catalogoProductos/v1/Catalogo/productos", {
-      idMarca: 0,
-      idCategoria: 0,
-      rangoPrecio: "",
-    })
-    .then((res) => {
-      dispatch(setRepuestos(res.data));
-    })
-    .catch((err) => console.error(err.message));
-};
+export const getRepuestos =
+  (filtro = null) =>
+  (dispatch) => {
+    apiSinAuth
+      .post("catalogoProductos/v1/Catalogo/productos", {
+        IdMarca: filtro?.IdMarca || 0,
+        IdCategoria: filtro?.IdCategoria || 0,
+        RangoPrecio: filtro?.RangoPrecio || "",
+      })
+      .then((res) => {
+        dispatch(setRepuestos(res.data));
+      })
+      .catch((err) => handleError(err));
+  };

@@ -11,15 +11,21 @@ import InfoNosotros from "../../components/InfoNosotros/infoNosotros";
 import Propuesta from "../../components/Propuesta/Propuesta";
 import RenderLogo from "../../components/RenderLogo/RenderLogo";
 import WhatsAppInfo from "../../components/WhatsApp/WhatsApp";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import "./sweetAlertStyles.css";
 import "animate.css";
 import { ThreeCircles } from "react-loader-spinner";
+import LoginModal from "../../components/LoginModal/LoginModal";
 
 const Home = () => {
   const searchParams = new URLSearchParams(location.search);
   const status = searchParams.get("status");
+  const [showModal, setShowModal] = useState(false);
+  const [showAdmin, setShowAdmin] = useState(false);
+  const [moduloCliente, setModuloCliente] = useState(false);
+
+  const handleClose = () => setShowModal(false);
 
   const showAlert = async () => {
     const Toast = Swal.mixin({
@@ -74,7 +80,11 @@ const Home = () => {
     <>
       {<Carrousel /> ? (
         <div>
-          <RenderLogo />
+          <RenderLogo
+            setShowModal={setShowModal}
+            setShowAdmin={setShowAdmin}
+            moduloCliente={moduloCliente}
+          />
           <NavBari />
           <Carrousel />
           <InfoNosotros />
@@ -88,6 +98,13 @@ const Home = () => {
           <Footer />
           <WhatsAppInfo />
           {/* {aler ? alert("Bienvenido a CER") : console.log("ES FALSE")} */}
+          // ...inside the return statement of your RenderLogo component
+          <LoginModal
+            show={showModal}
+            handleClose={handleClose}
+            showAdmin={showAdmin}
+            setModuloCliente={setModuloCliente}
+          />
         </div>
       ) : (
         <ThreeCircles

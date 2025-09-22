@@ -4,9 +4,7 @@ import vw from "../../assets/vw.svg";
 import fiat from "../../assets/fiat.svg";
 import peugeot from "../../assets/peugeot.svg";
 
-import citroen from "../../assets/citroen.svg";
 import skoda from "../../assets/skoda.svg";
-import renault from "../../assets/renault.svg";
 import mb from "../../assets/mb.svg";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -19,7 +17,7 @@ import Carrito from "../Carrito/Carrito";
 const NavBari = () => {
   const dispatch = useDispatch();
   const onClick = () => {
-    dispatch(getRepuestos());
+    // dispatch(getRepuestos());
   };
 
   return (
@@ -49,15 +47,8 @@ const NavBari = () => {
                 <img src={peugeot} alt="peugeot" className="logoPeugeot" />
               </Link>
               <br />
-              <Link to="/repuestosCitroen" onClick={onClick}>
-                <img src={citroen} alt="citroen" className="logoCitroen" />
-              </Link>
-              <br />
               <Link to="/repuestosMb" onClick={onClick}>
                 <img src={mb} alt="mb" className="logomb" />
-              </Link>
-              <Link to="/repuestosRenault" onClick={onClick}>
-                <img src={renault} alt="renault" className="logorenault" />
               </Link>
             </div>
           </Nav>

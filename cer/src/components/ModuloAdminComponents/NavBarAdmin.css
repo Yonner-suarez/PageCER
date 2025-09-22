@@ -1,0 +1,29 @@
+.logocer {
+  width: 60px;
+  height: auto;
+}
+
+@media (min-width: 992px) {
+  .logocer {
+    width: 80px;
+  }
+}
+
+.menu-admin .menuIcon {
+  width: 24px;
+  height: 24px;
+  display: block;
+  margin: 0 auto 4px auto;
+}
+
+.circleUser {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #007bff;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}

@@ -1,44 +1,9 @@
 .logo {
-  width: 100%;
-  height: auto;
-}
-.contenedorLogo {
-  width: 55%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: end;
-  background-color: transparent;
-  float: right;
-}
-.linklogo {
-  width: 20%;
-  background-color: blanchedalmond;
-}
-.login {
-  width: 20%;
-  height: 50%;
-  margin-right: 10%;
+  height: 60px;
+  width: auto;
 }
 
-@media screen and (max-width: 450px) {
-  .contenedorLogo {
-    width: 90%;
-    height: auto;
-    margin-right: 0%;
-    justify-content: end;
-  }
-  .linklogo {
-    background-color: blueviolet;
-    width: 30%;
-    margin-right: 10%;
-  }
-  .logo {
-    width: 100%;
-  }
-  .login {
-    width: 20%;
-    margin-right: 15%;
-  }
+.loginIcon {
+  height: 28px;
+  width: auto;
 }

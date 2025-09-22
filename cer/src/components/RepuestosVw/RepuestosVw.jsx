@@ -15,7 +15,10 @@ const RepuestosVw = () => {
   const itemsPerPage = 6;
 
   useEffect(() => {
-    dispatch(getRepuestos());
+    const filtro = {
+      IdMarca: 1,
+    };
+    dispatch(getRepuestos(filtro));
     dispatch(obtenerCantidades());
   }, [dispatch]);
 
@@ -46,11 +49,20 @@ const RepuestosVw = () => {
           ))}
 
           <ReactPaginate
-            previousLabel={"← Anterior"}
-            nextLabel={"Siguiente →"}
+            previousLabel={"←"}
+            nextLabel={"→"}
+            breakLabel={"..."}
             pageCount={pageCount}
             onPageChange={handlePageClick}
-            containerClassName={"paginado"}
+            containerClassName={"pagination"}
+            pageClassName={"page-item"}
+            pageLinkClassName={"page-link"}
+            previousClassName={"page-item"}
+            previousLinkClassName={"page-link"}
+            nextClassName={"page-item"}
+            nextLinkClassName={"page-link"}
+            breakClassName={"page-item"}
+            breakLinkClassName={"page-link"}
             activeClassName={"active"}
           />
         </div>

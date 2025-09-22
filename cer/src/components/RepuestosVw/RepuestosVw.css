@@ -37,3 +37,41 @@
     width: 40%;
   }
 }
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  gap: 8px;
+  padding: 10px 0;
+}
+
+.page-item {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.page-link {
+  display: block;
+  padding: 8px 14px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fff;
+  color: #333;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.page-link:hover {
+  background: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.active .page-link {
+  background: #007bff;
+  color: white;
+  border-color: #007bff;
+  font-weight: 600;
+}

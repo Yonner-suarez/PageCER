@@ -47,13 +47,10 @@ const RouteCarrito = () => {
                 <img src={rep.imagen} className="card-img-top" alt="..." />
               </div>
               <div className="cardCarrito">
-                {rep.marcas.map((marca) => {
-                  return (
-                    <div key={marca.id}>
-                      <h2 className="subtitulo">{marca.marca}</h2>
-                    </div>
-                  );
-                })}
+                <div key={rep.marcas.idMarca}>
+                  <h2 className="subtitulo">{rep.marcas.nombre}</h2>
+                </div>
+
                 <h5 className="card-title">{rep.nombre}</h5>
                 <h5 className="card-title">{rep.marcaRep.marcaRep}</h5>
                 <h5 className="card-title">{rep.calificacion}</h5>
