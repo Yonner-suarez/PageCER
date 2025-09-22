@@ -31,6 +31,7 @@ const CardRep = ({ id, imagen, nombre, precio, marcaRep, marcas }) => {
   const [show, setShow] = useState(false);
   const [mostrarComponente, setMostrarComponente] = useState(false);
   const { carrito } = useSelector((state) => state);
+  const { repuestos } = useSelector((state) => state.repuestos);
   const dispatch = useDispatch();
 
   const modal = () => {
@@ -132,7 +133,12 @@ const CardRep = ({ id, imagen, nombre, precio, marcaRep, marcas }) => {
                       Agregar
                     </Button>
                   ) : (
-                    <CantidadEnLaCard repuesto={obj} id={id} precio={precio} />
+                    <CantidadEnLaCard
+                      repuesto={obj}
+                      id={id}
+                      precio={precio}
+                      repuestos={repuestos}
+                    />
                   )}
                 </div>
 

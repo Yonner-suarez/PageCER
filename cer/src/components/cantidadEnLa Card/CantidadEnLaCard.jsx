@@ -14,11 +14,13 @@ import PropTypes from "prop-types";
 const CantidadEnLaCard = ({ repuesto, id, precio }) => {
   const dispatch = useDispatch();
   const { carrito } = useSelector((state) => state);
+  const { repuestos } = useSelector((state) => state.repuestos);
 
   const unoMas = () => {
     const find = carrito.local.find((pro) => pro.id == id);
+    const findRepuesto = repuestos.data.find((pro) => pro.idProducto == id);
 
-    if (find.cantidad >= 5) return;
+    if (find.cantidad >= findRepuesto.cantidadReal) return;
 
     dispatch(añadeCarrito(1, repuesto, id));
     dispatch(localStorageToState());

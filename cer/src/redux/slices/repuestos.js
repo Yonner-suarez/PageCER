@@ -9,6 +9,7 @@ export const repuestoSlice = createSlice({
     repuestos: [],
     copiaDeRepuestos: [],
     cantidad: 0,
+    cantidadReal: 0,
   },
   reducers: {
     setRepuestos: (state, action) => {

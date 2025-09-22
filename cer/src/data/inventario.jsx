@@ -40,7 +40,7 @@ const columns = [
   },
   {
     name: "Stock",
-    selector: (row) => row.cantidad ?? 0,
+    selector: (row) => row.cantidadReal ?? 0,
     sortable: true,
   },
   {

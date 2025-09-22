@@ -21,6 +21,7 @@ import formatearNumeroCOP from "../Carrito/utils/formaterCOP";
 const RouteCarrito = () => {
   const dispatch = useDispatch();
   const { carrito } = useSelector((state) => state);
+  const { repuestos } = useSelector((state) => state.repuestos);
 
   const onSubmit = async () => {
     try {
@@ -66,10 +67,12 @@ const RouteCarrito = () => {
               </div>
 
               <div className="contenedorCantidades">
+                {console.log(rep)}
                 <CantidadEnlaCard
                   id={rep.id}
                   precio={rep.precio}
                   repuesto={rep}
+                  repuestos={repuestos}
                 />
               </div>
               <div className="contenedorPrecio">

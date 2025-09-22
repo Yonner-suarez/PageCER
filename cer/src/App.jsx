@@ -15,19 +15,19 @@ import Failure from "./pages/Failure/Failure";
 import RepuestosVw from "./components/RepuestosVw/RepuestosVw";
 import RepuestosFiat from "./components/RepuestosFiat/RepuestosFiat";
 import RepuestosPeugeot from "./components/RepuestosPeugeot/RepuestosPeugeot";
-import RepuestosCitroen from "./components/RepuestosCitroen/RepuestosCitroen";
+import RepuestosCitroen from "./components/RepuestosCitroen/RepuestosSK";
 import RepuestosMb from "./components/RepuestosMb/RepuestosMb";
-import RepuestosRenault from "./components/RepuestosRenault/Productos";
 import RouteCarrito from "./components/RouteCarrito/RouteCarrito";
 import WhatsAppInfo from "./components/WhatsApp/WhatsApp";
 import NavBari from "./components/navBar/NavBar";
 
 // Módulo Admin
 import ModuloAdmin from "./pages/ModuloAdmin/ModuloAdmin";
-import NavbarAdmin from "./components/ModuloAdminComponents/NavBarAdmin/NavBarAdmin";
 import ModuloUsuarios from "./components/ModuloAdminComponents/ModuloUsuarios/ModuloUsuarios";
 import ModuloInventario from "./components/ModuloAdminComponents/ModuloInventario/ModuloInventario";
 import ModuloReportes from "./components/ModuloAdminComponents/ModuloReportePedidos/ModuloReportePedidos";
+import Productos from "./components/RepuestosRenault/Productos";
+import RepuestosSK from "./components/RepuestosCitroen/RepuestosSK";
 
 function App() {
   const dispatch = useDispatch();
@@ -59,7 +59,8 @@ function App() {
         <Route path="/repuestosPeugeot" element={<RepuestosPeugeot />} />
         <Route path="/repuestosCitroen" element={<RepuestosCitroen />} />
         <Route path="/repuestosMb" element={<RepuestosMb />} />
-        <Route path="/productos" element={<RepuestosRenault />} />
+        <Route path="/repuestosSk" element={<RepuestosSK />} />
+        <Route path="/productos" element={<Productos />} />
         <Route path="/carrito" element={<RouteCarrito />} />
         <Route path="/success" element={<Success />} />
         <Route path="/pending" element={<Pending />} />

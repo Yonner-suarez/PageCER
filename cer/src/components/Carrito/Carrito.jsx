@@ -20,6 +20,7 @@ const Carrito = ({ ...props }) => {
   const dispatch = useDispatch();
 
   const { carrito } = useSelector((state) => state);
+  const { repuestos } = useSelector((state) => state.repuestos);
 
   const [show, setShow] = useState(false);
 
@@ -70,6 +71,7 @@ const Carrito = ({ ...props }) => {
                     repuesto={rep}
                     id={rep.id}
                     precio={rep.precio}
+                    repuestos={repuestos}
                   />
                   <p className="parrafoPrecioUnit">${rep.precio}</p>
 

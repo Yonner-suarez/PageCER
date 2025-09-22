@@ -1,13 +1,15 @@
-import "./Productos.css";
 import { useEffect, useState } from "react";
-import { ThreeCircles } from "react-loader-spinner";
+import "./RepuestosSK";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 import { useDispatch, useSelector } from "react-redux";
 import { getRepuestos } from "../../redux/slices/repuestos";
 import { obtenerCantidades } from "../../redux/slices/carrito";
 import CardRep from "../Card/Card";
 import ReactPaginate from "react-paginate";
+import { ThreeCircles } from "react-loader-spinner";
 
-const Productos = () => {
+const RepuestosSK = () => {
   const { repuestos } = useSelector((state) => state.repuestos);
   const dispatch = useDispatch();
 
@@ -15,7 +17,10 @@ const Productos = () => {
   const itemsPerPage = 6;
 
   useEffect(() => {
-    dispatch(getRepuestos());
+    const filtro = {
+      IdMarca: 2,
+    };
+    dispatch(getRepuestos(filtro));
     dispatch(obtenerCantidades());
   }, [dispatch]);
 
@@ -28,7 +33,6 @@ const Productos = () => {
   const handlePageClick = ({ selected }) => {
     setCurrentPage(selected);
   };
-
   return (
     <>
       {repuestos?.data?.length ? (
@@ -77,4 +81,5 @@ const Productos = () => {
     </>
   );
 };
-export default Productos;
+
+export default RepuestosSK;
