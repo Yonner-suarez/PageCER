@@ -69,7 +69,8 @@ export const handleError = (
  *    - onExpired: callback adicional a ejecutar cuando el token esté vencido (opcional).
  * @returns {object|null} payload decodificado o null en error.
  */
-export function parseJwt(token, navigateFn, redirectTo = "/login") {
+// Decodifica JWT y redirige con window.location si expiró
+export function parseJwt(token, redirectTo = "/") {
   if (!token) return null;
 
   try {
@@ -92,9 +93,7 @@ export function parseJwt(token, navigateFn, redirectTo = "/login") {
       if (payload.exp <= now) {
         // Token vencido -> limpiar y redirigir
         localStorage.removeItem("user");
-        if (typeof navigateFn === "function") {
-          navigateFn(redirectTo);
-        }
+        window.location.href = redirectTo;
         return null;
       }
     }
@@ -102,10 +101,13 @@ export function parseJwt(token, navigateFn, redirectTo = "/login") {
     return payload;
   } catch (e) {
     console.error("Error decodificando JWT:", e);
+    window.location.href = redirectTo; // redirigir si token inválido
     return null;
   }
 }
+
+// Retorna el role del token o null si no existe/venció
 export function getRoleFromToken(token) {
-  const payload = parseJwt(token, navigateFn, redirectTo);
+  const payload = parseJwt(token);
   return payload?.role || null;
 }

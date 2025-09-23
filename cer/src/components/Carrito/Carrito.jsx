@@ -65,7 +65,7 @@ const Carrito = ({ ...props }) => {
             <div key={rep.id} className="ContenedorCanvasRepuesto">
               <img src={rep.imagen} alt={rep.nombre} className="imagenCanvas" />
               <div className="contenedorNombrePrecio">
-                <h6 className="h6">{rep.nombre}</h6>
+                <h6 className="h8">{rep.nombre}</h6>
                 <div className="Cantidades">
                   <CantidadEnLaCard
                     repuesto={rep}

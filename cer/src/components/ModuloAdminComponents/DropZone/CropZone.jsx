@@ -1,9 +1,7 @@
 import React, { useCallback, useState, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
-// import trashIcon from '../../assets/delete_icon.svg';
 
 const acceptedFileExtensions = [".png"];
-
 const maxFileSize = 200 * 1024 * 1024;
 
 const DropZone = ({
@@ -17,10 +15,42 @@ const DropZone = ({
   const [preview, setPreview] = useState(null);
 
   useEffect(() => {
-    if (uploadedFile) {
-      setUploadError(false);
-      setPreview(URL.createObjectURL(uploadedFile));
+    let objectUrl = null;
+
+    if (!uploadedFile) {
+      setPreview(null);
+      return;
     }
+
+    setUploadError(false);
+
+    // Si es Base64
+    if (typeof uploadedFile === "string") {
+      // Si ya viene como "data:image/png;base64,...", úsalo tal cual
+      if (uploadedFile.startsWith("data:")) {
+        setPreview(uploadedFile);
+      } else {
+        // Si es solo Base64 puro, convertimos a data URL
+        setPreview(`data:image/png;base64,${uploadedFile}`);
+      }
+    }
+
+    // Si es File o Blob
+    else if (uploadedFile instanceof File || uploadedFile instanceof Blob) {
+      objectUrl = URL.createObjectURL(uploadedFile);
+      setPreview(objectUrl);
+    }
+    // Caso objeto { name, data } del backend
+    else if (uploadedFile.data && uploadedFile.name) {
+      setPreview(uploadedFile.data);
+    } else {
+      console.warn("uploadedFile no es válido:", uploadedFile);
+      setPreview(null);
+    }
+
+    return () => {
+      if (objectUrl) URL.revokeObjectURL(objectUrl);
+    };
   }, [uploadedFile]);
 
   const onDrop = useCallback(
@@ -38,6 +68,14 @@ const DropZone = ({
       setUploadError(true);
     },
   });
+
+  // Función para mostrar nombre correctamente
+  const getFileName = () => {
+    if (!uploadedFile) return "";
+    if (typeof uploadedFile === "string") return "Imagen existente";
+    if (uploadedFile.name) return uploadedFile.name;
+    return "Archivo";
+  };
 
   return (
     <section
@@ -63,7 +101,7 @@ const DropZone = ({
         >
           {label}
         </label>
-        {required ? (
+        {required && (
           <span
             style={{
               color: "#BA1A1A",
@@ -79,7 +117,7 @@ const DropZone = ({
           >
             *
           </span>
-        ) : null}
+        )}
       </div>
       <div
         {...getRootProps()}
@@ -121,7 +159,7 @@ const DropZone = ({
                 }}
               />
             )}
-            <span>{uploadedFile.name}</span>
+            <span>{getFileName()}</span>
             <button
               onClick={removeFile}
               type="button"
@@ -143,7 +181,6 @@ const DropZone = ({
             }}
           >
             {uploadError ? "UploadIconRead" : ""}
-            {/* <img src={uploadError ? uploadErrorIcon : uploadIcon} alt='upload icon' /> */}
             <div style={{ width: "auto" }}>
               <span
                 style={{

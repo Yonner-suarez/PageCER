@@ -2,13 +2,19 @@ import { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import { api } from "../../../Helpers/api";
 import { pedidosAPI } from "../../../Helpers/url";
-import columnsReportePedidos from "../../../data/reportePedidos";
+import { getColumnsReportePedidos } from "../../../data/reportePedidos";
 
 const ModuloReportes = () => {
   const [pedidos, setPedidos] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [role, setRole] = useState("");
 
   useEffect(() => {
+    const userObj = JSON.parse(localStorage.getItem("user") || "{}");
+    const jwt = userObj.token;
+    const role = getRoleFromToken(jwt);
+    setRole(role);
+
     api
       .get(pedidosAPI.REPORTE)
       .then((res) => {
@@ -32,7 +38,7 @@ const ModuloReportes = () => {
       <div style={{ width: "80%" }}>
         <h3>Reporte de Pedidos</h3>
         <DataTable
-          columns={columnsReportePedidos}
+          columns={getColumnsReportePedidos()}
           data={pedidos}
           progressPending={loading}
           pagination

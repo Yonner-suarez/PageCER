@@ -1,16 +1,23 @@
 import { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import { api } from "../../../Helpers/api";
-import { inventario } from "../../../Helpers/url";
-import columns from "../../../data/inventario";
+import { catalogoProductos, inventario } from "../../../Helpers/url";
+import { getColumns } from "../../../data/inventario";
 import AgregarProductoModal from "./AgregarProductoModal";
-import { handleError } from "../../../Helpers/functions";
+import { getRoleFromToken, handleError } from "../../../Helpers/functions";
 import Swal from "sweetalert2";
+
+const iconColor = "#7066E0";
+const iconSize = 20;
 
 const ModuloInventario = () => {
   const [productos, setProductos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
+  const [categorias, setCategorias] = useState([]);
+  const [productoEditar, setProductoEditar] = useState(null);
+  const [marcas, setMarcas] = useState([]);
+
   const [role, setRole] = useState("");
   const [nuevoProducto, setNuevoProducto] = useState({
     nombre: "",
@@ -23,19 +30,34 @@ const ModuloInventario = () => {
     const role = getRoleFromToken(jwt);
     setRole(role);
 
+    api.get(catalogoProductos.CATEGORIAS).then((res) => {
+      if (res && res.data) setCategorias(res.data.data);
+    });
+
+    api.get(catalogoProductos.MARCAS).then((res) => {
+      if (res && res.data) setMarcas(res.data.data);
+    });
+
     api
       .get(inventario.PRODUCTOS)
       .then((res) => {
-        setProductos(res.data.data || []);
+        const dataTabla = (res.data.data || []).map((item) => ({
+          ...item,
+          Image: item.image,
+        }));
+        setProductos(dataTabla);
       })
-      .catch((err) => console.error("Error cargando productos:", err))
+      .catch((err) => handleError(err))
       .finally(() => setLoading(false));
   }, []);
 
-  const handleAgregar = () => setModalOpen(true);
+  const handleAgregar = () => {
+    setProductoEditar(null);
+    setModalOpen(true);
+  };
   const handleCerrarModal = () => setModalOpen(false);
 
-  const handleGuardar = async (form) => {
+  const handleGuardar = async (form, idProducto) => {
     try {
       let imageBase64 = "";
 
@@ -53,14 +75,19 @@ const ModuloInventario = () => {
         Cantidad: Number(form.Cantidad),
       };
 
-      const resp = await api.post(inventario.AGREGARPRODUCTO, payload);
+      const url = inventario.ACTUALIZARPRODUCTODATA.replace(
+        "{idProducto}",
+        idProducto
+      );
+      const resp = productoEditar
+        ? await api.put(url, payload)
+        : await api.post(inventario.AGREGARPRODUCTO, payload);
 
       if (resp.status === 200) {
         Swal.fire({
           icon: "success",
           title: "Producto creado",
-          text:
-            resp?.data?.mensaje || "El producto fue agregado correctamente.",
+          text: resp?.data?.message || "Proceso correcto.",
           confirmButtonText: "Aceptar",
         }).then(() => {
           setModalOpen(false);
@@ -69,6 +96,49 @@ const ModuloInventario = () => {
     } catch (error) {
       handleError(error);
     }
+  };
+
+  const handleEdit = (row) => {
+    console.log(row);
+    setProductoEditar(row);
+    setModalOpen(true);
+  };
+
+  const handleDelete = (row) => {
+    // Preguntar confirmación antes de eliminar
+    Swal.fire({
+      title: `¿Deseas eliminar el producto "${row.nombre}"?`,
+      text: "Esta acción no se puede deshacer.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setLoading(true);
+
+        const url = inventario.ELIMINARPRODUCTO.replace(
+          "{IdProducto}",
+          row.idProducto
+        );
+
+        api
+          .delete(url)
+          .then((res) => {
+            Swal.fire({
+              icon: "success",
+              title: "Producto eliminado",
+              text: `El producto "${row.nombre}" ha sido eliminado correctamente`,
+              timer: 2000,
+              showConfirmButton: false,
+            });
+          })
+          .catch((err) => handleError(err))
+          .finally(() => setLoading(false));
+      }
+    });
   };
 
   const fileToBase64 = (file) => {
@@ -92,7 +162,7 @@ const ModuloInventario = () => {
           }}
         >
           <h3>Catálogo de Productos</h3>
-          {role != "Administrador" ? (
+          {role === "Administrador" ? (
             <button
               onClick={handleAgregar}
               style={{
@@ -111,9 +181,14 @@ const ModuloInventario = () => {
             <></>
           )}
         </div>
-
         <DataTable
-          columns={columns}
+          columns={getColumns(
+            iconColor,
+            iconSize,
+            handleEdit,
+            handleDelete,
+            role === "Administrador"
+          )}
           data={productos}
           progressPending={loading}
           pagination
@@ -128,6 +203,9 @@ const ModuloInventario = () => {
           onGuardar={handleGuardar}
           producto={nuevoProducto}
           setProducto={setNuevoProducto}
+          marcas={marcas}
+          categorias={categorias}
+          productoEditar={productoEditar}
         />
       </div>
     </div>

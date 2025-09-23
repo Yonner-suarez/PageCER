@@ -3,8 +3,17 @@ import { Modal, Form, Row, Col, Button } from "react-bootstrap";
 import { api } from "../../../Helpers/api";
 import { catalogoProductos } from "../../../Helpers/url";
 import DropZone from "../DropZone/CropZone";
+import { handleError } from "../../../Helpers/functions";
+import Swal from "sweetalert2";
 
-const AgregarProductoModal = ({ isOpen, onClose, onGuardar }) => {
+const AgregarProductoModal = ({
+  isOpen,
+  onClose,
+  onGuardar,
+  marcas,
+  categorias,
+  productoEditar = null,
+}) => {
   const [form, setForm] = useState({
     Image: "",
     Descripcion: "",
@@ -15,22 +24,8 @@ const AgregarProductoModal = ({ isOpen, onClose, onGuardar }) => {
     Categoria: 0,
   });
 
-  const [categorias, setCategorias] = useState([]);
-  const [marcas, setMarcas] = useState([]);
-  const [uploadedFile, setUploadedFile] = useState({});
   const [isFileLoaded, setIsFileLoaded] = useState(false);
-
-  useEffect(() => {
-    if (isOpen) {
-      api.get(catalogoProductos.CATEGORIAS).then((res) => {
-        if (res && res.data) setCategorias(res.data.data);
-      });
-
-      api.get(catalogoProductos.MARCAS).then((res) => {
-        if (res && res.data) setMarcas(res.data.data);
-      });
-    }
-  }, [isOpen]);
+  const [uploadedFile, setUploadedFile] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,6 +34,36 @@ const AgregarProductoModal = ({ isOpen, onClose, onGuardar }) => {
       [name]: value,
     }));
   };
+  useEffect(() => {
+    if (productoEditar) {
+      setForm({
+        Image: productoEditar.image || "",
+        Descripcion: productoEditar.descripcion || "",
+        Nombre: productoEditar.nombre || "",
+        Precio: productoEditar.precio || "",
+        Cantidad: productoEditar.cantidad || "",
+        Marca: productoEditar.marca.idMarca || 0,
+        Categoria: productoEditar.categoria.idCategoria || 0,
+      });
+      if (productoEditar.image) {
+        setUploadedFile({ Image: productoEditar.image });
+        setIsFileLoaded(true);
+      }
+    } else {
+      // Limpiar formulario si no hay productoEditar
+      setForm({
+        Image: "",
+        Descripcion: "",
+        Nombre: "",
+        Precio: "",
+        Cantidad: "",
+        Marca: 0,
+        Categoria: 0,
+      });
+      setUploadedFile(false);
+      setIsFileLoaded(false);
+    }
+  }, [productoEditar, isOpen]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -56,7 +81,7 @@ const AgregarProductoModal = ({ isOpen, onClose, onGuardar }) => {
 
     form.Image = uploadedFile;
 
-    onGuardar(form);
+    onGuardar(form, productoEditar?.idProducto);
   };
 
   const errorImage = (message) => {
@@ -95,7 +120,7 @@ const AgregarProductoModal = ({ isOpen, onClose, onGuardar }) => {
           setIsFileLoaded(true);
         })
         .catch((error) => {
-          window.alert("Error al leer la imagen");
+          handleError(error);
         });
     });
   };
@@ -196,6 +221,7 @@ const AgregarProductoModal = ({ isOpen, onClose, onGuardar }) => {
                 <Col md={6}>
                   <Form.Group className="mb-3">
                     <Form.Label className="fw-bold">Categoría</Form.Label>
+                    {console.log(categorias)}
                     <Form.Select
                       name="Categoria"
                       value={form.Categoria}
@@ -203,7 +229,7 @@ const AgregarProductoModal = ({ isOpen, onClose, onGuardar }) => {
                       className="text-dark"
                     >
                       <option value={0}>Seleccione...</option>
-                      {categorias.map((cat) => (
+                      {categorias?.map((cat) => (
                         <option key={cat.idCategoria} value={cat.idCategoria}>
                           {cat.nombre}
                         </option>
@@ -216,7 +242,7 @@ const AgregarProductoModal = ({ isOpen, onClose, onGuardar }) => {
                   <Form.Group className="mb-3">
                     <Form.Label className="fw-bold">Marca</Form.Label>
                     <div>
-                      {marcas.map((marca) => (
+                      {marcas?.map((marca) => (
                         <Form.Check
                           key={marca.idMarca}
                           inline
@@ -248,7 +274,7 @@ const AgregarProductoModal = ({ isOpen, onClose, onGuardar }) => {
           onClick={handleSubmit}
           style={{ backgroundColor: "#7066E0" }}
         >
-          Crear
+          {productoEditar !== null ? "Actualizar" : "Crear"}
         </Button>
       </Modal.Footer>
     </Modal>
