@@ -13,7 +13,7 @@ const ModuloAdmin = () => {
   const tokenData = parseJwt(jwt, navigate); // 👈 ahora le pasamos navigate
 
   // Roles permitidos
-  const rolesPermitidos = ["Administrador", "Logistico"];
+  const rolesPermitidos = ["Administrador", "Logistica"];
   const puedeAcceder = rolesPermitidos.includes(tokenData?.role);
 
   if (!puedeAcceder) {

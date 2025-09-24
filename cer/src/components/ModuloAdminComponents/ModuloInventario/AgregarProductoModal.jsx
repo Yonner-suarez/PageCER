@@ -221,7 +221,6 @@ const AgregarProductoModal = ({
                 <Col md={6}>
                   <Form.Group className="mb-3">
                     <Form.Label className="fw-bold">Categoría</Form.Label>
-                    {console.log(categorias)}
                     <Form.Select
                       name="Categoria"
                       value={form.Categoria}

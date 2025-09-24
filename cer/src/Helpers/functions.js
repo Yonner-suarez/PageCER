@@ -111,3 +111,7 @@ export function getRoleFromToken(token) {
   const payload = parseJwt(token);
   return payload?.role || null;
 }
+export function getIdUserFromToken(token) {
+  const payload = parseJwt(token);
+  return payload?.idUser || null;
+}

@@ -62,7 +62,7 @@ export const getColumnsReportePedidos = (handleEstadoChange, showActions) => {
       selector: (row) => row.productoPedido,
       cell: (row) => (
         <ul style={{ paddingLeft: "15px" }}>
-          {row.productoPedido.map((p, idx) => (
+          {row.productoPedido?.map((p, idx) => (
             <li key={idx}>
               {p.nombre || p.descripcion} - {p.cantidad} x $
               {p.precioUnitario.toLocaleString()}
@@ -83,8 +83,8 @@ export const getColumnsReportePedidos = (handleEstadoChange, showActions) => {
           style={{ padding: "4px", borderRadius: "4px" }}
           onChange={(e) => handleEstadoChange(row, e.target.value)}
         >
-          <option value="Pendiente">Pendiente</option>
-          <option value="Enviado">Enviado</option>
+          <option value={1}>Pendiente</option>
+          <option value={2}>Enviado</option>
         </select>
       ),
       ignoreRowClick: true,

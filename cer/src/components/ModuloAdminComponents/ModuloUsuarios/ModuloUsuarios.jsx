@@ -2,13 +2,29 @@ import { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import { api } from "../../../Helpers/api";
 import { usuarios } from "../../../Helpers/url";
-import columns from "../../../data/usuarios";
+import { getColumns } from "../../../data/usuarios";
+import {
+  getIdUserFromToken,
+  getRoleFromToken,
+} from "../../../Helpers/functions";
+import Swal from "sweetalert2";
+
+const iconColor = "#7066E0";
+const iconSize = 20;
 
 const ModuloUsuarios = () => {
   const [usuariosData, setUsuariosData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [role, setRole] = useState("");
+  const [idUser, setIdUser] = useState(0);
 
   useEffect(() => {
+    const userObj = JSON.parse(localStorage.getItem("user") || "{}");
+    const jwt = userObj.token;
+    const id = getIdUserFromToken(jwt);
+    const role = getRoleFromToken(jwt);
+    setRole(role);
+    setIdUser(id);
     api
       .get(usuarios.OBTENEREMPLEADOS)
       .then((res) => setUsuariosData(res.data.data || []))
@@ -20,6 +36,48 @@ const ModuloUsuarios = () => {
   const handleAgregar = () => {
     // Aquí puedes abrir un modal o redirigir a otra página
     alert("Botón 'Agregar' presionado");
+  };
+
+  const handleEdit = (row) => {
+    setProductoEditar(row);
+    setModalOpen(true);
+  };
+
+  const handleDelete = (row) => {
+    // Preguntar confirmación antes de eliminar
+    Swal.fire({
+      title: `¿Deseas eliminar el usuario "${row.nombre}"?`,
+      text: "Esta acción no se puede deshacer.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setLoading(true);
+
+        const url = usuarios.ELIMINAREMPLEADOS.replace(
+          "{idEmpleado}",
+          row.id
+        ).replace("{idAdmin}", idUser);
+
+        api
+          .delete(url)
+          .then((res) => {
+            Swal.fire({
+              icon: "success",
+              title: "Usuario eliminado",
+              text: `El Usuario "${row.nombre}" ha sido eliminado correctamente`,
+              timer: 2000,
+              showConfirmButton: false,
+            });
+          })
+          .catch((err) => handleError(err))
+          .finally(() => setLoading(false));
+      }
+    });
   };
 
   return (
@@ -34,23 +92,33 @@ const ModuloUsuarios = () => {
           }}
         >
           <h3>Usuarios</h3>
-          <button
-            onClick={handleAgregar}
-            style={{
-              backgroundColor: "#7066E0",
-              color: "#fff",
-              border: "none",
-              borderRadius: "5px",
-              padding: "8px 16px",
-              cursor: "pointer",
-              fontWeight: "bold",
-            }}
-          >
-            Agregar
-          </button>
+          {role === "Administrador" ? (
+            <button
+              onClick={handleAgregar}
+              style={{
+                backgroundColor: "#7066E0",
+                color: "#fff",
+                border: "none",
+                borderRadius: "5px",
+                padding: "8px 16px",
+                cursor: "pointer",
+                fontWeight: "bold",
+              }}
+            >
+              Agregar
+            </button>
+          ) : (
+            <></>
+          )}
         </div>
         <DataTable
-          columns={columns}
+          columns={getColumns(
+            iconColor,
+            iconSize,
+            handleEdit,
+            handleDelete,
+            role === "Administrador"
+          )}
           data={usuariosData}
           progressPending={loading}
           pagination

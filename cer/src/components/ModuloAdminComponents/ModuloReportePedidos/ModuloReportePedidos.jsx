@@ -3,6 +3,7 @@ import DataTable from "react-data-table-component";
 import { api } from "../../../Helpers/api";
 import { pedidosAPI } from "../../../Helpers/url";
 import { getColumnsReportePedidos } from "../../../data/reportePedidos";
+import { getRoleFromToken, handleError } from "../../../Helpers/functions";
 
 const ModuloReportes = () => {
   const [pedidos, setPedidos] = useState([]);
@@ -24,13 +25,35 @@ const ModuloReportes = () => {
       .finally(() => setLoading(false));
   }, []);
 
-  const handleEstadoChange = (idPedido, nuevoEstado) => {
+  const handleEstadoChange = async (row, nuevoEstado) => {
     setPedidos((prev) =>
       prev.map((pedido) =>
-        pedido.id === idPedido ? { ...pedido, estado: nuevoEstado } : pedido
+        pedido.idPedido === row.idPedido
+          ? {
+              ...pedido,
+              estadoPedido: nuevoEstado === 1 ? "Pendiente" : "Enviado",
+            }
+          : pedido
       )
     );
-    console.log(`Pedido ${idPedido} actualizado a ${nuevoEstado}`);
+
+    try {
+      const res = await api.put(
+        pedidosAPI.ESTADOPEDIDO.replace("{idPedido}", row.idPedido).replace(
+          "{estado}",
+          nuevoEstado
+        )
+      );
+
+      Swal.fire({
+        icon: "success",
+        title: "Estado actualizado",
+        text: res.data.message,
+        confirmButtonColor: "#3085d6",
+      });
+    } catch (err) {
+      handleError(err);
+    }
   };
 
   return (
@@ -38,7 +61,10 @@ const ModuloReportes = () => {
       <div style={{ width: "80%" }}>
         <h3>Reporte de Pedidos</h3>
         <DataTable
-          columns={getColumnsReportePedidos()}
+          columns={getColumnsReportePedidos(
+            handleEstadoChange,
+            role === "Logistica"
+          )}
           data={pedidos}
           progressPending={loading}
           pagination

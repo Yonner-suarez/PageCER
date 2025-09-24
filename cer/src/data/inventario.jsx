@@ -65,4 +65,4 @@ export const getColumns = (
   return baseColumns;
 };
 
-export default baseColumns;
+export default getColumns;

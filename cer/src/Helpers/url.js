@@ -24,7 +24,7 @@ export const usuarios = {
   CREAREMPLEADO: "usuarios/v1/Empleado",
   OBTENEREMPLEADO: "usuarios/v1/{idEmpleado}",
   OBTENEREMPLEADOS: "usuarios/v1/Empleado/Empleados",
-  ELIMINAREMPLEADOS: "usuarios/v1/{idEmpleado}/{idAdmin}",
+  ELIMINAREMPLEADOS: "usuarios/v1/Empleado/{idEmpleado}/{idAdmin}",
 };
 
 export const inventario = {
@@ -40,7 +40,7 @@ export const inventario = {
 export const pedidosAPI = {
   REPORTE: "/pedidos/v1/Pedido/Reporte",
   CARRITO: "/pedidos/v1/Pedido/Carrito",
-  ESTADOPEDIDO: "/pedidos/v1/Pedido/EstadoPedido/{idPedido}",
+  ESTADOPEDIDO: "/pedidos/v1/Pedido/EstadoPedido/{idPedido}/{estado}",
   PEDIDOS: "/pedidos/v1/Pedido/Pedidos",
   PEDIDODETALLE: "/pedidos/v1/Pedido/PedidoDetalle/{idPedido}",
 };

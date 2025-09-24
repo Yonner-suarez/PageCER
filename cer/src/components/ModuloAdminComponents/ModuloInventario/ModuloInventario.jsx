@@ -99,7 +99,6 @@ const ModuloInventario = () => {
   };
 
   const handleEdit = (row) => {
-    console.log(row);
     setProductoEditar(row);
     setModalOpen(true);
   };
