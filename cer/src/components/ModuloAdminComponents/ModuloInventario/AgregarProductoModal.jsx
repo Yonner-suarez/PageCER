@@ -130,7 +130,7 @@ const AgregarProductoModal = ({
       {/* Encabezado del modal */}
       <Modal.Header closeButton>
         <Modal.Title className="w-100 text-center fw-bold fs-4">
-          Agregar Producto
+          {productoEditar !== null ? "Actualizar Producto" : "Agregar Producto"}
         </Modal.Title>
       </Modal.Header>
 

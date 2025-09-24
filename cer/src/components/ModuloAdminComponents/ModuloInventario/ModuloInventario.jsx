@@ -200,8 +200,6 @@ const ModuloInventario = () => {
           isOpen={modalOpen}
           onClose={handleCerrarModal}
           onGuardar={handleGuardar}
-          producto={nuevoProducto}
-          setProducto={setNuevoProducto}
           marcas={marcas}
           categorias={categorias}
           productoEditar={productoEditar}

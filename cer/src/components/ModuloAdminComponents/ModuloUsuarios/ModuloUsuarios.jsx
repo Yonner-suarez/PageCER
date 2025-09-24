@@ -6,8 +6,10 @@ import { getColumns } from "../../../data/usuarios";
 import {
   getIdUserFromToken,
   getRoleFromToken,
+  handleError,
 } from "../../../Helpers/functions";
 import Swal from "sweetalert2";
+import AgregarUsuarioModal from "./AgregarUsuarioModal";
 
 const iconColor = "#7066E0";
 const iconSize = 20;
@@ -17,6 +19,8 @@ const ModuloUsuarios = () => {
   const [loading, setLoading] = useState(true);
   const [role, setRole] = useState("");
   const [idUser, setIdUser] = useState(0);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [usuarioEditar, setUsuarioEditar] = useState(null);
 
   useEffect(() => {
     const userObj = JSON.parse(localStorage.getItem("user") || "{}");
@@ -34,12 +38,13 @@ const ModuloUsuarios = () => {
 
   // Función para manejar click en "Agregar"
   const handleAgregar = () => {
-    // Aquí puedes abrir un modal o redirigir a otra página
-    alert("Botón 'Agregar' presionado");
+    setUsuarioEditar(null);
+    setModalOpen(true);
   };
+  const handleCerrarModal = () => setModalOpen(false);
 
   const handleEdit = (row) => {
-    setProductoEditar(row);
+    setUsuarioEditar(row);
     setModalOpen(true);
   };
 
@@ -78,6 +83,39 @@ const ModuloUsuarios = () => {
           .finally(() => setLoading(false));
       }
     });
+  };
+  const handleGuardarEmpleado = async (form, idEmpleado) => {
+    try {
+      const payload = {
+        IdAdmin: idUser,
+        NroDocumento: Number(form.NroDocumento),
+        Nombre: form.Nombre,
+        Correo: form.Correo,
+        Contrasenia: form.Contrasenia,
+        Cargo: form.Cargo,
+      };
+
+      const url = usuarios.ACTUALIZAREMPLEADO.replace(
+        "{idEmpleado}",
+        idEmpleado
+      );
+
+      const resp = usuarioEditar
+        ? await api.put(url, payload)
+        : await api.post(usuarios.CREAREMPLEADO, payload);
+      if (resp.status === 200) {
+        Swal.fire({
+          icon: "success",
+          title: "Usuario creado",
+          text: resp?.data?.message || "Proceso correcto.",
+          confirmButtonText: "Aceptar",
+        }).then(() => {
+          setModalOpen(false);
+        });
+      }
+    } catch (error) {
+      handleError(error);
+    }
   };
 
   return (
@@ -125,6 +163,12 @@ const ModuloUsuarios = () => {
           highlightOnHover
           pointerOnHover
           responsive
+        />
+        <AgregarUsuarioModal
+          isOpen={modalOpen}
+          onClose={handleCerrarModal}
+          onGuardar={handleGuardarEmpleado}
+          empleadoEditar={usuarioEditar}
         />
       </div>
     </div>

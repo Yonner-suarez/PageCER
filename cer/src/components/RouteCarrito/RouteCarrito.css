@@ -6,6 +6,9 @@
   margin: 0 auto;
   margin-top: 2%;
   border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 .contenedorFooter {
   width: 78%;

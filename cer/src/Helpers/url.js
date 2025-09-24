@@ -25,6 +25,7 @@ export const usuarios = {
   OBTENEREMPLEADO: "usuarios/v1/{idEmpleado}",
   OBTENEREMPLEADOS: "usuarios/v1/Empleado/Empleados",
   ELIMINAREMPLEADOS: "usuarios/v1/Empleado/{idEmpleado}/{idAdmin}",
+  ACTUALIZAREMPLEADO: "usuarios/v1/Empleado/{idEmpleado}",
 };
 
 export const inventario = {
