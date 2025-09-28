@@ -34,6 +34,23 @@ export const getPedidosColumns = (
     name: "Rastrear",
     selector: (row) => row.enlaceTransportadora || "",
     sortable: true,
+    cell: (row) =>
+      row.enlaceTransportadora ? (
+        <a
+          href={row.enlaceTransportadora}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            color: "#007bff",
+            textDecoration: "underline",
+            cursor: "pointer",
+          }}
+        >
+          Rastrear guía
+        </a>
+      ) : (
+        ""
+      ),
   },
   {
     name: "Acciones",
