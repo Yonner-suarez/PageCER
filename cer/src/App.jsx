@@ -28,6 +28,8 @@ import ModuloInventario from "./components/ModuloAdminComponents/ModuloInventari
 import ModuloReportes from "./components/ModuloAdminComponents/ModuloReportePedidos/ModuloReportePedidos";
 import Productos from "./components/RepuestosRenault/Productos";
 import RepuestosSK from "./components/RepuestosCitroen/RepuestosSK";
+import ModuloPagos from "./pages/ModuloPagos/ModuloPago";
+import ModalInfoCliente from "./components/ModalInfoCliente/ModalInfoCliente";
 
 function App() {
   const dispatch = useDispatch();
@@ -65,6 +67,7 @@ function App() {
         <Route path="/success" element={<Success />} />
         <Route path="/pending" element={<Pending />} />
         <Route path="/failure" element={<Failure />} />
+        <Route path="/formulario_compra" element={<ModuloPagos />} />
 
         <Route path="/modulo_administrador/*" element={<ModuloAdmin />}>
           <Route index element={<ModuloInventario />} />

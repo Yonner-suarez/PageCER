@@ -4,13 +4,9 @@ import engine from "../../assets/engine.svg";
 import CantidadEnlaCard from "../cantidadEnLa Card/CantidadEnLaCard";
 import { Whatsapp } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
-import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
-initMercadoPago("TEST-47e34156-124e-4b9c-8c4c-60c0285d719b");
 import axios from "axios";
 import Contacto from "../Contacto/Contacto";
 import Footer from "../Footer/Footer";
-//import motorRoto from "../../assets/motorRoto.svg";
-import { ThreeCircles } from "react-loader-spinner";
 import { useEffect } from "react";
 import {
   obtenTotal,
@@ -22,16 +18,6 @@ const RouteCarrito = () => {
   const dispatch = useDispatch();
   const { carrito } = useSelector((state) => state);
   const { repuestos } = useSelector((state) => state.repuestos);
-
-  const onSubmit = async () => {
-    try {
-      const resp = await axios.post("/ordenDePago", carrito.local);
-
-      window.location.href = resp.data;
-    } catch (error) {
-      alert(error);
-    }
-  };
 
   useEffect(() => {
     dispatch(obtenerCantidadesDelLocal());
@@ -120,22 +106,20 @@ const RouteCarrito = () => {
                 </div>
 
                 <div className="text-center mt-3">
-                  {initMercadoPago.length ? (
-                    <div
-                      id="wallet_container"
-                      className="d-flex justify-content-center"
-                    >
-                      <Wallet onError={false} onSubmit={onSubmit} />
-                    </div>
-                  ) : (
-                    <ThreeCircles
-                      height="80"
-                      width="80"
-                      color="#4fa94d"
-                      visible={true}
-                      ariaLabel="three-circles-rotating"
-                    />
-                  )}
+                  <Link
+                    to="/formulario_compra"
+                    className="btn"
+                    style={{
+                      backgroundColor: "#7986CB",
+                      color: "white",
+                      padding: "5px 20px",
+                      borderRadius: "8px",
+                      fontWeight: "bold",
+                      textDecoration: "none",
+                    }}
+                  >
+                    Pagar
+                  </Link>
                 </div>
               </div>
             </div>

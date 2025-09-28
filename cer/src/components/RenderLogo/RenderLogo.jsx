@@ -12,14 +12,15 @@ import infoIcon from "../../assets/codicon--account.svg";
 import pedidosIcon from "../../assets/material-symbols--order-play.svg";
 import exitSession from "../../assets/iconamoon--exit.svg";
 import "bootstrap-icons/font/bootstrap-icons.css";
-
-const iconColor = "#7066E0";
-const iconSize = "24px";
+import ModalInfoCliente from "../ModalInfoCliente/ModalInfoCliente";
+import ModalPedidosCliente from "../ModalPedidosCliente/ModalPedidosCliente";
 
 const RenderLogo = ({ setShowModal, setShowAdmin }) => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [role, setRole] = useState(null);
+  const [modalInfoCliente, setModalInfoCliente] = useState(false);
+  const [modalPedidosCliente, setModalPedidosCliente] = useState(false);
 
   const handleShow = (admin = 0) => {
     setShowAdmin(admin !== 0);
@@ -75,6 +76,8 @@ const RenderLogo = ({ setShowModal, setShowAdmin }) => {
     }
   };
 
+  const abrirModalInfocliente = () => setModalInfoCliente(true);
+  const abrirModalPedidosCliente = () => setModalPedidosCliente(true);
   useEffect(() => {
     // comprobar al montar
     checkUser();
@@ -104,75 +107,103 @@ const RenderLogo = ({ setShowModal, setShowAdmin }) => {
   };
 
   return (
-    <header className="container-fluid bg-white py-2" style={{ width: "80%" }}>
-      <div className="d-flex justify-content-between align-items-center">
-        {/* Logo centrado */}
-        <div className="flex-grow-1 text-center">
-          <Link to="/" className="linklogo">
-            <img src={titulo} alt="Logo" className="logo" />
-          </Link>
-        </div>
-
-        {/* Si no hay sesión => botones login */}
-        {!isLoggedIn ? (
-          <div className="d-flex gap-3 me-3">
-            <button
-              className="btn btn-link p-0"
-              onClick={() => handleShow(0)}
-              title="Login Cliente"
-            >
-              <img src={loginCliente} alt="Cliente" className="loginIcon" />
-            </button>
-            <button
-              className="btn btn-link p-0"
-              onClick={() => handleShow(1)}
-              title="Login Admin"
-            >
-              <img src={loginAdmin} alt="Administrador" className="loginIcon" />
-            </button>
+    <>
+      <header
+        className="container-fluid bg-white py-2"
+        style={{ width: "80%" }}
+      >
+        <div className="d-flex justify-content-between align-items-center">
+          {/* Logo centrado */}
+          <div className="flex-grow-1 text-center">
+            <Link to="/" className="linklogo">
+              <img src={titulo} alt="Logo" className="logo" />
+            </Link>
           </div>
-        ) : (
-          <div className="d-flex gap-4 me-4 align-items-center">
-            {role === "Cliente" ? (
-              <>
-                <Link
-                  to="/informacion"
-                  className="text-decoration-none text-dark text-center"
-                >
-                  <img src={infoIcon} alt="Información" className="menuIcon" />
-                  <div className="small">Información</div>
-                </Link>
-                <Link
-                  to="/pedidos"
-                  className="text-decoration-none text-dark text-center"
-                >
-                  <img src={pedidosIcon} alt="Pedidos" className="menuIcon" />
-                  <div className="small">Mis pedidos</div>
-                </Link>
-              </>
-            ) : (
-              <Link
-                to="/modulo_administrador"
-                className="text-decoration-none text-dark text-center"
+
+          {/* Si no hay sesión => botones login */}
+          {!isLoggedIn ? (
+            <div className="d-flex gap-3 me-3">
+              <button
+                className="btn btn-link p-0"
+                onClick={() => handleShow(0)}
+                title="Login Cliente"
               >
-                <img src={loginAdmin} alt="Admin" className="menuIcon" />
-                <div className="small">Administrador</div>
-              </Link>
-            )}
+                <img src={loginCliente} alt="Cliente" className="loginIcon" />
+              </button>
+              <button
+                className="btn btn-link p-0"
+                onClick={() => handleShow(1)}
+                title="Login Admin"
+              >
+                <img
+                  src={loginAdmin}
+                  alt="Administrador"
+                  className="loginIcon"
+                />
+              </button>
+            </div>
+          ) : (
+            <div className="d-flex gap-4 me-4 align-items-center">
+              {role === "Cliente" ? (
+                <>
+                  <button
+                    onClick={abrirModalInfocliente}
+                    className="text-decoration-none text-dark text-center"
+                  >
+                    <img
+                      src={infoIcon}
+                      alt="Información"
+                      className="menuIcon"
+                    />
+                    <div className="small">Información</div>
+                  </button>
+                  <button
+                    onClick={abrirModalPedidosCliente}
+                    className="text-decoration-none text-dark text-center"
+                  >
+                    <img src={pedidosIcon} alt="Pedidos" className="menuIcon" />
+                    <div className="small">Mis pedidos</div>
+                  </button>
+                </>
+              ) : (
+                <Link
+                  to="/modulo_administrador"
+                  className="text-decoration-none text-dark text-center"
+                >
+                  <img src={loginAdmin} alt="Admin" className="menuIcon" />
+                  <div className="small">Administrador</div>
+                </Link>
+              )}
 
-            {/* Botón cerrar sesión */}
-            <button
-              onClick={cerrarSesion}
-              className="btn btn-link text-dark text-center p-0"
-              title="Cerrar sesión"
-            >
-              <img src={exitSession} alt="Salir" className="menuIcon" />
-              <div className="small">Salir</div>
-            </button>
-          </div>
-        )}
-      </div>
-    </header>
+              {/* Botón cerrar sesión */}
+              <button
+                onClick={cerrarSesion}
+                className="btn btn-link text-dark text-center p-0"
+                title="Cerrar sesión"
+              >
+                <img src={exitSession} alt="Salir" className="menuIcon" />
+                <div className="small">Salir</div>
+              </button>
+            </div>
+          )}
+        </div>
+      </header>
+
+      {/* Modal de información cliente */}
+      {modalInfoCliente && (
+        <ModalInfoCliente
+          show={modalInfoCliente}
+          onHide={() => setModalInfoCliente(false)}
+        />
+      )}
+      {/* Modal de información cliente */}
+      {modalPedidosCliente && (
+        <ModalPedidosCliente
+          show={modalPedidosCliente}
+          onHide={() => setModalPedidosCliente(false)}
+        />
+      )}
+    </>
   );
 };
 

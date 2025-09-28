@@ -17,9 +17,11 @@ if (process.env.NODE_ENV !== "production") {
 export { BASE };
 
 export const usuarios = {
-  LOGINCLIENTE: "/usuarios/v1/Cliente/Login",
+  LOGINCLIENTE: "usuarios/v1/Cliente/Login",
   DELETECUENTACLIENTE: "usuarios/v1/Cliente",
   OBTENERCLIENTE: "usuarios/v1/Cliente",
+  CREARCLIENTE: "usuarios/v1/Cliente",
+  ACTUALIZARCLIENTE: "usuarios/v1/Cliente",
   LOGINADMIN: "usuarios/v1/Empleado/Login",
   CREAREMPLEADO: "usuarios/v1/Empleado",
   OBTENEREMPLEADO: "usuarios/v1/{idEmpleado}",
@@ -43,6 +45,7 @@ export const pedidosAPI = {
   CARRITO: "/pedidos/v1/Pedido/Carrito",
   ESTADOPEDIDO: "/pedidos/v1/Pedido/EstadoPedido/{idPedido}/{estado}",
   PEDIDOS: "/pedidos/v1/Pedido/Pedidos",
+  AGREGARPEDIDO: "/pedidos/v1/Pedido",
   PEDIDODETALLE: "/pedidos/v1/Pedido/PedidoDetalle/{idPedido}",
 };
 
@@ -51,6 +54,7 @@ export const catalogoProductos = {
   MARCAS: "/catalogoProductos/v1/Catalogo/marcas",
   CATEGORIAS: "/catalogoProductos/v1/Catalogo/categorias",
 };
+
 export const pagos = {
-  PRODUCTOS: "/catalogo/v1/Catalogo/productos",
+  ORDENPAGO: "pagos/v1/Pago/ordenCompra",
 };
