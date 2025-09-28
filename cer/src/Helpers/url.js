@@ -43,7 +43,7 @@ export const inventario = {
 export const pedidosAPI = {
   REPORTE: "/pedidos/v1/Pedido/Reporte",
   CARRITO: "/pedidos/v1/Pedido/Carrito",
-  ESTADOPEDIDO: "/pedidos/v1/Pedido/EstadoPedido/{idPedido}/{estado}",
+  ESTADOPEDIDO: "/pedidos/v1/Pedido/EstadoPedido/{idPedido}",
   PEDIDOS: "/pedidos/v1/Pedido/Pedidos",
   AGREGARPEDIDO: "/pedidos/v1/Pedido",
   PEDIDODETALLE: "/pedidos/v1/Pedido/PedidoDetalle/{idPedido}",

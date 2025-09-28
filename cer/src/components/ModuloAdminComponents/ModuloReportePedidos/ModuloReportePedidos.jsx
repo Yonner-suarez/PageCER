@@ -7,8 +7,10 @@ import { getRoleFromToken, handleError } from "../../../Helpers/functions";
 
 const ModuloReportes = () => {
   const [pedidos, setPedidos] = useState([]);
+  const [pedidosEditados, setPedidosEditados] = useState({});
   const [loading, setLoading] = useState(true);
   const [role, setRole] = useState("");
+  const [guardado, setGuardado] = useState({}); // nuevo estado
 
   useEffect(() => {
     const userObj = JSON.parse(localStorage.getItem("user") || "{}");
@@ -25,24 +27,47 @@ const ModuloReportes = () => {
       .finally(() => setLoading(false));
   }, []);
 
-  const handleEstadoChange = async (row, nuevoEstado) => {
+  const handlePedidoChangeLocal = (row, campo, valor) => {
+    setPedidosEditados((prev) => ({
+      ...prev,
+      [row.idPedido]: {
+        ...prev[row.idPedido],
+        [campo]: valor,
+      },
+    }));
+  };
+  const handleGuardarPedido = async (row) => {
     setPedidos((prev) =>
       prev.map((pedido) =>
         pedido.idPedido === row.idPedido
-          ? {
-              ...pedido,
-              estadoPedido: nuevoEstado === 1 ? "Pendiente" : "Enviado",
-            }
+          ? { ...pedido, ...pedidosEditados[row.idPedido] }
           : pedido
       )
     );
+    setGuardado((prev) => ({
+      ...prev,
+      [row.idPedido]: true,
+    }));
+
+    // Opcional: limpiar edición
+    setPedidosEditados((prev) => {
+      const copy = { ...prev };
+      delete copy[row.idPedido];
+      return copy;
+    });
+
+    const cambios = pedidosEditados[row.idPedido] || {};
+    console.log(cambios);
+    const payload = {
+      estado: cambios.estadoPedido === "Enviado" ? 1 : 0,
+      NroGuia: cambios.nroGuia || "",
+      EnlaceTransportadora: cambios.enlaceTransportadora || "",
+    };
 
     try {
       const res = await api.put(
-        pedidosAPI.ESTADOPEDIDO.replace("{idPedido}", row.idPedido).replace(
-          "{estado}",
-          nuevoEstado
-        )
+        pedidosAPI.ESTADOPEDIDO.replace("{idPedido}", row.idPedido),
+        payload
       );
 
       Swal.fire({
@@ -62,8 +87,11 @@ const ModuloReportes = () => {
         <h3>Reporte de Pedidos</h3>
         <DataTable
           columns={getColumnsReportePedidos(
-            handleEstadoChange,
-            role === "Logistica"
+            handlePedidoChangeLocal,
+            handleGuardarPedido,
+            role === "Logistica",
+            pedidosEditados,
+            guardado
           )}
           data={pedidos}
           progressPending={loading}
