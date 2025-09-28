@@ -7,12 +7,15 @@ import { handleError } from "../../Helpers/functions";
 import DataTable from "react-data-table-component";
 import { getPedidosColumns } from "../../data/pedidos";
 import ModalDetallePedido from "./ModalDetallePedido";
+import { useNavigate } from "react-router-dom";
 
 const ModalPedidosCliente = ({ show, onHide }) => {
   const [pedidos, setPedidos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [detalleId, setDetalleId] = useState(null);
   const [showDetalle, setShowDetalle] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleVerDetalle = (idPedido) => {
     setDetalleId(idPedido);
@@ -50,11 +53,7 @@ const ModalPedidosCliente = ({ show, onHide }) => {
   }, [show]);
 
   const handlePagar = (idPedido) => {
-    Swal.fire(
-      "Acción",
-      `Aquí iría la lógica para pagar el pedido ${idPedido}`,
-      "info"
-    );
+    navigate("/formulario_compra/" + idPedido);
   };
 
   return (

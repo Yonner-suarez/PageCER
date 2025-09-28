@@ -9,9 +9,6 @@ import { obtenTotal, obtenerCantidadesDelLocal } from "./redux/slices/carrito";
 
 // Páginas y componentes
 import Home from "./pages/homePage/Home";
-import Success from "./pages/Success/Success";
-import Pending from "./pages/Pending/Pending";
-import Failure from "./pages/Failure/Failure";
 import RepuestosVw from "./components/RepuestosVw/RepuestosVw";
 import RepuestosFiat from "./components/RepuestosFiat/RepuestosFiat";
 import RepuestosPeugeot from "./components/RepuestosPeugeot/RepuestosPeugeot";
@@ -20,16 +17,16 @@ import RepuestosMb from "./components/RepuestosMb/RepuestosMb";
 import RouteCarrito from "./components/RouteCarrito/RouteCarrito";
 import WhatsAppInfo from "./components/WhatsApp/WhatsApp";
 import NavBari from "./components/navBar/NavBar";
+import Productos from "./components/RepuestosRenault/Productos";
+import RepuestosSK from "./components/RepuestosCitroen/RepuestosSK";
+import ModuloPagos from "./pages/ModuloPagos/ModuloPago";
+import PagoResultado from "./pages/PagoResultado/PagoResultado";
 
 // Módulo Admin
 import ModuloAdmin from "./pages/ModuloAdmin/ModuloAdmin";
 import ModuloUsuarios from "./components/ModuloAdminComponents/ModuloUsuarios/ModuloUsuarios";
 import ModuloInventario from "./components/ModuloAdminComponents/ModuloInventario/ModuloInventario";
 import ModuloReportes from "./components/ModuloAdminComponents/ModuloReportePedidos/ModuloReportePedidos";
-import Productos from "./components/RepuestosRenault/Productos";
-import RepuestosSK from "./components/RepuestosCitroen/RepuestosSK";
-import ModuloPagos from "./pages/ModuloPagos/ModuloPago";
-import ModalInfoCliente from "./components/ModalInfoCliente/ModalInfoCliente";
 
 function App() {
   const dispatch = useDispatch();
@@ -64,9 +61,14 @@ function App() {
         <Route path="/repuestosSk" element={<RepuestosSK />} />
         <Route path="/productos" element={<Productos />} />
         <Route path="/carrito" element={<RouteCarrito />} />
-        <Route path="/success" element={<Success />} />
-        <Route path="/pending" element={<Pending />} />
-        <Route path="/failure" element={<Failure />} />
+        <Route
+          path="/resultado_pago/:idPedidoParams"
+          element={<PagoResultado />}
+        />
+        <Route
+          path="/formulario_compra/:idPedidoParams"
+          element={<ModuloPagos />}
+        />
         <Route path="/formulario_compra" element={<ModuloPagos />} />
 
         <Route path="/modulo_administrador/*" element={<ModuloAdmin />}>

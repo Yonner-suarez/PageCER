@@ -1,0 +1,127 @@
+.contenedorSuccess,
+.contenedorFailure {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+  padding: 2rem;
+  text-align: center;
+  background-color: #f9f9f9;
+}
+
+.contenedorSuccess {
+  background: linear-gradient(135deg, #d4edda, #a8e6cf);
+  color: #155724;
+}
+
+.contenedorFailure {
+  background: linear-gradient(135deg, #f8d7da, #f5c6cb);
+  color: #721c24;
+}
+
+.card {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  max-width: 500px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icon {
+  font-size: 80px;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+
+p {
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.btnHome {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.btnRetry {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+  background-color: #dc3545;
+  color: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btnRetry:hover {
+  background-color: #c82333;
+  transform: translateY(-2px);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+.btnRetry:active {
+  transform: translateY(0);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btnHome {
+  background-color: #007bff;
+  color: white;
+}
+
+.btnHome:hover {
+  background-color: #0069d9;
+}
+
+p.loading {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.btnHome {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #007bff;
+  color: white;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.btnHome:hover {
+  background-color: #0056b3;
+}
+
+.contenedorLoading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+  padding: 2rem;
+}
+
+.loading {
+  font-size: 1.2rem;
+  font-weight: bold;
+}

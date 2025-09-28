@@ -57,4 +57,5 @@ export const catalogoProductos = {
 
 export const pagos = {
   ORDENPAGO: "pagos/v1/Pago/ordenCompra",
+  VALIDARPAGO: "pagos/v1/Pago/ValidarPago/{idPedido}",
 };

@@ -2,12 +2,13 @@ import Footer from "../../components/Footer/Footer";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { api, apiSinAuth } from "../../Helpers/api";
 import { pagos, pedidosAPI, usuarios } from "../../Helpers/url";
 import { EyeFill, EyeSlashFill } from "react-bootstrap-icons";
 import { useSelector } from "react-redux";
 import { handleError } from "../../Helpers/functions";
+import { useLocation, useParams } from "react-router-dom";
 
 initMercadoPago("TEST-ace76d8d-4c34-4ac7-aa9c-e045d70a3260");
 
@@ -22,30 +23,101 @@ const ModuloPagos = () => {
   const { carrito } = useSelector((state) => state);
   const [showModalCliente, setShowModalCliente] = useState(false);
 
+  const { idPedidoParams } = useParams();
+
+  useEffect(() => {
+    const initClienteDesdePedido = async () => {
+      try {
+        console.log(idPedidoParams);
+        if (idPedidoParams) {
+          // Simula el flujo de login exitoso
+          setIsLoggedIn(true);
+
+          // 🔹 Obtener datos del cliente ya logueado
+          const { data, status } = await api.get(usuarios.OBTENERCLIENTE);
+
+          if (status === 200 && data.data) {
+            setCliente(data.data);
+            setModo("actualizar");
+            setWalletEnabled(true);
+            Swal.fire(
+              "Bienvenido",
+              data.message || "Datos cargados",
+              "success"
+            );
+          } else {
+            Swal.fire("Atención", "Aún no estás registrado", "warning");
+            setModo("registrar");
+            setWalletEnabled(false);
+          }
+        }
+      } catch (error) {
+        Swal.fire(
+          "Error",
+          error.response?.data?.message || "Error al cargar datos del cliente",
+          "error"
+        );
+      }
+    };
+
+    initClienteDesdePedido();
+  }, [idPedidoParams]);
+
   const onSubmit = async () => {
     try {
-      //Crear el pedido con el carrito
-      const payload = carrito.local.map((item) => ({
-        IdPedido: 0, // backend reemplaza
-        IdProducto: item.id,
-        Cantidad: item.cantidad,
-        Subtotal: parseFloat(item.precio),
-      }));
+      let idPedido = idPedidoParams;
+      let monto = 0;
 
-      console.log(payload);
-      const respPedido = await api.post(pedidosAPI.AGREGARPEDIDO, payload);
+      if (!idPedido) {
+        // Caso 1 o 2 → crear pedido normalmente
+        const payload = carrito.local.map((item) => ({
+          IdPedido: 0,
+          IdProducto: item.id,
+          Cantidad: item.cantidad,
+          Subtotal: parseFloat(item.precio),
+        }));
 
-      if (respPedido.data.status === 200) {
-        //Eliminar de local el carrito
-        localStorage.removeItem("carrito");
+        const respPedido = await api.post(pedidosAPI.AGREGARPEDIDO, payload);
+        if (respPedido.data.status === 200) {
+          localStorage.removeItem("carrito");
 
+          idPedido = respPedido.data.data.idPedido;
+          monto = respPedido.data.data.monto; // ✅ ya viene del backend
+        } else {
+          Swal.fire("Error", "No se pudo crear el pedido", "error");
+          return;
+        }
+      } else {
+        // Caso 3 → cliente viene con idPedido ya creado
+        setLoading(true);
+        const { data, status } = await api.get(
+          pedidosAPI.PEDIDODETALLE.replace("{idPedido}", idPedido)
+        );
+        setLoading(false);
+
+        if (status === 200 && data.data) {
+          monto = data.data.monto; // ✅ tomado del detalle del pedido
+        } else {
+          Swal.fire(
+            "Error",
+            "No se pudo obtener el detalle del pedido",
+            "error"
+          );
+          return;
+        }
+      }
+
+      if (idPedido) {
+        // Siempre genera la orden de pago
         const resp = await api.post(pagos.ORDENPAGO, {
-          idPedido: respPedido.data.data.idPedido,
-          monto: respPedido.data.data.monto,
+          idPedido,
+          monto,
         });
+
         window.location.href = resp.data.data;
       }
     } catch (error) {
+      setLoading(false);
       handleError(error);
     }
   };
