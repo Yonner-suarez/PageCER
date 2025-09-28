@@ -57,7 +57,6 @@ const ModuloReportes = () => {
     });
 
     const cambios = pedidosEditados[row.idPedido] || {};
-    console.log(cambios);
     const payload = {
       estado: cambios.estadoPedido === "Enviado" ? 1 : 0,
       NroGuia: cambios.nroGuia || "",

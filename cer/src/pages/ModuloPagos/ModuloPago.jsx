@@ -28,7 +28,6 @@ const ModuloPagos = () => {
   useEffect(() => {
     const initClienteDesdePedido = async () => {
       try {
-        console.log(idPedidoParams);
         if (idPedidoParams) {
           // Simula el flujo de login exitoso
           setIsLoggedIn(true);

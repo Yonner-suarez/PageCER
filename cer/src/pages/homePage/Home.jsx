@@ -97,8 +97,6 @@ const Home = () => {
           <hr />
           <Footer />
           <WhatsAppInfo />
-          {/* {aler ? alert("Bienvenido a CER") : console.log("ES FALSE")} */}
-          // ...inside the return statement of your RenderLogo component
           <LoginModal
             show={showModal}
             handleClose={handleClose}
