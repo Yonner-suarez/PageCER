@@ -65,37 +65,45 @@ const ModuloPagos = () => {
   const onSubmit = async () => {
     try {
       let idPedido = idPedidoParams;
-      let monto = 0;
+      let payload;
 
       if (!idPedido) {
         // Caso 1 o 2 → crear pedido normalmente
-        const payload = carrito.local.map((item) => ({
+        const payloadAgregarPedido = carrito.local.map((item) => ({
           IdPedido: 0,
           IdProducto: item.id,
           Cantidad: item.cantidad,
           Subtotal: parseFloat(item.precio),
         }));
 
-        const respPedido = await api.post(pedidosAPI.AGREGARPEDIDO, payload);
+        const respPedido = await api.post(
+          pedidosAPI.AGREGARPEDIDO,
+          payloadAgregarPedido
+        );
         if (respPedido.data.status === 200) {
-          localStorage.removeItem("carrito");
+          //construye el payload
+          payload = carrito.local.map((item) => ({
+            Cantidad: item.cantidad,
+            Monto: parseFloat(item.precio),
+          }));
 
-          idPedido = respPedido.data.data.idPedido;
-          monto = respPedido.data.data.monto; // ✅ ya viene del backend
+          localStorage.removeItem("carrito");
         } else {
           Swal.fire("Error", "No se pudo crear el pedido", "error");
           return;
         }
       } else {
         // Caso 3 → cliente viene con idPedido ya creado
-        setLoading(true);
         const { data, status } = await api.get(
           pedidosAPI.PEDIDODETALLE.replace("{idPedido}", idPedido)
         );
-        setLoading(false);
 
         if (status === 200 && data.data) {
-          monto = data.data.monto; // ✅ tomado del detalle del pedido
+          //Crea el payload
+          payload = data.data.productos.map((item) => ({
+            Cantidad: item.cantidad,
+            Monto: parseFloat(item.precioUnitario),
+          }));
         } else {
           Swal.fire(
             "Error",
@@ -105,13 +113,13 @@ const ModuloPagos = () => {
           return;
         }
       }
-
+      console.log(payload);
       if (idPedido) {
         // Siempre genera la orden de pago
-        const resp = await api.post(pagos.ORDENPAGO, {
-          idPedido,
-          monto,
-        });
+        const resp = await api.post(
+          pagos.ORDENPAGO.replace("{idPedido}", idPedido),
+          payload
+        );
 
         window.location.href = resp.data.data;
       }
