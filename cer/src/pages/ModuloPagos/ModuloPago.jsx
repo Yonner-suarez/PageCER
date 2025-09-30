@@ -8,9 +8,10 @@ import { pagos, pedidosAPI, usuarios } from "../../Helpers/url";
 import { EyeFill, EyeSlashFill } from "react-bootstrap-icons";
 import { useSelector } from "react-redux";
 import { handleError } from "../../Helpers/functions";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+const publickey = import.meta.env.PUBLICKEY_MERCADOPAGO;
 
-initMercadoPago("TEST-ace76d8d-4c34-4ac7-aa9c-e045d70a3260");
+initMercadoPago(publickey || "TEST-ace76d8d-4c34-4ac7-aa9c-e045d70a3260");
 
 const ModuloPagos = () => {
   const [cliente, setCliente] = useState({});
@@ -21,7 +22,6 @@ const ModuloPagos = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const { carrito } = useSelector((state) => state);
-  const [showModalCliente, setShowModalCliente] = useState(false);
 
   const { idPedidoParams } = useParams();
 
@@ -113,7 +113,6 @@ const ModuloPagos = () => {
           return;
         }
       }
-      console.log(payload);
       if (idPedido) {
         // Siempre genera la orden de pago
         const resp = await api.post(

@@ -1,8 +1,4 @@
-if (process.env.NODE_ENV !== "production") {
-  window._env_ = {
-    // GATEWAY_CER: process.env.REACT_APP_GATEWAY_CER,
-  };
-}
+const apiUrl = import.meta.env.GATEWAY_CER;
 
 let BASE;
 
@@ -11,7 +7,7 @@ if (process.env.NODE_ENV !== "production") {
   BASE = "http://localhost:5144/";
 } else {
   //todo: QA PROD
-  BASE = window._env_.GATEWAY_CER;
+  BASE = apiUrl;
 }
 
 export { BASE };

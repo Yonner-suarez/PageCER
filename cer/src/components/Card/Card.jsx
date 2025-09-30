@@ -26,6 +26,7 @@ import Modal from "react-bootstrap/Modal";
 import vw from "../../assets/vw.svg";
 import CantidadEnLaCard from "../cantidadEnLa Card/CantidadEnLaCard";
 import Swal from "sweetalert2";
+import formatearNumeroCOP from "../Carrito/utils/formaterCOP";
 
 const CardRep = ({ id, imagen, nombre, precio, marcaRep, marcas }) => {
   const [show, setShow] = useState(false);
@@ -123,7 +124,7 @@ const CardRep = ({ id, imagen, nombre, precio, marcaRep, marcas }) => {
                 <h5 className="marcah5">{marcaRep.marcaRep}</h5>
 
                 <div className="contenedorPrecioModal" style={{}}>
-                  <h3 className="tituloPrecio">${precio}</h3>
+                  <h3 className="tituloPrecio">{formatearNumeroCOP(precio)}</h3>
                   {!mostrarComponente && !buscaElProductoActual ? (
                     <Button
                       variant="primary"
@@ -201,7 +202,7 @@ const CardRep = ({ id, imagen, nombre, precio, marcaRep, marcas }) => {
             <h2 className="subtitulo">{marcas.marca}</h2>
           </div>
           <Card.Title className="titulo">{nombre}</Card.Title>
-          <Card.Text className="texto">${precio}</Card.Text>
+          <Card.Text className="texto">{formatearNumeroCOP(precio)}</Card.Text>
 
           <Card.Text className="texto">{marcaRep.marcaRep}</Card.Text>
 
