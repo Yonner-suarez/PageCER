@@ -13,10 +13,14 @@ const Luk = () => {
         LUk
       </h2>
       <p className="parrafosLuk" data-aos="zoom-in">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima,
-        nesciunt quibusdam iure nisi sunt animi alias recusandae minus obcaecati
-        nihil enim, laborum dolores a totam doloremque saepe! Libero, porro
-        ipsum.
+        Schaeffler, a través de su marca LuK, es líder mundial en tecnologías de
+        embrague, presente en uno de cada tres coches a nivel global y en uno de
+        cada dos en Europa. Es el mayor proveedor de equipos originales en este
+        segmento, ofreciendo tanto embragues convencionales como autoajustables.
+        Además, mantiene una amplia colaboración con fabricantes de vehículos
+        ligeros, pesados y tractores, lo que le permite desarrollar soluciones
+        de reparación de alta calidad, con piezas que garantizan fiabilidad,
+        durabilidad y facilidad de instalación.
       </p>
     </div>
   );

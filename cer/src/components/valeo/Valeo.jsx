@@ -13,10 +13,13 @@ const Valeo = () => {
         VaLEo
       </h2>
       <p className="parrafosValeo" data-aos="zoom-out-right">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima,
-        nesciunt quibusdam iure nisi sunt animi alias recusandae minus obcaecati
-        nihil enim, laborum dolores a totam doloremque saepe! Libero, porro
-        ipsum.
+        Valeo es una compañía tecnológica líder mundial que colabora con todos
+        los fabricantes de automóviles y nuevas formas de movilidad. Destaca en
+        electrificación, sistemas de asistencia a la conducción, iluminación e
+        innovación en la experiencia interior. Su propósito es hacer la
+        movilidad más segura, inteligente y sostenible, ofreciendo tanto
+        soluciones de equipo original como repuestos para el mercado
+        independiente.
       </p>
     </div>
   );

@@ -13,10 +13,10 @@ const Cofap = () => {
         CoFaP
       </h2>
       <p className="parrafosCofap" data-aos="zoom-out-left">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima,
-        nesciunt quibusdam iure nisi sunt animi alias recusandae minus obcaecati
-        nihil enim, laborum dolores a totam doloremque saepe! Libero, porro
-        ipsum.
+        Cofap, especialista en la fabricación de sistemas de suspensión, combina
+        calidad, seguridad y confort para su vehículo. Es por eso que a través
+        de los años, las principales automotrices continúan confiando y
+        eligiendo a Cofap como proveedora de equipo original.
       </p>
     </div>
   );
