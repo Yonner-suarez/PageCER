@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./RenderLogo.css";
+import "./RenderLOgo.css";
 import titulo from "../../assets/Logo.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
