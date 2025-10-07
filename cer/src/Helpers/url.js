@@ -1,4 +1,4 @@
-const apiUrl = import.meta.env.GATEWAY_CER;
+const apiUrl = import.meta.env.VITE_GATEWAY_CER;
 
 let BASE;
 

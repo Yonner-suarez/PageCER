@@ -9,7 +9,7 @@ import { EyeFill, EyeSlashFill } from "react-bootstrap-icons";
 import { useSelector } from "react-redux";
 import { handleError } from "../../Helpers/functions";
 import { useParams } from "react-router-dom";
-const publickey = import.meta.env.PUBLICKEY_MERCADOPAGO;
+const publickey = import.meta.env.VITE_PUBLICKEY_MERCADOPAGO;
 
 initMercadoPago(publickey || "TEST-ace76d8d-4c34-4ac7-aa9c-e045d70a3260");
 
