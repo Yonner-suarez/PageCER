@@ -1,4 +1,4 @@
-import soloLogo from "../../assets/soloLogo.svg";
+import soloLogo from "../../assets/SoloLogo.svg";
 import "./footer.css";
 import { RocketTakeoff } from "react-bootstrap-icons";
 
