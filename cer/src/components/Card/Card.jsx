@@ -1,17 +1,12 @@
 import "./Card.css";
-import fiat from "../../assets/fiat.svg";
 import vl from "../../assets/ValeoOriginal.jpg";
 import borsheung from "../../assets/borsheung.png";
 import moog from "../../assets/moogModal.jpg";
-import peugeot from "../../assets/peugeot.svg";
 import citroen from "../../assets/citroen.svg";
-import skoda from "../../assets/skoda.svg";
 import renault from "../../assets/renault.svg";
-import mb from "../../assets/mb.svg";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
-import { Whatsapp } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import {
   añadeCarrito,
@@ -23,17 +18,40 @@ import PropTypes from "prop-types";
 import Carrito from "../Carrito/Carrito";
 import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
-import vw from "../../assets/vw.svg";
+import Volkswagen from "../../assets/vw.svg";
+import Fiat from "../../assets/fiat.svg";
+import Peugeot from "../../assets/peugeot.svg";
+import Skoda from "../../assets/skoda.svg";
+import MercedezBenz from "../../assets/mb.svg";
+import Logo from "../../assets/SoloLogo.svg";
+
 import CantidadEnLaCard from "../cantidadEnLa Card/CantidadEnLaCard";
 import Swal from "sweetalert2";
 import formatearNumeroCOP from "../Carrito/utils/formaterCOP";
 
-const CardRep = ({ id, imagen, nombre, precio, marcaRep, marcas }) => {
+const logos = {
+  Volkswagen,
+  Fiat,
+  Peugeot,
+  Skoda,
+  "Mercedez Benz": MercedezBenz,
+};
+
+const CardRep = ({
+  id,
+  imagen,
+  nombre,
+  precio,
+  marcaRep,
+  marcas,
+  descripcion,
+}) => {
   const [show, setShow] = useState(false);
   const [mostrarComponente, setMostrarComponente] = useState(false);
   const { carrito } = useSelector((state) => state);
   const { repuestos } = useSelector((state) => state.repuestos);
   const dispatch = useDispatch();
+  const logo = logos[marcas.nombre] || null;
 
   const modal = () => {
     setShow(true);
@@ -109,7 +127,11 @@ const CardRep = ({ id, imagen, nombre, precio, marcaRep, marcas }) => {
                 key={marcas.id}
                 style={{ display: "flex", flexDirection: "row" }}
               >
-                <img src={vw} alt="Volkswagen" />
+                {logo ? (
+                  <img src={logo} alt={marcas.marca} />
+                ) : (
+                  <img src={Logo} alt="logo" /> // fallback si no existe imagen
+                )}
                 <h2>{marcas.marca}</h2>
               </div>
             </Modal.Title>
@@ -120,7 +142,7 @@ const CardRep = ({ id, imagen, nombre, precio, marcaRep, marcas }) => {
                 <img src={imagen} alt={nombre} className="imagenModal" />
               </div>
               <div className=" contenedorInfo">
-                <h3 className="tituloh3">{nombre}</h3>
+                <h3 className="tituloh3">{descripcion}</h3>
                 <h5 className="marcah5">{marcaRep.marcaRep}</h5>
 
                 <div className="contenedorPrecioModal" style={{}}>
@@ -145,20 +167,24 @@ const CardRep = ({ id, imagen, nombre, precio, marcaRep, marcas }) => {
 
                 <div className="contenedorLogosCard">
                   <Link to="/repuestosVw">
-                    <img src={vw} alt="volkswagen" className="logovwModal" />
+                    <img
+                      src={Volkswagen}
+                      alt="volkswagen"
+                      className="logovwModal"
+                    />
                   </Link>
                   <br />
                   <Link to="/repuestosSk">
-                    <img src={skoda} alt="skoda" className="logoSkModal" />
+                    <img src={Skoda} alt="skoda" className="logoSkModal" />
                   </Link>
                   <br />
                   <Link to="/repuestosFiat">
-                    <img src={fiat} alt="fiat" className="logofiatModal" />
+                    <img src={Fiat} alt="fiat" className="logofiatModal" />
                   </Link>
                   <br />
                   <Link to="/repuestosPeugeot">
                     <img
-                      src={peugeot}
+                      src={Peugeot}
                       alt="peugeot"
                       className="logoPeugeotModal"
                     />
@@ -173,7 +199,7 @@ const CardRep = ({ id, imagen, nombre, precio, marcaRep, marcas }) => {
                   </Link>
                   <br />
                   <Link to="/repuestosMb">
-                    <img src={mb} alt="mb" className="logombModal" />
+                    <img src={MercedezBenz} alt="mb" className="logombModal" />
                   </Link>
                   <Link to="/repuestosRenault">
                     <img

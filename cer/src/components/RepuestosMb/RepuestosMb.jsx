@@ -6,10 +6,12 @@ import { obtenerCantidades } from "../../redux/slices/carrito";
 import { getRepuestos } from "../../redux/slices/repuestos";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
+import Loading from "../Loading/Loading";
 
 const RepuestosMb = () => {
   const { repuestos } = useSelector((state) => state.repuestos);
   const dispatch = useDispatch();
+  const [showLoading, setShowLoading] = useState({ display: "none" });
 
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 6;
@@ -18,8 +20,10 @@ const RepuestosMb = () => {
     const filtro = {
       IdMarca: 5,
     };
+    setShowLoading({ display: "block" });
     dispatch(getRepuestos(filtro));
     dispatch(obtenerCantidades());
+    setShowLoading({ display: "none" });
   }, [dispatch]);
 
   // Paginación
@@ -34,6 +38,7 @@ const RepuestosMb = () => {
 
   return (
     <>
+      <Loading estilo={showLoading}></Loading>
       {repuestos?.data?.length ? (
         <div className="contenedorCartas">
           {currentItems.map((repuesto) => (
@@ -45,6 +50,7 @@ const RepuestosMb = () => {
               precio={repuesto.precio?.toString()}
               marcaRep={repuesto.marca?.nombre}
               marcas={repuesto.marca}
+              descripcion={repuesto.descripcion}
             />
           ))}
 
@@ -67,14 +73,8 @@ const RepuestosMb = () => {
           />
         </div>
       ) : (
-        <div className="contenedorLoading">
-          <ThreeCircles
-            height="100%"
-            width="100%"
-            color="blue"
-            visible={true}
-            ariaLabel="three-circles-rotating"
-          />
+        <div className="contenedorSinProductos">
+          <p>No hay productos disponibles 😞</p>
         </div>
       )}
     </>

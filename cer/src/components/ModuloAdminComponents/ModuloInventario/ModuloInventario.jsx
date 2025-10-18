@@ -6,6 +6,7 @@ import { getColumns } from "../../../data/inventario";
 import AgregarProductoModal from "./AgregarProductoModal";
 import { getRoleFromToken, handleError } from "../../../Helpers/functions";
 import Swal from "sweetalert2";
+import Loading from "../../Loading/Loading";
 
 const iconColor = "#7066E0";
 const iconSize = 20;
@@ -23,6 +24,7 @@ const ModuloInventario = () => {
     nombre: "",
     precio: "",
   });
+  const [showLoading, setShowLoading] = useState({ display: "none" });
 
   useEffect(() => {
     const userObj = JSON.parse(localStorage.getItem("user") || "{}");
@@ -59,6 +61,7 @@ const ModuloInventario = () => {
 
   const handleGuardar = async (form, idProducto) => {
     try {
+      setShowLoading({ display: "block" });
       let imageBase64 = "";
 
       if (form.Image?.Image instanceof File) {
@@ -84,6 +87,7 @@ const ModuloInventario = () => {
         : await api.post(inventario.AGREGARPRODUCTO, payload);
 
       if (resp.status === 200) {
+        setShowLoading({ display: "none" });
         Swal.fire({
           icon: "success",
           title: "Producto creado",
@@ -94,6 +98,7 @@ const ModuloInventario = () => {
         });
       }
     } catch (error) {
+      setShowLoading({ display: "none" });
       handleError(error);
     }
   };
@@ -105,6 +110,7 @@ const ModuloInventario = () => {
 
   const handleDelete = (row) => {
     // Preguntar confirmación antes de eliminar
+
     Swal.fire({
       title: `¿Deseas eliminar el producto "${row.nombre}"?`,
       text: "Esta acción no se puede deshacer.",
@@ -116,7 +122,7 @@ const ModuloInventario = () => {
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
-        setLoading(true);
+        setShowLoading({ display: "block" });
 
         const url = inventario.ELIMINARPRODUCTO.replace(
           "{IdProducto}",
@@ -135,7 +141,7 @@ const ModuloInventario = () => {
             });
           })
           .catch((err) => handleError(err))
-          .finally(() => setLoading(false));
+          .finally(() => setShowLoading({ display: "none" }));
       }
     });
   };
@@ -150,62 +156,67 @@ const ModuloInventario = () => {
   };
 
   return (
-    <div style={{ padding: "20px", display: "flex", justifyContent: "center" }}>
-      <div style={{ width: "80%" }}>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginBottom: "20px",
-          }}
-        >
-          <h3>Catálogo de Productos</h3>
-          {role === "Administrador" ? (
-            <button
-              onClick={handleAgregar}
-              style={{
-                backgroundColor: "#7066E0",
-                color: "#fff",
-                border: "none",
-                borderRadius: "5px",
-                padding: "8px 16px",
-                cursor: "pointer",
-                fontWeight: "bold",
-              }}
-            >
-              Agregar
-            </button>
-          ) : (
-            <></>
-          )}
-        </div>
-        <DataTable
-          columns={getColumns(
-            iconColor,
-            iconSize,
-            handleEdit,
-            handleDelete,
-            role === "Administrador"
-          )}
-          data={productos}
-          progressPending={loading}
-          pagination
-          highlightOnHover
-          pointerOnHover
-          responsive
-        />
+    <>
+      <Loading estilo={showLoading}></Loading>
+      <div
+        style={{ padding: "20px", display: "flex", justifyContent: "center" }}
+      >
+        <div style={{ width: "80%" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginBottom: "20px",
+            }}
+          >
+            <h3>Catálogo de Productos</h3>
+            {role === "Administrador" ? (
+              <button
+                onClick={handleAgregar}
+                style={{
+                  backgroundColor: "#7066E0",
+                  color: "#fff",
+                  border: "none",
+                  borderRadius: "5px",
+                  padding: "8px 16px",
+                  cursor: "pointer",
+                  fontWeight: "bold",
+                }}
+              >
+                Agregar
+              </button>
+            ) : (
+              <></>
+            )}
+          </div>
+          <DataTable
+            columns={getColumns(
+              iconColor,
+              iconSize,
+              handleEdit,
+              handleDelete,
+              role === "Administrador"
+            )}
+            data={productos}
+            progressPending={loading}
+            pagination
+            highlightOnHover
+            pointerOnHover
+            responsive
+          />
 
-        <AgregarProductoModal
-          isOpen={modalOpen}
-          onClose={handleCerrarModal}
-          onGuardar={handleGuardar}
-          marcas={marcas}
-          categorias={categorias}
-          productoEditar={productoEditar}
-        />
+          <AgregarProductoModal
+            isOpen={modalOpen}
+            onClose={handleCerrarModal}
+            onGuardar={handleGuardar}
+            marcas={marcas}
+            categorias={categorias}
+            productoEditar={productoEditar}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

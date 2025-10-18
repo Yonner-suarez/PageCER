@@ -9,6 +9,7 @@ import { EyeFill, EyeSlashFill } from "react-bootstrap-icons";
 import { useSelector } from "react-redux";
 import { handleError } from "../../Helpers/functions";
 import { useParams } from "react-router-dom";
+import Loading from "../../components/Loading/Loading";
 const publickey = import.meta.env.VITE_PUBLICKEY_MERCADOPAGO;
 
 initMercadoPago(publickey || "TEST-ace76d8d-4c34-4ac7-aa9c-e045d70a3260");
@@ -22,12 +23,14 @@ const ModuloPagos = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const { carrito } = useSelector((state) => state);
+  const [showLoading, setShowLoading] = useState({ display: "none" });
 
   const { idPedidoParams } = useParams();
 
   useEffect(() => {
     const initClienteDesdePedido = async () => {
       try {
+        setShowLoading({ display: "block" });
         if (idPedidoParams) {
           // Simula el flujo de login exitoso
           setIsLoggedIn(true);
@@ -39,18 +42,21 @@ const ModuloPagos = () => {
             setCliente(data.data);
             setModo("actualizar");
             setWalletEnabled(true);
+            setShowLoading({ display: "none" });
             Swal.fire(
               "Bienvenido",
               data.message || "Datos cargados",
               "success"
             );
           } else {
+            setShowLoading({ display: "none" });
             Swal.fire("Atención", "Aún no estás registrado", "warning");
             setModo("registrar");
             setWalletEnabled(false);
           }
         }
       } catch (error) {
+        setShowLoading({ display: "none" });
         Swal.fire(
           "Error",
           error.response?.data?.message || "Error al cargar datos del cliente",
@@ -60,10 +66,12 @@ const ModuloPagos = () => {
     };
 
     initClienteDesdePedido();
+    setShowLoading({ display: "none" });
   }, [idPedidoParams]);
 
   const onSubmit = async () => {
     try {
+      setShowLoading({ display: "block" });
       let idPedido = idPedidoParams;
       let payload;
 
@@ -87,8 +95,10 @@ const ModuloPagos = () => {
             Monto: parseFloat(item.precio),
           }));
 
+          idPedido = respPedido.data.data.idPedido;
           localStorage.removeItem("carrito");
         } else {
+          setShowLoading({ display: "none" });
           Swal.fire("Error", "No se pudo crear el pedido", "error");
           return;
         }
@@ -105,6 +115,7 @@ const ModuloPagos = () => {
             Monto: parseFloat(item.precioUnitario),
           }));
         } else {
+          setShowLoading({ display: "none" });
           Swal.fire(
             "Error",
             "No se pudo obtener el detalle del pedido",
@@ -120,16 +131,19 @@ const ModuloPagos = () => {
           payload
         );
 
+        setShowLoading({ display: "none" });
         window.location.href = resp.data.data;
       }
     } catch (error) {
-      setLoading(false);
+      setShowLoading({ display: "none" });
+      setIsLoggedIn(false);
       handleError(error);
     }
   };
 
   const handleLogin = async () => {
     try {
+      setShowLoading({ display: "block" });
       const email = document.querySelector("#loginEmail").value;
       const password = document.querySelector("#loginPassword").value;
 
@@ -149,19 +163,18 @@ const ModuloPagos = () => {
           setCliente(data.data);
           setModo("actualizar");
           setWalletEnabled(true);
+          setShowLoading({ display: "none" });
           Swal.fire("Bienvenido", data.message || "Datos cargados", "success");
         }
       } else {
+        setShowLoading({ display: "none" });
         Swal.fire("Atención", "Aún no estás registrado", "warning");
         setModo("registrar");
         setWalletEnabled(false);
       }
     } catch (error) {
-      Swal.fire(
-        "Error",
-        error.response?.data?.message || "Error en login",
-        "error"
-      );
+      setShowLoading({ display: "none" });
+      handleError(error.response?.data?.message);
     }
   };
 
@@ -171,12 +184,13 @@ const ModuloPagos = () => {
       return;
     }
     try {
+      setShowLoading({ display: "block" });
       const payload = {
         idAdmin: cliente.idUsuario || 0, // 👈 importante en actualización
         nroDocumento: cliente.documento || 0,
         nombre: cliente.nombre || "",
         correo: cliente.correo || "",
-        contrasenia: cliente.contrasena || "",
+        contrasenia: cliente.contrasenia || "",
         tipoPersona: cliente.tipoPersona || "",
         codigoPostal: cliente.codigoPostal || "",
         direccion: cliente.direccion || "",
@@ -193,13 +207,17 @@ const ModuloPagos = () => {
       const { data, status } = response;
 
       if (status === 200) {
+        setShowLoading({ display: "none" });
         Swal.fire("Éxito", data.message, "success");
 
         if (modo === "registrar") {
+          const token = data.data;
+          if (token) localStorage.setItem("user", JSON.stringify({ token }));
           setWalletEnabled(true);
           setModo("actualizar");
         }
       } else {
+        setShowLoading({ display: "none" });
         Swal.fire(
           "Error",
           data.message || "No se pudo procesar la operación",
@@ -207,16 +225,14 @@ const ModuloPagos = () => {
         );
       }
     } catch (error) {
-      Swal.fire(
-        "Error",
-        error.response?.data?.message || "Error en el registro/actualización",
-        "error"
-      );
+      setShowLoading({ display: "none" });
+      handleError(error.response?.data?.message);
     }
   };
 
   return (
     <>
+      <Loading estilo={showLoading}></Loading>
       <div
         className="container border border-primary p-4 rounded"
         style={{
@@ -398,19 +414,17 @@ const ModuloPagos = () => {
           className="d-flex justify-content-end align-items-center mt-4 gap-3"
           style={{ width: "100%", alignItems: "end" }}
         >
-          {!walletEnabled && (
-            <button
-              className="btn"
-              style={{
-                backgroundColor: "#7986CB",
-                color: "white",
-                fontWeight: "bold",
-              }}
-              onClick={handleRegistrar}
-            >
-              {modo === "registrar" ? "Registrar" : "Actualizar"}
-            </button>
-          )}
+          <button
+            className="btn"
+            style={{
+              backgroundColor: "#7986CB",
+              color: "white",
+              fontWeight: "bold",
+            }}
+            onClick={handleRegistrar}
+          >
+            {modo === "registrar" ? "Registrar" : "Actualizar"}
+          </button>
 
           {walletEnabled && (
             <div

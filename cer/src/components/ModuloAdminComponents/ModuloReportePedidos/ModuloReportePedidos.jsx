@@ -4,6 +4,7 @@ import { api } from "../../../Helpers/api";
 import { pedidosAPI } from "../../../Helpers/url";
 import { getColumnsReportePedidos } from "../../../data/reportePedidos";
 import { getRoleFromToken, handleError } from "../../../Helpers/functions";
+import Loading from "../../Loading/Loading";
 
 const ModuloReportes = () => {
   const [pedidos, setPedidos] = useState([]);
@@ -11,6 +12,7 @@ const ModuloReportes = () => {
   const [loading, setLoading] = useState(true);
   const [role, setRole] = useState("");
   const [guardado, setGuardado] = useState({}); // nuevo estado
+  const [showLoading, setShowLoading] = useState({ display: "none" });
 
   useEffect(() => {
     const userObj = JSON.parse(localStorage.getItem("user") || "{}");
@@ -64,11 +66,13 @@ const ModuloReportes = () => {
     };
 
     try {
+      setShowLoading({ display: "block" });
       const res = await api.put(
         pedidosAPI.ESTADOPEDIDO.replace("{idPedido}", row.idPedido),
         payload
       );
 
+      setShowLoading({ display: "none" });
       Swal.fire({
         icon: "success",
         title: "Estado actualizado",
@@ -76,31 +80,37 @@ const ModuloReportes = () => {
         confirmButtonColor: "#3085d6",
       });
     } catch (err) {
+      setShowLoading({ display: "none" });
       handleError(err);
     }
   };
 
   return (
-    <div style={{ padding: "20px", display: "flex", justifyContent: "center" }}>
-      <div style={{ width: "80%" }}>
-        <h3>Reporte de Pedidos</h3>
-        <DataTable
-          columns={getColumnsReportePedidos(
-            handlePedidoChangeLocal,
-            handleGuardarPedido,
-            role === "Logistica",
-            pedidosEditados,
-            guardado
-          )}
-          data={pedidos}
-          progressPending={loading}
-          pagination
-          highlightOnHover
-          pointerOnHover
-          responsive
-        />
+    <>
+      <Loading estilo={showLoading}></Loading>
+      <div
+        style={{ padding: "20px", display: "flex", justifyContent: "center" }}
+      >
+        <div style={{ width: "80%" }}>
+          <h3>Reporte de Pedidos</h3>
+          <DataTable
+            columns={getColumnsReportePedidos(
+              handlePedidoChangeLocal,
+              handleGuardarPedido,
+              role === "Logistica",
+              pedidosEditados,
+              guardado
+            )}
+            data={pedidos}
+            progressPending={loading}
+            pagination
+            highlightOnHover
+            pointerOnHover
+            responsive
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -12,7 +12,7 @@ function Footer() {
             Hecho por Yonner Suarez{" "}
             <img src={soloLogo} alt="logo" className="cohete" />{" "}
           </div>
-          <div className="footer-item">Versión v1.0.1</div>
+          <div className="footer-item">Versión v1.0.2</div>
         </div>
       </div>
     </div>

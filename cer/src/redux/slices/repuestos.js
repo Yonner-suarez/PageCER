@@ -32,6 +32,7 @@ export const getRepuestos =
         IdMarca: filtro?.IdMarca || 0,
         IdCategoria: filtro?.IdCategoria || 0,
         RangoPrecio: filtro?.RangoPrecio || "",
+        Busqueda: filtro?.Busqueda || "",
       })
       .then((res) => {
         dispatch(setRepuestos(res.data));

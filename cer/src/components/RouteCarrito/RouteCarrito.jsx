@@ -26,55 +26,88 @@ const RouteCarrito = () => {
 
   return (
     <>
-      <div className="container my-4">
+      <div
+        className="container-fluid my-4"
+        style={{
+          width: "100%",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-around",
+        }}
+      >
         {carrito.local.length ? (
-          <div className="row">
+          <div
+            className="column"
+            style={{
+              width: "90%",
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-around",
+            }}
+          >
             {/* Lista de productos */}
-            <div className="col-md-8">
+            <div className="col-md-8 mx-auto" style={{ width: "50%" }}>
               {carrito.local.map((rep) => (
-                <div className="card mb-3 shadow-sm" key={rep.id}>
-                  <div className="row g-0 align-items-center">
+                <div
+                  className="card mb-4 shadow-sm border-0 rounded-4"
+                  key={rep.id}
+                  style={{ overflow: "hidden" }}
+                >
+                  <div className="d-flex align-items-center p-3 flex-wrap">
                     {/* Imagen */}
-                    <div className="col-md-3 d-flex justify-content-center p-2">
+                    <div
+                      className="d-flex justify-content-center align-items-center"
+                      style={{
+                        width: "140px",
+                        height: "140px",
+                        backgroundColor: "#f8f9fa",
+                        borderRadius: "12px",
+                        overflow: "hidden",
+                      }}
+                    >
                       <img
                         src={rep.imagen}
-                        className="img-fluid rounded"
                         alt={rep.nombre}
-                        style={{ maxHeight: "120px", objectFit: "contain" }}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "contain",
+                        }}
                       />
                     </div>
 
                     {/* Info del producto */}
-                    <div className="col-md-6">
-                      <div className="card-body">
-                        <h5 className="card-title text-primary fw-bold">
-                          {rep.marcas.nombre}
-                        </h5>
-                        <p className="mb-1">{rep.nombre}</p>
-                        <p className="mb-1 text-muted">
-                          {rep.marcaRep.marcaRep}
-                        </p>
-                        <p className="mb-2">⭐ {rep.calificacion}</p>
-
-                        <Link
-                          to="https://api.whatsapp.com/send?phone=573134421215&text=Buen_día_estoy_buscando_Repuestos"
-                          className="btn btn-success btn-sm"
-                        >
-                          <Whatsapp className="me-2" />
-                          Contactar
-                        </Link>
-                      </div>
+                    <div className="flex-grow-1 px-4">
+                      <h5 className="text-primary fw-bold mb-1">
+                        {rep.marcas.nombre}
+                      </h5>
+                      <p className="mb-1 fw-semibold">{rep.nombre}</p>
+                      <p className="mb-2 text-muted small">
+                        {rep.marcaRep.marcaRep}
+                      </p>
+                      <Link
+                        to="https://api.whatsapp.com/send?phone=573134421215&text=Buen_día_estoy_buscando_Repuestos"
+                        className="btn btn-success btn-sm px-3"
+                      >
+                        <Whatsapp className="me-2" />
+                        Contactar
+                      </Link>
                     </div>
 
                     {/* Cantidad y Precio */}
-                    <div className="col-md-3 text-center p-2">
+                    <div
+                      className="text-center d-flex flex-column align-items-center justify-content-center"
+                      style={{ minWidth: "140px" }}
+                    >
                       <CantidadEnlaCard
                         id={rep.id}
                         precio={rep.precio}
                         repuesto={rep}
                         repuestos={repuestos}
                       />
-                      <h4 className="mt-2 text-dark fw-bold">${rep.precio}</h4>
+                      <h5 className="mt-2 fw-bold text-dark">
+                        ${rep.precio.toLocaleString("es-CO")}
+                      </h5>
                     </div>
                   </div>
                 </div>
@@ -82,12 +115,21 @@ const RouteCarrito = () => {
             </div>
 
             {/* Resumen de compra */}
-            <div className="col-md-4">
+            <div
+              className="col-md-4"
+              style={{
+                display: "flex",
+                height: "50%",
+                flexDirection: "row",
+                justifyContent: "space-around",
+              }}
+            >
               <div
                 className="card shadow-sm p-3"
                 style={{
                   display: "flex",
                   flexDirection: "column",
+                  width: "100%",
                 }}
               >
                 <h4 className="fw-bold text-center mb-3">Resumen</h4>

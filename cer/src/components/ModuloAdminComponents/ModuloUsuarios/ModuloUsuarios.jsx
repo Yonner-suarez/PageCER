@@ -10,6 +10,8 @@ import {
 } from "../../../Helpers/functions";
 import Swal from "sweetalert2";
 import AgregarUsuarioModal from "./AgregarUsuarioModal";
+import { Loader } from "lucide-react";
+import Loading from "../../Loading/Loading";
 
 const iconColor = "#7066E0";
 const iconSize = 20;
@@ -21,6 +23,7 @@ const ModuloUsuarios = () => {
   const [idUser, setIdUser] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
   const [usuarioEditar, setUsuarioEditar] = useState(null);
+  const [showLoading, setShowLoading] = useState({ display: "none" });
 
   useEffect(() => {
     const userObj = JSON.parse(localStorage.getItem("user") || "{}");
@@ -61,7 +64,7 @@ const ModuloUsuarios = () => {
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
-        setLoading(true);
+        setShowLoading({ display: "block" });
 
         const url = usuarios.ELIMINAREMPLEADOS.replace(
           "{idEmpleado}",
@@ -80,12 +83,13 @@ const ModuloUsuarios = () => {
             });
           })
           .catch((err) => handleError(err))
-          .finally(() => setLoading(false));
+          .finally(() => setShowLoading({ display: "none" }));
       }
     });
   };
   const handleGuardarEmpleado = async (form, idEmpleado) => {
     try {
+      setShowLoading({ display: "block" });
       const payload = {
         IdAdmin: idUser,
         NroDocumento: Number(form.NroDocumento),
@@ -104,6 +108,7 @@ const ModuloUsuarios = () => {
         ? await api.put(url, payload)
         : await api.post(usuarios.CREAREMPLEADO, payload);
       if (resp.status === 200) {
+        setShowLoading({ display: "none" });
         Swal.fire({
           icon: "success",
           title: "Usuario creado",
@@ -114,64 +119,70 @@ const ModuloUsuarios = () => {
         });
       }
     } catch (error) {
+      setShowLoading({ display: "none" });
       handleError(error);
     }
   };
 
   return (
-    <div style={{ padding: "20px", display: "flex", justifyContent: "center" }}>
-      <div style={{ width: "80%" }}>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginBottom: "10px",
-          }}
-        >
-          <h3>Usuarios</h3>
-          {role === "Administrador" ? (
-            <button
-              onClick={handleAgregar}
-              style={{
-                backgroundColor: "#7066E0",
-                color: "#fff",
-                border: "none",
-                borderRadius: "5px",
-                padding: "8px 16px",
-                cursor: "pointer",
-                fontWeight: "bold",
-              }}
-            >
-              Agregar
-            </button>
-          ) : (
-            <></>
-          )}
+    <>
+      <Loading estilo={showLoading}></Loading>
+      <div
+        style={{ padding: "20px", display: "flex", justifyContent: "center" }}
+      >
+        <div style={{ width: "80%" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginBottom: "10px",
+            }}
+          >
+            <h3>Usuarios</h3>
+            {role === "Administrador" ? (
+              <button
+                onClick={handleAgregar}
+                style={{
+                  backgroundColor: "#7066E0",
+                  color: "#fff",
+                  border: "none",
+                  borderRadius: "5px",
+                  padding: "8px 16px",
+                  cursor: "pointer",
+                  fontWeight: "bold",
+                }}
+              >
+                Agregar
+              </button>
+            ) : (
+              <></>
+            )}
+          </div>
+          <DataTable
+            columns={getColumns(
+              iconColor,
+              iconSize,
+              handleEdit,
+              handleDelete,
+              role === "Administrador"
+            )}
+            data={usuariosData}
+            progressPending={loading}
+            pagination
+            highlightOnHover
+            pointerOnHover
+            responsive
+          />
+          <AgregarUsuarioModal
+            isOpen={modalOpen}
+            onClose={handleCerrarModal}
+            onGuardar={handleGuardarEmpleado}
+            empleadoEditar={usuarioEditar}
+          />
         </div>
-        <DataTable
-          columns={getColumns(
-            iconColor,
-            iconSize,
-            handleEdit,
-            handleDelete,
-            role === "Administrador"
-          )}
-          data={usuariosData}
-          progressPending={loading}
-          pagination
-          highlightOnHover
-          pointerOnHover
-          responsive
-        />
-        <AgregarUsuarioModal
-          isOpen={modalOpen}
-          onClose={handleCerrarModal}
-          onGuardar={handleGuardarEmpleado}
-          empleadoEditar={usuarioEditar}
-        />
       </div>
-    </div>
+    </>
   );
 };
 

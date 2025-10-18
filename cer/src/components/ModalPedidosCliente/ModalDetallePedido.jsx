@@ -65,11 +65,7 @@ const ModalDetallePedido = ({ show, onHide, idPedido }) => {
                 <div className="col-4">
                   <strong>Estado de Pago:</strong>
                 </div>
-                <div className="col-8">
-                  {detalle.estadoPago === null || detalle.estadoPago === 0
-                    ? "Pendiente de pago"
-                    : "Pagado"}
-                </div>
+                <div className="col-8">{detalle.estadoPago}</div>
               </div>
 
               <div className="row mb-2">
