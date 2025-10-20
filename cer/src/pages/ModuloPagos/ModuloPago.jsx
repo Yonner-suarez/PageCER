@@ -136,7 +136,10 @@ const ModuloPagos = () => {
           const { referencia, montoEnPesos, firma, redirectUrl, publicKey } =
             resp.data?.data;
           // 🔹 Wompi usa el checkout con parámetros GET:
-          const checkoutUrl = `https://checkout.wompi.co/p/?public-key=${publicKey}&currency=COP&amount-in-cents=${montoEnPesos}&reference=${referencia}&signature%3Aintegrity=${firma}&redirect-url=${redirectUrl}`;
+          const redirectUrlEncode = encodeURIComponent(
+            `${redirectUrl}?reference=${referencia}`
+          );
+          const checkoutUrl = `https://checkout.wompi.co/p/?public-key=${publicKey}&currency=COP&amount-in-cents=${montoEnPesos}&reference=${referencia}&signature=${firma}&redirect_url=${redirectUrlEncode}`;
 
           console.log(checkoutUrl, montoEnPesos);
           // 🔹 Redirige al checkout
