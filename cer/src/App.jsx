@@ -61,10 +61,8 @@ function App() {
         <Route path="/repuestosSk" element={<RepuestosSK />} />
         <Route path="/productos" element={<Productos />} />
         <Route path="/carrito" element={<RouteCarrito />} />
-        <Route
-          path="/resultado_pago/:idPedidoParams"
-          element={<PagoResultado />}
-        />
+        <Route path="/resultado_pago" element={<PagoResultado />} />
+
         <Route
           path="/formulario_compra/:idPedidoParams"
           element={<ModuloPagos />}

@@ -1,5 +1,4 @@
 import Footer from "../../components/Footer/Footer";
-import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useEffect, useState } from "react";
@@ -10,12 +9,13 @@ import { useSelector } from "react-redux";
 import { handleError } from "../../Helpers/functions";
 import { useParams } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
-const publickey = import.meta.env.VITE_PUBLICKEY_MERCADOPAGO;
-
-initMercadoPago(publickey || "TEST-ace76d8d-4c34-4ac7-aa9c-e045d70a3260");
+const publickey = import.meta.env.VITE_WOMPI_PUBLICKEY;
 
 const ModuloPagos = () => {
-  const [cliente, setCliente] = useState({});
+  const [cliente, setCliente] = useState({
+    tipoPersona: "Natural",
+  });
+
   const [modo, setModo] = useState("registrar"); // "registrar" | "actualizar"
   const [walletEnabled, setWalletEnabled] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -132,7 +132,18 @@ const ModuloPagos = () => {
         );
 
         setShowLoading({ display: "none" });
-        window.location.href = resp.data.data;
+        if (resp.status === 200) {
+          const { referencia, montoEnPesos, firma, redirectUrl, publicKey } =
+            resp.data?.data;
+          // 🔹 Wompi usa el checkout con parámetros GET:
+          const checkoutUrl = `https://checkout.wompi.co/p/?public-key=${publicKey}&currency=COP&amount-in-cents=${montoEnPesos}&reference=${referencia}&signature%3Aintegrity=${firma}&redirect-url=${redirectUrl}`;
+
+          console.log(checkoutUrl, montoEnPesos);
+          // 🔹 Redirige al checkout
+          window.location.href = checkoutUrl;
+        } else {
+          Swal.fire("Error", "No se pudo generar la orden de pago", "error");
+        }
       }
     } catch (error) {
       setShowLoading({ display: "none" });
@@ -190,7 +201,7 @@ const ModuloPagos = () => {
         nroDocumento: cliente.documento || 0,
         nombre: cliente.nombre || "",
         correo: cliente.correo || "",
-        contrasenia: cliente.contrasenia || "",
+        contrasenia: cliente.contrasena || "",
         tipoPersona: cliente.tipoPersona || "",
         codigoPostal: cliente.codigoPostal || "",
         direccion: cliente.direccion || "",
@@ -204,14 +215,14 @@ const ModuloPagos = () => {
         response = await api.put(usuarios.ACTUALIZARCLIENTE, payload);
       }
 
-      const { data, status } = response;
+      const { data, status, message } = response.data;
 
       if (status === 200) {
         setShowLoading({ display: "none" });
-        Swal.fire("Éxito", data.message, "success");
+        Swal.fire("Éxito", message, "success");
 
         if (modo === "registrar") {
-          const token = data.data;
+          const token = data;
           if (token) localStorage.setItem("user", JSON.stringify({ token }));
           setWalletEnabled(true);
           setModo("actualizar");
@@ -225,8 +236,8 @@ const ModuloPagos = () => {
         );
       }
     } catch (error) {
+      handleError(error);
       setShowLoading({ display: "none" });
-      handleError(error.response?.data?.message);
     }
   };
 
@@ -431,7 +442,13 @@ const ModuloPagos = () => {
               id="wallet_container"
               className="d-flex justify-content-center"
             >
-              <Wallet onError={false} onSubmit={onSubmit} />
+              <button
+                className="btn btn-success"
+                onClick={onSubmit}
+                style={{ fontWeight: "bold" }}
+              >
+                Pagar con Wompi
+              </button>
             </div>
           )}
         </div>

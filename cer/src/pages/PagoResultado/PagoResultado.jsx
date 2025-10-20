@@ -1,5 +1,5 @@
+import { useSearchParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
 import { CheckCircle, XCircle } from "lucide-react";
 import Swal from "sweetalert2";
 import { api } from "../../Helpers/api";
@@ -9,7 +9,9 @@ import { handleError } from "../../Helpers/functions";
 import Footer from "../../components/Footer/Footer";
 
 function PagoResultado() {
-  const { idPedidoParams } = useParams();
+  const [searchParams] = useSearchParams();
+  const idPedidoParams = searchParams.get("id");
+  const env = searchParams.get("env");
   const [loading, setLoading] = useState(true);
   const [pagoExitoso, setPagoExitoso] = useState(false);
 

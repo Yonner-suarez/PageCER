@@ -52,6 +52,6 @@ export const catalogoProductos = {
 };
 
 export const pagos = {
-  ORDENPAGO: "pagos/v1/Pago/ordenCompra/{idPedido}",
+  ORDENPAGO: "pagos/v1/Pago/OrdenPagoWompi/{idPedido}",
   VALIDARPAGO: "pagos/v1/Pago/ValidarPago/{idPedido}",
 };
