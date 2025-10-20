@@ -43,6 +43,7 @@ export const pedidosAPI = {
   PEDIDOS: "/pedidos/v1/Pedido/Pedidos",
   AGREGARPEDIDO: "/pedidos/v1/Pedido",
   PEDIDODETALLE: "/pedidos/v1/Pedido/PedidoDetalle/{idPedido}",
+  VALIDARPAGO: "/pedidos/v1/Pedido/ValidarPago/{idPedido}",
 };
 
 export const catalogoProductos = {
@@ -53,5 +54,4 @@ export const catalogoProductos = {
 
 export const pagos = {
   ORDENPAGO: "pagos/v1/Pago/OrdenPagoWompi/{idPedido}",
-  VALIDARPAGO: "pagos/v1/Pago/ValidarPago/{idPedido}",
 };

@@ -3,15 +3,16 @@ import { useEffect, useState } from "react";
 import { CheckCircle, XCircle } from "lucide-react";
 import Swal from "sweetalert2";
 import { api } from "../../Helpers/api";
-import { pagos } from "../../Helpers/url";
+import { pedidosAPI } from "../../Helpers/url";
 import style from "./PagoResultado.module.css";
 import { handleError } from "../../Helpers/functions";
 import Footer from "../../components/Footer/Footer";
 
 function PagoResultado() {
   const [searchParams] = useSearchParams();
-  const idPedidoParams = searchParams.get("id");
-  const env = searchParams.get("env");
+  const reference = searchParams.get("reference");
+  const partes = reference.split("_"); // ["PEDIDO", "19"]
+  const idPedidoParams = partes[1];
   const [loading, setLoading] = useState(true);
   const [pagoExitoso, setPagoExitoso] = useState(false);
 
@@ -20,21 +21,22 @@ function PagoResultado() {
       try {
         if (!idPedidoParams) return;
 
-        const { data, status } = await api.get(
-          pagos.VALIDARPAGO.replace("{idPedido}", idPedidoParams)
+        const res = await api.get(
+          pedidosAPI.VALIDARPAGO.replace("{idPedido}", idPedidoParams)
         );
-        if (status === 200 && data.status === 200) {
+
+        if (res.status === 200 && res.data?.data === 1) {
           setPagoExitoso(true);
           Swal.fire(
             "¡Pago exitoso!",
-            data.message || "El pago fue exitoso",
+            res.data.message || "El pago fue exitoso",
             "success"
           );
         } else {
           setPagoExitoso(false);
           Swal.fire(
             "Atención",
-            data.message || "No se pudo actualizar el estado del pago.",
+            res.data.message || "No se ha hecho ningún pago.",
             "warning"
           );
         }

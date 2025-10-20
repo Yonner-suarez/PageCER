@@ -9,7 +9,6 @@ import { useSelector } from "react-redux";
 import { handleError } from "../../Helpers/functions";
 import { useParams } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
-const publickey = import.meta.env.VITE_WOMPI_PUBLICKEY;
 
 const ModuloPagos = () => {
   const [cliente, setCliente] = useState({
@@ -139,7 +138,9 @@ const ModuloPagos = () => {
           const redirectUrlEncode = encodeURIComponent(
             `${redirectUrl}?reference=${referencia}`
           );
-          const checkoutUrl = `https://checkout.wompi.co/p/?public-key=${publicKey}&currency=COP&amount-in-cents=${montoEnPesos}&reference=${referencia}&signature=${firma}&redirect_url=${redirectUrlEncode}`;
+          const checkoutUrl = `${
+            import.meta.env.VITE_WOMPI_CHECKOUT_URL
+          }?public-key=${publicKey}&currency=COP&amount-in-cents=${montoEnPesos}&reference=${referencia}&signature%3Aintegrity=${firma}&redirect-url=${redirectUrlEncode}`;
 
           console.log(checkoutUrl, montoEnPesos);
           // 🔹 Redirige al checkout
