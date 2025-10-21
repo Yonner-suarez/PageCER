@@ -189,7 +189,7 @@ const ModuloPagos = () => {
       }
     } catch (error) {
       setShowLoading({ display: "none" });
-      handleError(error.response?.data?.message);
+      handleError(error);
     }
   };
 

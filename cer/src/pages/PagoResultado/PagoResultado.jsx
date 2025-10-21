@@ -7,6 +7,7 @@ import { pedidosAPI } from "../../Helpers/url";
 import style from "./PagoResultado.module.css";
 import { handleError } from "../../Helpers/functions";
 import Footer from "../../components/Footer/Footer";
+import Loading from "../../components/Loading/Loading";
 
 function PagoResultado() {
   const [searchParams] = useSearchParams();
@@ -15,10 +16,12 @@ function PagoResultado() {
   const idPedidoParams = partes[1];
   const [loading, setLoading] = useState(true);
   const [pagoExitoso, setPagoExitoso] = useState(false);
+  const [showLoading, setShowLoading] = useState({ display: "none" });
 
   useEffect(() => {
     const validarPago = async () => {
       try {
+        setShowLoading({ display: "block" });
         if (!idPedidoParams) return;
 
         const res = await api.get(
@@ -27,6 +30,7 @@ function PagoResultado() {
 
         if (res.status === 200 && res.data?.data === 1) {
           setPagoExitoso(true);
+
           Swal.fire(
             "¡Pago exitoso!",
             res.data.message || "El pago fue exitoso",
@@ -34,6 +38,7 @@ function PagoResultado() {
           );
         } else {
           setPagoExitoso(false);
+
           Swal.fire(
             "Atención",
             res.data.message || "No se ha hecho ningún pago.",
@@ -44,7 +49,7 @@ function PagoResultado() {
         handleError(error);
         setPagoExitoso(false);
       } finally {
-        setLoading(false);
+        setShowLoading({ display: "none" });
       }
     };
 
@@ -65,35 +70,41 @@ function PagoResultado() {
     );
   }
 
-  return pagoExitoso ? (
-    <div className={style.contenedorSuccess}>
-      <CheckCircle size={80} color="green" />
-      <h2>¡Tu pago fue exitoso!</h2>
-      <p>
-        Gracias por tu compra. Tu pedido #{idPedidoParams} ha sido confirmado.
-      </p>
-      <Link to="/" className={style.btnHome}>
-        Volver al Inicio
-      </Link>
-      <Footer />
-    </div>
-  ) : (
-    <div className={style.contenedorFailure}>
-      <div className={style.card}>
-        <XCircle className={style.icon} color="#721c24" />
-        <h2>Pago no procesado</h2>
-        <p>
-          Lamentablemente no pudimos completar tu pago. Por favor, revisa tu
-          método de pago o inténtalo nuevamente.
-        </p>
-        <div className={style.actions}>
-          <Link to="/" className={style.btnRetry}>
-            Reintentar Pago
+  return (
+    <>
+      <Loading estilo={showLoading}></Loading>
+      {pagoExitoso ? (
+        <div className={style.contenedorSuccess}>
+          <CheckCircle size={80} color="green" />
+          <h2>¡Tu pago fue exitoso!</h2>
+          <p>
+            Gracias por tu compra. Tu pedido #{idPedidoParams} ha sido
+            confirmado.
+          </p>
+          <Link to="/" className={style.btnHome}>
+            Volver al Inicio
           </Link>
+          <Footer />
         </div>
-      </div>
-      <Footer />
-    </div>
+      ) : (
+        <div className={style.contenedorFailure}>
+          <div className={style.card}>
+            <XCircle className={style.icon} color="#721c24" />
+            <h2>Pago no procesado</h2>
+            <p>
+              Lamentablemente no pudimos completar tu pago. Por favor, revisa tu
+              método de pago o inténtalo nuevamente.
+            </p>
+            <div className={style.actions}>
+              <Link to="/" className={style.btnRetry}>
+                Reintentar Pago
+              </Link>
+            </div>
+          </div>
+          <Footer />
+        </div>
+      )}
+    </>
   );
 }
 
