@@ -14,7 +14,6 @@ function PagoResultado() {
   const reference = searchParams.get("reference");
   const partes = reference.split("_"); // ["PEDIDO", "19"]
   const idPedidoParams = partes[1];
-  const [loading, setLoading] = useState(true);
   const [pagoExitoso, setPagoExitoso] = useState(false);
   const [showLoading, setShowLoading] = useState({ display: "none" });
 
@@ -55,20 +54,6 @@ function PagoResultado() {
 
     validarPago();
   }, [idPedidoParams]);
-
-  if (loading) {
-    return (
-      <>
-        <div className={style.contenedorLoading}>
-          <p className={style.loading}>Procesando pago...</p>
-          <Link to="/" className={style.btnHome}>
-            Volver al Inicio
-          </Link>
-        </div>
-        <Footer />
-      </>
-    );
-  }
 
   return (
     <>
