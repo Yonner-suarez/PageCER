@@ -45,6 +45,7 @@ const CardRep = ({
   marcaRep,
   marcas,
   descripcion,
+  cantidadReal,
 }) => {
   const [show, setShow] = useState(false);
   const [mostrarComponente, setMostrarComponente] = useState(false);
@@ -232,19 +233,28 @@ const CardRep = ({
 
           <Card.Text className="texto">{marcaRep.marcaRep}</Card.Text>
 
-          <div className="botones">
-            <Button
-              variant="primary"
-              style={{ fontFamily: "Franklin Gothic Medium" }}
-              onClick={onClick}
-            >
-              Comprar
-            </Button>
+          {cantidadReal > 0 ? (
+            <div className="botones">
+              <Button
+                variant="primary"
+                style={{ fontFamily: "Franklin Gothic Medium" }}
+                onClick={onClick}
+              >
+                Comprar
+              </Button>
 
-            <div className="ContenedorCarrito">
-              {mostrarComponente && <Carrito placement="end" name="end" />}
+              <div className="ContenedorCarrito">
+                {mostrarComponente && <Carrito placement="end" name="end" />}
+              </div>
             </div>
-          </div>
+          ) : (
+            <div
+              className="agotado"
+              style={{ color: "red", fontWeight: "bold", marginTop: "10px" }}
+            >
+              Agotado
+            </div>
+          )}
         </Card.Body>
       </div>
     </Card>

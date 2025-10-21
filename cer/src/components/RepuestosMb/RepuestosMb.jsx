@@ -51,6 +51,7 @@ const RepuestosMb = () => {
               marcaRep={repuesto.marca?.nombre}
               marcas={repuesto.marca}
               descripcion={repuesto.descripcion}
+              cantidadReal={repuesto.cantidadReal}
             />
           ))}
 
