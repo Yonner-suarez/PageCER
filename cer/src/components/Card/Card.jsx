@@ -148,21 +148,34 @@ const CardRep = ({
 
                 <div className="contenedorPrecioModal" style={{}}>
                   <h3 className="tituloPrecio">{formatearNumeroCOP(precio)}</h3>
-                  {!mostrarComponente && !buscaElProductoActual ? (
-                    <Button
-                      variant="primary"
-                      style={{ fontFamily: "Franklin Gothic Medium" }}
-                      onClick={onClick}
-                    >
-                      Agregar
-                    </Button>
+                  {cantidadReal > 0 ? (
+                    !mostrarComponente && !buscaElProductoActual ? (
+                      <Button
+                        variant="primary"
+                        style={{ fontFamily: "Franklin Gothic Medium" }}
+                        onClick={onClick}
+                      >
+                        Agregar
+                      </Button>
+                    ) : (
+                      <CantidadEnLaCard
+                        repuesto={obj}
+                        id={id}
+                        precio={precio}
+                        repuestos={repuestos}
+                      />
+                    )
                   ) : (
-                    <CantidadEnLaCard
-                      repuesto={obj}
-                      id={id}
-                      precio={precio}
-                      repuestos={repuestos}
-                    />
+                    <div
+                      className="agotado"
+                      style={{
+                        color: "red",
+                        fontWeight: "bold",
+                        marginTop: "10px",
+                      }}
+                    >
+                      Agotado
+                    </div>
                   )}
                 </div>
 
